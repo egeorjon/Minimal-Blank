@@ -1,0 +1,140 @@
+[more]
+other = "Continuer la lecture"
+
+[In]
+other= "Dans"
+
+[reading]
+other = "Lecture de "
+
+[min]
+other = "min."
+
+[minute]
+other = "minute"
+
+[mins]
+other = "mins"
+
+[minutes]
+other = "minutes"
+
+[by]
+other="par"
+
+[tag]
+other = "Mot-clé"
+
+[tags]
+other = "Mots-clés"
+
+[the_tags]
+other = "Les mots-clés"
+
+[section]
+other = "Rubrique"
+
+[posted-on]
+other = "Publié le"
+
+[post_section]
+other = "Article de la section"
+
+[post_category]
+other = "Article de la catégorie"
+
+[search]
+other = "Recherche"
+
+[series-posts]
+other = "Les articles"
+
+[no-post-yet]
+other = "Aucun article n'est disponible pour l'instant"
+
+[see-also]
+other = "Articles similaires"
+
+[same-serie]
+other = "Articles dans le même dossier"
+
+[same-series]
+other = "Articles dans les mêmes dossiers"
+
+[series]
+other = "Les dossiers"
+
+[share-this-post]
+other = "Partagez cet article"
+
+[share-link]
+other = "Partagez ce lien dans"
+
+[attachment-type]
+other = "Type"
+
+[attachment-title]
+other = "Titre"
+
+[attachment-size]
+other = "Taille"
+
+[GB]
+other = "Go"
+
+[MB]
+other = "Mo"
+
+[kB]
+other = "ko"
+
+[bytes]
+other = "Octets"
+
+[page]
+other = "Page"
+
+[on]
+other = "sur"
+
+[newests]
+other ="Les derniers"
+
+[newers]
+other ="Plus récents"
+
+[oldests]
+other ="Les premiers"
+
+[olders]
+other = "Plus anciens"
+
+[older]
+other = "Article plus ancien"
+
+[newer]
+other = "Article plus récent"
+
+[search-form]
+other = "Formulaire de recherche"
+
+[search-results]
+other = "Résultats de la recherche"
+
+[search-please-enter]
+other = "Veuillez saisir vos critères de recherche"
+
+[search-help]
+other = "La recherche peut porter sur un ou plusieurs mots"
+
+[what-you-looking-for]
+other = "Mots ou phrase"
+
+[rss-feeds]
+other = "Flux RSS"
+
+[all-series]
+other = "Voir toutes les séries"
+
+[last-posts]
+other = "Derniers articles"

@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-md navbar-light sticky-top menu-bg-brd">
+    <div class="container">
+        <a class="navbar-brand" href="{{- .Site.BaseURL -}}" title="{{- .Site.Title -}}">
+            <img id="site-brand-logo" src="/assets/favicons/site-logo.png" alt="" width="40" height="40" /><!-- class="d-inline-block align-top" -->
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainmenu">
+            <ul class="navbar-nav me-auto">
+                {{- $currentPage := . -}}
+                {{- if eq .Kind "page" -}}
+                    {{- with .Parent -}} {{- $currentPage = . -}}{{- end -}}
+                {{- end -}}
+                {{- range .Site.Menus.main -}}
+                    {{- $active := ""    -}}
+                    {{- $link   := .Name -}}
+                    {{- if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) -}}
+                        {{- $active = " active" -}}
+                        {{- $link   = printf "%s<span class=\"visually-hidden\"> (current)</span>" .Name -}}
+                    {{- end }}
+                    {{- if .Pre -}}
+                        {{- $link = printf "<i class=\"%s\"></i> <span class=\"visually-hidden\">%s</span>" .Pre $link -}}
+                    {{- end -}}
+                    <li class="nav-item {{- $active -}}">
+                        <a class="nav-link" href="{{- .URL -}}" id="{{- .Identifier -}}" title="{{- .Name -}}">{{- safeHTML $link -}}</a>
+                    </li>
+                {{- end -}}
+            </ul>
+            <a class="nav-link" href="#search-query" id="search" title="{{- i18n "search" -}}">
+                <i class="fas fa-search" aria-hidden="true"></i> <span class="visually-hidden">{{- i18n "search" -}}</span>
+            </a>
+        </div><!-- navbar -->
+    </div><!-- container -->
+</nav>

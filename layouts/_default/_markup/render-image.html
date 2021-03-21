@@ -1,0 +1,77 @@
+<!--<p>LOG: {{- .Destination -}}</p>-->
+{{/* --------- Breakpoints parameters (to be aligned with the css reakpoints) --------- */}}
+    {{- $smallw  := "480" -}}
+    {{- $mediumw := "660" -}}
+    {{- $largew  := "800" -}}{{/* Initial breakpoint 900. */}}
+    {{/*- $xlargew := "1200" -*/}}
+{{/* ---------  Parameters lighbox --------- */}}
+    {{- $lightbox := 1 -}}
+{{/* ---------  Other parameters --------- */}}
+    {{- $aligment := "center" -}}
+{{/* --------- Step 1: Validate the image --------- */}}
+{{- $validImg := 0 -}}
+{{- $image := "" -}}
+{{/* --------- if the image is local, we test that it exists --------- */}}
+{{- if ne "http" (slicestr .Destination 0 4) -}}
+    {{- $image = .Page.Resources.GetMatch .Destination -}}
+    {{- with $image -}}{{- $validImg = 1 -}}{{- end -}}
+{{- end -}}
+{{/* --------- The image exists, is it a supported format --------- */}}
+{{- if eq $validImg 1 -}}
+    {{- $exts := (slice ".jpg" ".jpeg" ".gif" ".tif" ".png" ".webp") -}} 
+    {{- if in $exts (path.Ext .Destination) -}}
+        {{- $validImg = 2 -}}
+    {{- end -}}
+{{- end -}}
+{{/* If validImg = 0, the image is a remote image */}}
+{{/* If validImg = 1, the image is local, but not supported by image processing tool (like svg) */}}
+{{/* If validImg = 2, the image is local, and supported */}}
+{{- $caption := "" -}}{{- $title := "" -}}
+{{- with .Title -}}{{- $caption = . -}}{{- $title = . -}}{{- else -}}{{- $caption = .Text -}}{{- end -}}
+{{- if eq $validImg 2 -}}
+    <!--<p>LOG: File Ok {{.Destination}}</p>-->
+    {{- $width := $image.Width -}}
+    {{- $height := $image.Height -}}
+    {{- $smallImg  := $image.Resize (printf "%sx" $smallw   ) -}}
+    {{- $mediumImg := "" -}}
+    {{- if ge $width $mediumw -}}
+        {{- $mediumImg = $image.Resize (printf "%sx" $mediumw ) -}}
+    {{- end -}}
+    {{- $largeImg  := "" -}}
+    {{- if ge $width $largew -}}
+        {{- $largeImg   = $image.Resize (printf "%sx" $largew  ) -}}
+    {{- end -}}
+    <figure class="figure-img figure-{{ $aligment }}">
+    {{- if le $width $smallw -}}
+    <img src="{{ $image.RelPermalink }}" width="{{ $width }}px" height="{{ $height }}px"
+        alt="{{- .Text | markdownify -}}" {{- with $title -}}title="{{.}}"{{- end -}} />
+    {{- else -}}
+        {{if ge $width $largew -}}
+            <a href="{{- $image.RelPermalink -}}" title="{{- $title -}}" {{ if $lightbox }}data-lightbox="{{- path.Base .Destination -}}" data-title="{{$caption}}"{{ end }}>
+        {{- end -}}
+        <img 
+            sizes="(max-width: 576px) 480px{{ with $mediumImg }}, (max-width: 768px) 660px{{ end }}{{ with $largeImg }}, (max-width: 992px) 900px{{ end }}, 100vw"
+            srcset="{{ with $smallImg }}{{ .RelPermalink }} {{ $smallw }}w{{end}}{{ with $mediumImg }},{{ .RelPermalink }} {{ $mediumw }}w{{end}}{{ with $largeImg }},{{ .RelPermalink }} {{ $largew }}w{{ else }},{{$image.RelPermalink}} {{$width}}w{{end}}"
+            src="{{ if ge $width $largew }}{{ $largeImg.RelPermalink }}{{ else }}{{ $image.RelPermalink }}{{ end }}" 
+            alt="{{- .Text | markdownify -}}" 
+            {{- with $title -}}title="{{.}}"{{- end -}} 
+            width="{{ if ge $width $largew }}{{ $largew }}{{else }}{{ $width }}{{ end }}px" 
+            height="{{ if ge $width $largew }}{{ $largeImg.Height }}{{else }}{{ $height }}{{ end }}px" />
+        {{ if ge $width $largew -}}
+            </a>
+        {{- end }}
+    {{ end }}
+    {{ with $caption -}}
+        <figcaption>{{- . | markdownify -}}</figcaption>
+    {{- end }}
+    </figure>
+{{- else -}}
+    <!--<p>LOG: File KO {{.Destination}}</p>-->
+    {{/* The image is a remote image, or a non supported image */}}
+    <figure class="figure-img figure-center">
+        <img src="{{- .Destination | safeURL -}}" alt="{{- .Text | markdownify -}}" {{- with $title -}}title="{{.}}"{{- end -}} />
+        {{ with $caption -}}
+            <figcaption>{{- . | markdownify -}}</figcaption>
+        {{- end }}
+    </figure>
+{{- end }}

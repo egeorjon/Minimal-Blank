@@ -1,0 +1,481 @@
+@use "sass:map";
+
+// scss-docs-start import-stack
+// Configuration
+    @import "bootstrap-5.0.0-beta2/scss/functions";
+    @import "customization";
+    @import "bootstrap-5.0.0-beta2/scss/variables";
+
+    @import "bootstrap-5.0.0-beta2/scss/mixins";
+    @import "bootstrap-5.0.0-beta2/scss/utilities";
+
+    // Values kept: display (for d-none, d-block, display, "background-color",...)
+    $utilities: map-remove($utilities,
+        "align", "overflow", "float",
+        "shadow", "position", "top",
+        "bottom", "start", "end",
+        "translate-middle", "border", "border-top",
+        "border-bottom", "border-start",
+        "border-end", "border-bottom", "border-width",
+        "width", "max-width", "viewport-width",
+        "min-viewport-width", "height", "max-height",
+        "viewport-height", "min-viewport-height", "flex",
+        "flex-direction", "flex-grow", "flex-shrink",
+        "flex-wrap", "gap", "justify-content",
+        "align-items", "align-content", "align-self",
+        "order", "margin", "margin-x", "margin-y",
+        "margin-top", "margin-end", "margin-bottom",
+        "negative-margin", "negative-margin-x", "negative-margin-y",
+        "negative-margin-end", "negative-margin-bottom", "negative-margin-start",
+        "padding", "padding-x", "padding-y", "padding-top",
+        "padding-end", "padding-bottom", "padding-start",
+        "font-size", "font-style", "font-weight",
+        "text-transform", "text-align", "color",
+        "line-height", "gradient",
+        "white-space", "text-decoration", "word-wrap",
+        "font-family", "user-select", "pointer-events",
+        "rounded", "rounded-top", "rounded-end",
+        "rounded-bottom", "rounded-start"
+    );
+
+// Layout & components
+    @import "bootstrap-5.0.0-beta2/scss/root";
+    @import "bootstrap-5.0.0-beta2/scss/reboot";
+// @import "bootstrap-5.0.0-beta2/scss/type";
+// @import "bootstrap-5.0.0-beta2/scss/images";
+    @import "bootstrap-5.0.0-beta2/scss/containers";
+    @import "bootstrap-5.0.0-beta2/scss/grid";
+    @import "bootstrap-5.0.0-beta2/scss/tables";
+    @import "bootstrap-5.0.0-beta2/scss/forms";
+    @import "bootstrap-5.0.0-beta2/scss/buttons";
+    @import "bootstrap-5.0.0-beta2/scss/transitions";
+// @import "bootstrap-5.0.0-beta2/scss/dropdown";
+// @import "bootstrap-5.0.0-beta2/scss/button-group";
+    @import "bootstrap-5.0.0-beta2/scss/nav";
+    @import "bootstrap-5.0.0-beta2/scss/navbar";
+// @import "bootstrap-5.0.0-beta2/scss/card";
+// @import "bootstrap-5.0.0-beta2/scss/accordion";
+    @import "bootstrap-5.0.0-beta2/scss/breadcrumb";
+    @import "bootstrap-5.0.0-beta2/scss/pagination";
+    @import "bootstrap-5.0.0-beta2/scss/badge";
+// @import "bootstrap-5.0.0-beta2/scss/alert";
+// @import "bootstrap-5.0.0-beta2/scss/progress";
+// @import "bootstrap-5.0.0-beta2/scss/list-group";
+// @import "bootstrap-5.0.0-beta2/scss/close";
+// @import "bootstrap-5.0.0-beta2/scss/toasts";
+// @import "bootstrap-5.0.0-beta2/scss/modal";
+// @import "bootstrap-5.0.0-beta2/scss/tooltip";
+// @import "bootstrap-5.0.0-beta2/scss/popover";
+// @import "bootstrap-5.0.0-beta2/scss/carousel";
+// @import "bootstrap-5.0.0-beta2/scss/spinners";
+
+// Helpers
+// @import "bootstrap-5.0.0-beta2/scss/helpers";
+// @import "bootstrap-5.0.0-beta2/scss/helpers/clearfix.scss";
+// @import "bootstrap-5.0.0-beta2/scss/helpers/colored-links.scss";
+    @import "bootstrap-5.0.0-beta2/scss/helpers/position.scss";
+// @import "bootstrap-5.0.0-beta2/scss/helpers/ratio.scss";
+// @import "bootstrap-5.0.0-beta2/scss/helpers/stretched-link.scss";
+// @import "bootstrap-5.0.0-beta2/scss/helpers/text-truncation.scss";
+    @import "bootstrap-5.0.0-beta2/scss/helpers/visually-hidden.scss";
+
+// Utilities
+@import "bootstrap-5.0.0-beta2/scss/utilities/api";
+// scss-docs-end import-stack
+
+$fa-font-path: "../webfonts";
+@import "fontawesome-free-5.15.2-web/scss/fontawesome";
+@import "fontawesome-free-5.15.2-web/scss/solid";
+// @import "fontawesome-free-5.15.2-web/scss/regular";
+@import "fontawesome-free-5.15.2-web/scss/brands";
+
+.me-auto {
+    margin-right: auto !important;
+}
+
+.menu-bg-brd {
+    background-color: #fff;
+    border-bottom: 1px solid $gray-300;
+}
+
+#page-title {
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.thumbnail-placeholder {
+    background-color    : $gray-300;
+    border              : 1px solid $gray-500;
+    border-radius       : 1rem;
+    width               : 880px;
+    height              : 400px;
+    margin-left         : auto;
+    margin-right        : auto;
+}
+
+.justify-content-center {
+    justify-content: center !important;
+  }
+
+.post-meta {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+
+    li {
+        display: inline-block;
+        white-space: nowrap;
+
+        &:after {
+            content: "\2002\2022\2002";
+        }
+
+        &:last-child:after {
+            content: "";
+        }
+    }
+
+    i {
+        color: $gray-600;
+    }
+}
+
+.post-list {
+
+    #page-header {
+        margin-bottom: 2em;
+    }
+
+    h2 a {
+        text-decoration: none;
+    }
+    
+    h2 a:hover {
+        color: $secondary;
+    }
+    
+    .post-header {
+        margin-bottom: 1em;
+    }
+
+    .post-summary {
+        text-align: justify;
+    }
+
+    .post {
+        padding-bottom: 2.5em;
+        border-bottom: 1px solid $gray-300;
+        margin-bottom: 2em;
+    }
+
+    .post:nth-last-child(2),
+    .post:last-child {
+        border-bottom: 0;
+    }
+
+    .pagination i {
+        color: $gray-500;
+    }
+}
+
+.text-center {
+   text-align: center; 
+}
+
+.post-single {
+
+    #page-header {
+        margin-bottom: 1em;
+    }
+    
+    .post-header {
+        margin-bottom: 2em;
+    } 
+
+    .post-content {
+        text-align: justify;
+    }
+
+    .post-content,
+    .post-footer,
+    .share-links,
+    .author-info {
+        padding-bottom: 2em;
+        border-bottom: 1px solid $gray-300;
+        margin-bottom: 2em;
+    }
+}
+
+.share-links {
+    
+    div {
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a > i {
+        color: $gray-600;
+        font-size: 2em;
+    }
+
+    a:hover,
+    a:hover i {
+        color: $secondary;
+    }
+}
+
+.share-text {
+    display: none;
+}
+
+@media (min-width: map-get($grid-breakpoints, "sm")) {
+
+    .share-text {
+        display: block;
+    }
+}
+
+.author-avatar {
+    text-align: right;
+}
+
+.author-name {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.author-socials {
+    list-style-type: none;
+    padding-left: 0;
+
+    li {
+        display: inline-block;
+        margin-left: 1em;
+    }
+}
+
+#search-results-items {
+    h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+
+// -------------------------------------------------------
+// --- Styles inside post
+// ------------------------------------------------------- 
+
+.post-single {
+    h2 {
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+        color: $secondary;
+    }
+
+    h3 {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: $primary;
+    }
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.figure-img {
+	display: inline-block;
+	margin-bottom: $spacer;
+}
+
+.figure-center {
+	display: block!important;
+	text-align: center;
+}
+
+figcaption {
+	font-size: $font-size-sm;
+	font-style: italic;
+}
+
+.thumbnail {
+	margin-bottom: 1.25 * $spacer;
+}
+
+.thumbnail img {
+	padding: 0.5rem;
+	border: 1px solid $gray-500;
+}
+
+@media (min-width: map-get($grid-breakpoints, "sm")) {
+	.thumbnail {
+		margin-bottom: 1.5 * $spacer;
+
+		img {
+			padding: 0.75rem;
+		}
+	}
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+	.thumbnail {
+		margin-bottom: 2 * $spacer;
+
+		img {
+			padding: 1rem;
+		}
+	}
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+	.thumbnail img {
+		padding: 1.5rem;
+	}
+}
+
+// --------------------------------------------
+// --- footer
+// --------------------------------------------
+
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+#page-content {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $gray-300;
+}
+
+#page-footer {
+    border-bottom: 1px solid $gray-300;
+}
+
+.footer-middle,
+.footer-search {
+    border-bottom: 1px solid $gray-300;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.footer-middle {
+    h3 {
+        padding-top: 0;
+        margin-top: 0;
+    }
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.col-form-label {
+    text-align: right;
+}
+
+.social-links {
+
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+
+    li {
+        display: inline;
+        margin-right: 0.5rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: $secondary;
+    }
+}
+
+.social-links .fa-2x {
+    font-size: 1.5em;
+}
+
+@media (min-width: map-get($grid-breakpoints, "sm")) {
+
+    .social-links li {
+        margin-right: 1rem
+    }
+
+    .social-links .fa-2x {
+        font-size: 2em;
+    }
+}
+
+.widget-text {
+    margin-bottom: 2em;
+}
+
+.footnotes {
+     ol {
+         font-size: $small-font-size;
+     }
+
+    hr {
+        width: 50%;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+}
+
+.home-section {
+    border-bottom: 1px solid $gray-300;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    &:last-child {
+        border: 0;
+    }
+}
+
+.home-widget {
+    margin-bottom: 3rem;
+}
+
+$sl-font-family: Arial, sans-serif;
+$sl-overlay-background: #000; /* #fff; */
+$sl-navigation-color: #000;
+$sl-caption-color: #fff;
+$sl-caption-background: #000;
+$sl-overlay-opacity: 0.7;
+
+$sl-counter-fontsize: 1rem;
+$sl-caption-fontsize: 1rem;
+$sl-close-fontsize: 3rem;
+
+$sl-breakpoint-medium: 35.5em; // 568px, when 1rem == 16px
+$sl-breakpoint-large:  50em;   // 800px, when 1rem == 16px
+
+$sl-arrow-fontsize-small:  2rem;
+$sl-arrow-fontsize-medium: 3rem;
+$sl-arrow-fontsize-large:  3rem;
+$sl-img-border-small:  0 none;
+$sl-img-border-medium: 0 none;
+$sl-img-border-large:  0 none;
+$sl-iframe-border-small:  0 none;
+$sl-iframe-border-medium: 0 none;
+$sl-iframe-border-large:  0 none;
+
+$add-vendor-prefixes: true !default;
+@import "simple-lightbox/simple-lightbox.scss";

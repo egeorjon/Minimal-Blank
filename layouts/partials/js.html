@@ -1,0 +1,88 @@
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/simple-lightbox.min.js"></script>
+
+
+{{- if eq .Layout "search" -}}
+<script src="/index.json" type="text/javascript"></script>
+<script src="/assets/js/fuse.min.js" type="text/javascript"></script>
+<script src="/assets/js/search.js" type="text/javascript"></script>
+{{- end -}}
+
+<script >
+
+    /* --------------------------------------------
+    --- Manage site title and logo              ---
+    ----------------------------------------------- */
+/*
+    window.onscroll = function() {
+        showhideLogo()
+    };
+
+    function showhideLogo() {
+        sb = document.getElementById("site-brand-logo");
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            sb.classList.add("fullsize");
+        } else {
+            sb.classList.remove("fullsize");
+        }
+    } */ /* end of showhideLogo */
+
+    /* --------------------------------------------
+    --- Update tables                           ---
+    ----------------------------------------------- */
+    var matches = document.querySelectorAll("table");
+    matches.forEach(
+        tb => {
+            tb.classList.add("table", "table-striped");
+            tb.querySelector("thead").classList.add("thead-light");
+
+            var wrapper = document.createElement('div');
+            wrapper.classList.add("table-responsive-md");
+            tb.parentNode.insertBefore(wrapper, tb);
+            wrapper.appendChild(tb);
+        }
+    );
+
+    /* --------------------------------------------
+    --- Initiate the image galleries            ---
+    ----------------------------------------------- */
+    var matches = document.querySelectorAll(".image-gallery");
+    matches.forEach(
+        gal => {
+            new SimpleLightbox("#" + gal.id + " a");
+        }
+    );
+
+    /* --------------------------------------------
+    --- Update footnotes                     ---
+    -------------------------------------------- */
+
+    /* --- Update the badge (to fit with bootstrap styles) --- */
+    document.querySelectorAll(".footnote-ref").forEach(
+        fr => {
+            fr.classList.add("badge","bg-primary");
+            fr.classList.remove("footnote-ref");
+            var text = fr.textContent;
+            fr.textContent = "[" + text + "]";
+        }
+    );
+
+    /* --- Update the backref character --- */
+    /* document.querySelectorAll(".footnote-backref").forEach(
+        fbr => {
+            fbr.innerHTML = "(&crarr;)";
+        }
+    ); */
+
+    function insertAfter(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    }
+
+    /* --- Add the title --- */
+    if (document.querySelector(".footnotes")) {
+        var notes = document.createElement("span");
+        notes.classList.add("footnotes-title");
+        notes.textContent = "Notes";
+        insertAfter(notes, document.querySelector(".footnotes > hr"));
+    }
+</script>

@@ -1,0 +1,21 @@
+{{- range . -}}
+<div class="row justify-content-center author-info">
+    <div class="col-2 author-avatar">
+        {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
+        {{- with $image -}}
+            <img src="{{- .RelPermalink -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+        {{- end -}}
+    </div>
+    <div class="col-7">
+        <p class="author-name">{{- .Params.Title -}}</p>
+        <p class="author-description">{{ .Params.Bio -}}</p>
+        {{- with .Params.Socials -}}
+            <ul class="author-socials">
+            {{- range . -}}
+                <li><a href="{{- .url -}}" alt="{{- .alt -}}"><i class="fab fa-{{- .icon -}}"></i></a></li>
+            {{- end -}}
+            </ul>
+        {{- end -}}
+    </div>
+</div>
+{{- end -}}

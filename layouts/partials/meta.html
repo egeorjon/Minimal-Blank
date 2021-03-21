@@ -1,0 +1,64 @@
+{{- $context := .context -}}
+<ul class="post-meta {{ with .class -}}{{ . }}{{- end -}}">
+    {{- range $param, $value := .prm -}}
+        {{- if and (eq $param "authors") $value -}}
+            {{- $list := slice -}}
+            {{- range $context.GetTerms "authors" -}}
+                {{- $list = $list | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
+            {{- end -}}
+            {{- if gt (len $list) 0 -}}
+            <li class="post-author">
+                <i class="fas fa-user-edit"></i><span class="visually-hidden" aria-label="hidden">{{- i18n "by" -}}</span> 
+                <span class="by-author">{{- delimit $list ", " -}} </span>
+            </li>
+            {{- end -}}
+        {{- end -}}
+        {{- if and (eq $param "date") $value -}}
+            <li class="post-date">
+                <i class="fas fa-calendar-alt"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
+                <time class="entry-date published" datetime="{{- $.Date -}}">{{- ($context.Date.Format $context.Site.Params.FormatDate | default "2-Jan-2006") -}}</time>
+            </li>
+        {{- end -}}
+        {{- if and (eq $param "reading") $value -}}
+            <li class="post-read">
+                <i class="fas fa-clock" aria-hidden="true"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "reading" -}}</span>
+                {{- $context.ReadingTime }} {{ if le $context.ReadingTime 1 -}}{{- i18n "min" -}}{{- else -}}{{- i18n "mins" -}}{{- end -}}
+            </li>
+        {{- end -}}
+        {{- if and (eq $param "tags") $value -}}
+            {{- $sl := slice -}}
+            {{- with $context.GetTerms "tags" -}}
+                {{- range . -}}
+                    {{- $sl = $sl | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
+                {{- end -}}
+            {{- end -}}
+            <li class="post-tags">
+                <i class="fas fa-tags"></i>
+                <span class="visually-hidden" aria-label="hidden">{{- if eq (len $sl) 1 -}}{{- i18n "tag" -}}{{- else -}}{{- i18n "tags" -}}{{- end }}:</span>
+                {{- delimit $sl ", " -}} 
+            </li>
+        {{- end -}}
+        {{- if and (eq $param "section") $value -}}
+            {{- if ne $.kindstr "section" -}}
+                {{- with $context.Parent }}
+                <li class="post-section">
+                    <i class="fas fa-folder-open"></i><span class="visually-hidden">{{- i18n "In" -}}</span> 
+                    <span class="in-category"><a href="{{- .Permalink -}}" title="Articles de la categorie {{- .Name  -}}">{{- .Name -}}</a></span>
+                </li><!-- class="visually-hidden" -->
+                {{- end -}}
+            {{- end }}
+        {{- end -}}
+        {{- if and (eq $param "category") $value -}}
+            {{- $list := slice -}}
+            {{- range $context.GetTerms "categories" -}}
+                {{- $list = $list | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
+            {{- end -}}
+            {{- if gt (len $list) 0 -}}
+            <li class="post-category">
+                <i class="fas fa-folder-open"></i><span class="visually-hidden" aria-label="hidden">{{- i18n "In" -}}</span> 
+                <span class="in-category">{{- delimit $list ", " -}} </span>
+            </li>
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+</ul>

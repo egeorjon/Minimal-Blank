@@ -1,0 +1,16 @@
+{{- if isset .context.Site.Taxonomies "categories" -}}
+    {{- if not (eq (len .context.Site.Taxonomies.categories) 0) -}}
+<section class="col widget widget-categories">
+    <h3>{{- i18n "categories" -}}</h3>
+    <ul>
+        {{- range .context.Site.Taxonomies.categories }}
+        <li>
+            <a href="{{ .Page.Permalink }}" title="{{- .Page.Title -}} ({{ .Count }})" >{{- .Page.Title -}}</a>
+        </li>
+        {{ end -}}
+    </ul>
+</section>
+    {{- end -}}
+{{- end -}}
+
+

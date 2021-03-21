@@ -1,0 +1,8 @@
+<!-- Stylesheets "compressed" -->
+{{- $sassTemplate := resources.Get "styles.scss" -}}
+{{- $options := (dict "targetPath" "/assets/css/style.css" "outputStyle" "enableSourceMap") -}}
+
+{{- $style := $sassTemplate | resources.ToCSS $options -}}
+<link href="{{- $style.RelPermalink -}}" rel="stylesheet">
+
+{{/* | resources.Minify | resources.Fingerprint */}}

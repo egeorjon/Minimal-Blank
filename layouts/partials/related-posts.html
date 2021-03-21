@@ -1,0 +1,14 @@
+<aside class="col related-posts">
+    {{- $currentPage := . -}}
+    {{ $related := (.Site.RegularPages.RelatedIndices . "tags" "date") | first 6 }}
+    {{ with $related }}
+    <h4>{{ i18n "see-also" }}</h4>
+    <ul>
+        {{ range . }}
+        <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+        {{ end }}
+    </ul>
+    {{ end }}
+</aside><!-- related-posts -->
+
+

@@ -1,0 +1,79 @@
+<div class="container">
+    <form action="/search/" method="GET" class="form-group">
+        <div class="footer-search row justify-content-center">
+            <label for="search-query" class="col-2 col-form-label"><span class="d-none d-md-block">{{-  i18n "search" -}}</span></label>
+            <div class="col-8 col-sm-6 col-md-4">
+                <input type="text" size="10" class="form-control" id="search-query" name="s" placeholder="{{- i18n "what-you-looking-for" -}}">
+            </div>
+            <div class="col-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search" aria-hidden="true"></i> 
+                    <span class="visually-hidden">{{- i18n "search" -}}</span>
+                </button>
+            </div><!-- col -->
+        </div><!-- footer-search -->
+    </form>
+    <div class="footer-middle row row-cols-1 row-cols-md-2">
+        <section class="col">
+            {{- if .Site.Params.FooterWidgets.LeftWidget -}}
+                {{- partialCached (printf "widgets/%s.html" .Site.Params.FooterWidgets.LeftWidget) (dict "context" . ) -}}
+            {{- end -}}
+        </section>
+        <section class="col">
+            {{- if .Site.Params.FooterWidgets.RightWidget -}}
+                {{- $value := (split .Site.Params.FooterWidgets.RightWidget ",") -}}
+                {{- $widget := index $value 0 -}}
+                {{- $param  := index $value 1 -}}
+                {{- partialCached (printf "widgets/%s.html" $widget) (dict "context" . "param" $param) -}}
+            {{- end -}}
+            {{- if .Site.Params.FooterPages -}}
+                {{- if gt (len .Site.Params.FooterPages) 0 -}}
+            <ul class="legal-links ">
+                {{- range $name, $file := .Site.Params.FooterPages -}}
+                    {{- with $.Site.GetPage $file -}}
+                <li><a href="{{- .Permalink -}}">{{- .Title -}}</a></li>
+                    {{- end -}}
+                {{- end -}}
+            </ul>
+                {{- end -}}
+            {{- end -}}            
+            {{- if .Site.Params.FollowLinks -}}
+                {{- if gt (len .Site.Params.FollowLinks) 0 -}}
+            <ul class="social-links ">
+                {{- range $name, $url := .Site.Params.FollowLinks -}}
+                    {{- if and (ne $url "") (ne $name "rss") -}}
+                <li>
+                    <a href="{{- $url -}}" target="_blank" rel="noopener noreferrer" alt="{{- humanize $name -}}" title="{{- humanize $name -}}">
+                        <i class="fab fa-{{ $name }} fa-2x"></i>
+                        <span class="visually-hidden">{{- humanize $name -}}</span>
+                    </a>
+                </li>
+                    {{- end -}}
+                {{- end -}}
+                {{- if eq .Site.Params.FollowLinks.rss true -}}
+                    {{- with .OutputFormats.Get "rss" -}}
+                <li>
+                    <a href="{{- .Permalink -}}" target="_blank" alt="{{- i18n "rss-feeds" -}}" title="{{- i18n "rss-feeds" -}}">
+                        <i class="fas fa-rss-square fa-2x"></i>
+                        <span class="visually-hidden">{{- i18n "rss-feeds" -}}</span>
+                    </a>
+                </li>
+            </ul>
+                {{- end -}}
+            {{- end -}}
+        </section><!-- col -->
+            {{- end -}}
+        {{- end -}}
+    </div><!-- row -->
+    <div class="footer-bottom row">
+        <div class="col">
+            <div><span class="d-none d-md-inline">Copyright</span>
+                &copy; {{ printf "%s-%s - %s" .Site.Params.Copyright.FirstDate (now.Format "2006") (.Site.Params.Copyright.Attribution  | markdownify) -}}
+            </div>
+            <div>
+                 <span class="d-none d-md-inline">{{- .Site.Params.Copyright.SentenceFull | markdownify -}}</span>
+                 <span class="d-md-none">{{- .Site.Params.Copyright.SentenceSmall | markdownify -}}</span>
+            </div>
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->

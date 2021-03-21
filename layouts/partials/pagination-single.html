@@ -1,0 +1,34 @@
+<nav class="row nav-pagination" aria-label="pages navigation">
+    <div class="col">
+        <ul class="pagination justify-content-center">
+        {{ if .NextInSection -}}
+            <li class="page-item">
+                <a class="page-link" href="{{- .NextInSection.Permalink -}}" title="{{- .NextInSection.Title | markdownify -}}">
+                    <i class="fas fa-angle-left"></i> 
+                    <span class="d-none d-md-inline"> {{ i18n "newer" -}}</span>
+                </a>
+            </li>
+        {{ else -}}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                    <i class="fas fa-angle-left"></i> 
+                    <span class="d-none d-md-inline">{{ i18n "newer" -}}</span>
+                </a>
+            </li>
+        {{- end -}}
+        {{ if .PrevInSection -}}
+            <li class="page-item">
+                <a class="page-link" href="{{- .PrevInSection.Permalink -}}" title="{{- .PrevInSection.Title | markdownify -}}">
+                    <span class="d-none d-md-inline">{{- i18n "older" }} </span><i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+        {{ else -}}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                    <span class="d-none d-md-inline">{{- i18n "older" }} </span><i class="fas fa-angle-right"></i>
+                </a>
+            </li>
+        {{ end -}}
+        </ul>
+    </div><!-- col -->
+</nav>

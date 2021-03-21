@@ -1,0 +1,140 @@
+[more]
+other = "Continue reading"
+
+[In]
+other= "In"
+
+[reading]
+other = "Reading in "
+
+[min]
+other = "min."
+
+[minute]
+other = "minute"
+
+[mins]
+other = "mins"
+
+[minutes]
+other = "minutes"
+
+[by]
+other = "by"
+
+[tag]
+other = "Tag"
+
+[tags]
+other = "Tags"
+
+[the_tags]
+other = "The tags"
+
+[section]
+other = "Section"
+
+[posted-on]
+other = "Posted on"
+
+[post_section]
+other = "Post of the section"
+
+[post_category]
+other = "Post of the category"
+
+[search]
+other = "Search"
+
+[series-posts]
+other = "The posts"
+
+[no-post-yet]
+other = "No post available yet"
+
+[see-also]
+other = "See also"
+
+[same-serie]
+other = "Posts in the same serie"
+
+[same-series]
+other = "Posts in the same series"
+
+[series]
+other = "The series"
+
+[share-this-post]
+other = "Share this post"
+
+[share-link]
+other = "Share this link in"
+
+[attachment-type]
+other = "Type"
+
+[attachment-title]
+other = "Title"
+
+[attachment-size]
+other = "Size"
+
+[GB]
+other = "GB"
+
+[MB]
+other = "MB"
+
+[kB]
+other = "kB"
+
+[bytes]
+other = "bytes"
+
+[page]
+other = "Page"
+
+[on]
+other = "on"
+
+[newests]
+other ="The lasts"
+
+[newers]
+other ="Newers"
+
+[oldests]
+other ="The firsts"
+
+[olders]
+other = "Olders"
+
+[older]
+other = "Previous post"
+
+[newer]
+other = "Next post"
+
+[search-form]
+other = "Search form"
+
+[search-results]
+other = "Search results"
+
+[search-please-enter]
+other = "Please enter what you are looking for"
+
+[search-help]
+other = "Can be a word or a full sentence"
+
+[what-you-looking-for]
+other = "Words or sentence"
+
+[rss-feeds]
+other = "RSS Flow"
+
+[all-series]
+other = "See all series"
+
+[last-posts]
+other = "Last posts"

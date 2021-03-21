@@ -1,0 +1,12 @@
+{{- $columns     := . -}}
+{{- $class       := "row row-cols-1" -}}
+{{- $colnum      := 1 -}}
+{{- $breakpoints := slice "xs" "sm" "md" "lg" "xl" -}}
+{{- range $brk := $breakpoints -}}
+    {{- $cn := (index $columns $brk ) -}}
+    {{- if ne $colnum $cn -}}
+        {{- $class = (printf "%s row-cols-%s-%d" $class $brk $cn ) -}}
+        {{- $colnum = $cn -}}
+    {{- end -}}
+{{- end -}}
+{{- return $class -}}

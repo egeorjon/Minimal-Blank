@@ -1,0 +1,27 @@
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb" >
+		{{- template "breadcrumbnav" (dict "p1" . "p2" . "pg" (.Scratch.Get "paginator") "level" 0) -}}
+	</ol>
+</nav>
+{{- define "breadcrumbnav" -}}
+    {{-  if .p1.Parent -}}
+        {{- template "breadcrumbnav" (dict "p1" .p1.Parent "p2" .p2 "pg" .pg "level" (add .level 1))  -}}
+    {{- end -}}
+    {{- $pn := "" -}}
+    {{with .pg -}}
+        {{- if gt .PageNumber 1}}
+            {{- $pn = printf " - Page %d/%d" .PageNumber .TotalPages -}}
+        {{- end -}}
+    {{- end -}}
+    {{ if .p1.IsHome -}}
+        <li class="breadcrumb-item" >
+            <a href="{{- .p1.Permalink -}}" title="{{- .p1.Title -}}" >
+                <i class="fas fa-home"></i><span class="visually-hidden" >{{- .p1.Title -}}</span>
+            </a>
+        </li>
+    {{- else if ne .p1 .p2 -}}
+        <li class="breadcrumb-item" >
+            <a href="{{- .p1.Permalink -}}" title="{{- .p1.Title -}}" >{{- .p1.Title -}}</a>
+        </li>
+    {{- end -}}
+{{- end -}}

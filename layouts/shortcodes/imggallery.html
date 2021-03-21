@@ -1,0 +1,31 @@
+{{/* shortcode imggallery.html */}}
+{{/* Parameters    */}}
+{{/*   files         string  relative path to the image (default: none, value mandatory) */}}
+{{/*   size          int     size of the thumbnails */}}
+{{/*   thumbcaption  int     display caption below the thumbnails */}}
+{{/*   id            string  id for the gallery */}}
+{{- $files := "gallery" -}}
+{{- with .Get "files" -}}{{- $files = . -}}{{- end -}}
+{{- $gallery := path.Base $files -}}
+{{- $size := "230" -}}
+{{- with .Get "size"}}{{- $size = . -}}{{- end -}}
+{{- $thumbcaption := 0 -}}
+{{- with .Get "thumbcaption"}}{{- $thumbcaption = 1 -}}{{- end -}}
+{{- $id := "default" -}}
+{{- with .Get "id"}}{{- $id = . -}}{{- end -}}
+{{- with .Page.Resources.Match ( path.Join $files "*" ) -}}
+<div class="image-gallery row row-cols-2 row-cols-md-3" {{ with $id -}}id="gallery-{{- $id -}}"{{- end -}}><!-- row-cols-lg-4 -->
+    {{- range . -}}
+    {{- $thumb := .Fill (printf "%sx%s smart" $size $size) }}
+    <figure class="thumbnail col">
+        <a {{ with .Title -}}data-title="{{.}}"{{end}} href="{{- .RelPermalink -}}"><img {{ with .Title -}}title="{{- . -}}"{{end}} src="{{- $thumb.RelPermalink}}" widht="{{- $size -}}" height="{{- $size -}}" /></a>
+        <!-- data-lightbox="{{- $gallery }}" -->
+        {{- if eq $thumbcaption 1 -}}
+            {{- with .Title }}
+                <figcaption>{{.}}</figcaption>
+            {{- end -}}
+        {{- end }}
+    </figure>
+    {{- end }}
+</div>
+{{- end -}}

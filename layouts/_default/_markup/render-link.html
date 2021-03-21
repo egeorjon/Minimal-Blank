@@ -1,0 +1,8 @@
+<a href="{{ .Destination | safeURL }}"{{ with .Title -}} title="{{ . }}"{{- end -}}{{- if strings.HasPrefix .Destination "http" -}} target="_blank" rel="noopener noreferrer"{{- end -}}>
+{{- .Text | safeHTML -}}
+{{- if strings.HasPrefix .Destination "https://github" }} <i class="fab fa-github"></i>
+{{- else if in "wikipedia.org" .Destination }} <i class="fab fa-wikipedia-w"></i>
+{{- else if strings.HasPrefix .Destination "https://" }} <i class="fas fa-external-link-alt"></i>
+{{- else if strings.HasPrefix .Destination "http://" }} <i class="fas fa-external-link-alt"></i>
+{{- end -}}
+</a>

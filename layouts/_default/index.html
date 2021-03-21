@@ -1,0 +1,127 @@
+{{- define "header" -}}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 id="page-title">{{ .Site.Title  | markdownify }}</h1>
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->
+{{- end -}}
+{{- define "main" -}}
+    <div class="container">
+    {{- if .Content -}}
+        <section class="home-section home-edito row">
+            <div class="col ">
+                <h2>{{- .Title -}}</h2>
+                {{- .Content -}}
+                <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
+            </div>
+        </section><!-- row -->
+    {{- end -}}
+
+    {{- if .Site.Data.homepage -}}
+        {{- range $name, $content := (sort .Site.Data.homepage "weight") -}}
+            <section class="home-section {{ $content.block -}}" id="{{- $name |anchorize -}}">
+            {{/* ----------------------------- */}}
+            {{/* --- Section List ------------ */}}
+            {{/* ----------------------------- */}}
+            {{- if eq $content.block "list" -}}
+                {{- with $content.title -}}
+                <div class="row">
+                    <div class="col">
+                        <h2>{{- . -}}</h2>
+                        {{- with $content.subtitle -}}
+                            <p class="subtitle">
+                                {{- . | markdownify -}}{{- end -}}
+                            </p>
+                    </div><!-- col -->
+                </div><!-- row -->
+                {{- end -}}
+                {{- $class := partial "class-columns.html" $content.columns -}}
+                <div class="row {{ $class -}}">
+                    {{- range $content.items -}}
+                    <div class="col home-widget">
+                        <h3>{{- .title -}}</h3>
+                        <p>{{- .text | markdownify -}}</p>
+                        {{- if .button -}}
+                            <a href="{{- .link }}" class="btn btn-outline-primary">{{- .button -}}</a>
+                        {{- end -}}
+                    </div><!-- col -->
+                    {{- end -}}
+                </div><!-- row -->
+            {{- else if eq $content.block "content" -}}
+            {{/* ----------------------------- */}}
+            {{/* --- Section content --------- */}}
+            {{/* ----------------------------- */}}
+                {{- with $.Site.GetPage $content.post -}}
+                <div class="row">
+                    <div class="col">
+                        <h2 class="">{{- .Title -}}</h2>
+                        <p>{{ .Content }}</p>
+                        <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
+                    </div>
+                </div>
+                {{- end -}}
+            {{- else if eq $content.block "post" -}}
+            {{/* ----------------------------- */}}
+            {{/* --- Section Post ------------ */}}
+            {{/* ----------------------------- */}}
+               {{- with $.Site.GetPage $content.post -}}
+                <div class="row">
+                    <div class="col home-widget">
+                        {{- with $content.title -}}<h2>{{- . -}}</h2>{{- end -}}
+                        <h3><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>
+                        {{- if $content.meta -}}
+                            {{- $meta_list := dict -}}
+                            {{- range (split $content.meta ",") -}}
+                                {{- $meta_list = merge $meta_list (dict . "true") -}}
+                            {{- end -}}
+                            {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $meta_list) -}}
+                        {{- end -}}
+                        <p>{{ .Summary }}</p>
+                    </div><!-- col -->
+                </div><!-- row -->
+                {{- end -}}
+            {{- else if eq $content.block "lastposts" -}}
+            {{/* ----------------------------- */}}
+            {{/* --- Section List ------------ */}}
+            {{/* ----------------------------- */}}
+                <div class="row">
+                    <div class="col">
+                        <h2 class="">{{- i18n "last-posts" -}}</h2>
+                        {{- with $content.subtitle -}}<p class="subtitle">{{- . | markdownify -}}{{- end -}}</p>
+                    </div>
+                </div>
+                {{- $class := partial "class-columns.html" $content.columns -}}
+                {{- $meta_list := dict -}}
+                {{- if $content.meta -}}
+                    {{- range (split $content.meta ",") -}}
+                        {{- $meta_list = merge $meta_list (dict . "true") -}}
+                    {{- end -}}
+                {{- end -}}           
+                <div class="row {{ $class -}}">
+                    {{- range (where site.RegularPages "Type" "in" $.Site.Params.Home.MainSections | first ($content.number | default 6)) -}}
+                    <article class="col post home-widget">
+                        <header class="post-header">
+                            <h3 class="post-title"><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>
+                            {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $meta_list) -}}
+                        </header>
+                        <div class="post-summary">
+                            {{- if .Description -}}
+                            <p>{{- .Description | safeHTML -}}</p>
+                            {{- else -}}
+                            <p>{{- .Summary | safeHTML | truncate ($.Site.Params.Home.PostSummary | default 250) -}}</p>
+                            {{- end -}}
+                        </div>
+                        <footer class="post-footer">
+                            <a href="{{- .RelPermalink -}}" class="btn btn-outline-primary" role="button">{{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span></a>
+                        </footer>
+                    </article>
+                    {{- end -}} 
+                </div>
+            {{- end -}}
+            </section>
+        {{- end -}}
+    {{- end -}}
+    </div><!-- container -->
+{{- end -}}

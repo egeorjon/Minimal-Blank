@@ -1,0 +1,6 @@
+{{- with .context.Site.GetPage .param -}}
+    <div class="widget-text">
+        <h3>{{ .Title }}</h3>
+        {{ .Content | safeHTML }}
+    </div>
+{{- end -}}

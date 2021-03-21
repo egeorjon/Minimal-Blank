@@ -1,0 +1,30 @@
+<!doctype html>
+<html class="no-js" lang="{{.Site.Language.Lang -}}">
+    <head>
+        {{- partial "head.html" . -}}
+    </head>
+    {{- $class :="post-list" -}}
+    {{- if .IsHome -}}
+        {{- $class = "post-home" -}}
+    {{- else if (in (slice "page" "404") .Kind ) -}}
+        {{- $class = "post-single" -}}
+    {{- end -}}
+    {{- if (in (slice "taxonomy" "term" ) .Kind ) -}}
+        {{- .Scratch.Set "paginator" .Paginator -}} {{/* (.Paginator 99) */}}
+    {{- else -}}
+        {{- .Scratch.Set "paginator" .Paginator -}}
+    {{- end -}}
+    <body class="{{- .Kind }} {{ $class }} {{ with .Layout -}}{{- . -}}-page{{- end -}}">
+        {{- partialCached "navigation.html" . .Section -}}
+        <header id="page-header">
+            {{- block "header" . -}}{{- end -}}
+        </header>
+        <main role="main" id="page-content">
+            {{- block "main" . -}}{{- end -}}
+        </main>
+        <footer id="page-footer">
+            {{- partial "footer.html" . -}}
+        </footer>
+        {{- partialCached "js.html" . .Layout -}}
+    </body>
+</html>

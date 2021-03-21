@@ -1,0 +1,201 @@
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph":[
+      {
+        {{/* -------------------- Organization -------------------- */}}
+        "@type": "Organization",
+        "@id": {{- printf "%s%s" site.BaseURL "#organization" -}},
+        "name":"{{- .Site.Title -}}",
+        "url": {{- site.BaseURL -}},
+        {{ if isset .Site.Params.Schema "orglogo" -}}
+        "logo":{
+            "@type": "ImageObject",
+            "@id": {{- printf "%s%s" site.BaseURL "#logo" -}},
+            "url": {{- printf "%s%s" (site.BaseURL | absURL) (index .Site.Params.Schema "orglogo") -}},
+            "caption": "{{- .Site.Title -}}"
+        },
+        {{- end }}
+        {{ with .Site.Params.FollowLinks -}}
+          {{- $list_url := slice -}}
+          {{- range $param, $url := . -}}
+            {{- if and (ne $param "rss") (ne $url "") -}}
+              {{- $list_url = $list_url | append $url -}}
+            {{- end -}}
+          {{- end -}}
+          "sameAs": {{ apply $list_url "chomp" "." }},
+        {{ end -}}
+        "image": {
+          "@id": {{- printf "%s%s" site.BaseURL "#logo" -}}
+        }
+      },
+      {
+        {{/* -------------------- Web site -------------------- */}}
+        "@type": "WebSite",
+        "@id": {{- printf "%s%s" site.BaseURL "#website" -}},
+        "url": {{- site.BaseURL -}},
+        "name": "{{- site.Title -}}",
+        {{ with .Site.Params.Description -}}"description": "{{- . -}}",{{- end }}
+        {{ with .Site.Params.Keywords -}}"keywords": "{{- delimit . ", " -}}",{{- end }}
+        "publisher": {
+          "@id": {{- printf "%s%s" site.BaseURL "#organization" -}}
+        },
+        "inLanguage": "{{- site.LanguageCode -}}"
+      },
+      {{/* -------------------- Breadcrumb -------------------- */}}
+      {{- if ne .Kind "home" -}}
+      {
+        "@type":"BreadcrumbList",
+        "@id": {{- printf "%s%s" .Permalink "#breadcrumb" -}},
+        "itemListElement": [
+          {{- template "bd" (dict "p1" . "p2" . "level" 0) -}}
+        ]
+      },
+      {{ end -}}
+      {{/* -------------------- Web Page (For all pages) -------------------- */}}
+      {
+        {{- $permalink := .Permalink | absURL -}}
+        "@type": "WebPage",
+        "@id": {{- printf "%s%s" $permalink "#webpage" -}},
+        "url": {{- $permalink -}},
+        "name": {{- if .IsHome -}}"{{- site.Title -}}"{{- else -}}"{{- .Title }} | {{ site.Title -}}"{{- end -}},
+        "isPartOf": {
+          "@id": {{- printf "%s%s" site.BaseURL "#website" -}}
+        },
+        "datePublished": "{{- .Date.Format "2006-01-02" -}}",
+        "dateModified": "{{- .Date.Format "2006-01-02" -}}",
+        "description": "{{- .Description | default ( .Summary | plainify | truncate 150 "...") -}}",
+        {{- if eq .Kind "section" }}
+          {{ with .Params.Tags -}}"keywords": "{{- delimit . ", " -}}",{{- end }}
+        {{- end -}}
+        {{ if ne .Kind "home" }}
+        "breadcrumb": {
+            "@id": {{- printf "%s%s" $permalink "#breadcrumb" -}}
+        },
+        {{- end }}
+        {{ with .Params.Images -}}
+          {{- template "list_images" (dict "label" "primaryImageOfPage" "list" (first 1 . ) "link" $permalink) -}}
+        {{- end }}
+        "inLanguage":"{{- site.LanguageCode -}}"
+      }
+      {{/* -------------------- Page / single post -------------------- */}}
+      {{- if eq .Kind "page" -}},
+      {
+        {{- $permalink := .Permalink | absURL -}}
+        "@type": "Article",
+        "@id": {{- printf "%s%s" $permalink "#article" -}},
+        "mainEntityOfPage": {
+          "@id": {{- printf "%s%s" $permalink "#webpage" -}},
+        },
+        "headline": "{{- .Title -}}",
+        "author": {
+          "@type": "Person",
+          "name": "{{- .Params.Author -}}"
+        },
+        "datePublished": "{{- .Date.Format "2006-01-02" -}}",
+        "dateModified": "{{- .Date.Format "2006-01-02" -}}",
+        "publisher": {
+          "@id": {{- printf "%s%s" site.BaseURL "#organization" -}}
+        },
+        {{ with .Params.Images -}}
+          {{- template "list_images" (dict "label" "image" "list" . "link" $permalink) -}}
+        {{- end }}
+        {{ with .Params.Tags -}}"keywords": "{{- delimit . ", " -}}",{{- end }}
+        {{ $section := .Parent -}}
+        {{ with $section -}}"articleSection": "{{- .Name -}}",{{- end }}
+        "inLanguage":"{{- site.LanguageCode -}}"
+      }
+      {{- end -}}
+      {{/* -------------------- List (Taxonomy, and taxonomy term) -------------------- */}}
+      {{- if eq .Kind "term" -}}
+        {{- $taxo_limit := 0 -}}
+        {{- if (isset .Site.Params.Schema.Taxonomies .Data.Plural) -}}
+          {{- $taxo_limit = int (index .Site.Params.Schema.Taxonomies .Data.Plural) -}}
+        {{- end -}}
+        {{- if gt $taxo_limit 0 }},
+        {
+          {{- $permalink_main := .Permalink | absURL -}}
+          "@type": "ItemList",
+          "@id": "{{- $permalink_main -}}#article",
+          "mainEntityOfPage": {
+            "@id": "{{- $permalink_main -}}#webpage"
+          },
+          "name": "{{- .Title -}}",
+          "description": "{{- .Description | default ( .Summary | plainify | truncate 150 "...") -}}",
+          "numberOfItems": {{- len .Pages -}},
+          {{ with .Params.Images -}}
+            {{- template "list_images" (dict "label" "image" "list" . "link" $permalink_main ) -}}
+          {{- end }}
+          "itemListElement": [
+          {{- $count := 1 -}}
+          {{- range first $taxo_limit .Pages -}}
+            {{- if ne $count 1 -}},{{- end }}
+            {
+              {{- $permalink := .Permalink | absURL -}}
+              "@type": "ListItem",
+              "position": "{{- $count -}}",
+              "item": {
+                  "@type": "BlogPosting",
+                  "url": "{{- $permalink_main -}}#{{- .Title | anchorize -}}",
+                  "headline": "{{- .Title -}}",
+                  "description": "{{- .Description | default ( .Summary | plainify | truncate 150 "...") -}}",
+                  "datePublished": "{{- .Date.Format "2006-01-02" -}}",
+                  "dateModified": "{{- .Date.Format "2006-01-02" -}}",
+                  "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "url": "{{- $permalink -}}"
+                  },
+                  "author": {
+                      "@type": "Person",
+                      "name": "{{- .Params.Author -}}"
+                  },
+                  {{ with .Params.Images -}}
+                    {{- template "list_images" (dict "label" "image" "list" (first 1 .) "link" $permalink) -}}
+                  {{- end }}
+                  "publisher": {
+                    "@id": {{- printf "%s%s" site.BaseURL "#organization" -}}
+                  }
+                }
+            }
+            {{- $count = add $count 1 -}}
+          {{- end -}}
+          ]
+        }
+        {{- end -}}
+      {{- end -}}
+    ]
+  }
+</script>
+
+
+  {{- define "bd" -}}
+  {{-  if .p1.Parent -}}
+      {{- template "bd" (dict "p1" .p1.Parent "p2" .p2 "level" (add .level 1))  -}}
+  {{- end -}}
+  {
+      "@type": "ListItem",
+      "position": {{- sub 3 .level -}},
+      "item":
+      {
+          "@type":"WebPage",
+          {{ if eq .p1 .p2 -}}
+            "@id": {{- printf "%s%s" .p1.Permalink "#webpage" -}},
+          {{- else -}}
+            "@id": {{- .p1.Permalink -}},
+          {{- end }}
+          "url": {{- .p1.Permalink -}},
+          "name": "{{ if .p1.IsHome -}}Accueil{{- else -}}{{- .p1.Title -}}{{- end -}}"
+      }
+  }{{- if ne .p1 .p2 -}},{{- end }}
+{{- end -}}
+
+
+{{- define "list_images" -}}
+  {{ with .list -}}
+  {{- $url := slice -}}
+    {{- range . -}}
+      {{- $url = $url | append (printf "%s%s" $.link .) -}}
+    {{- end -}}
+  {{ with $url -}}"{{- $.label -}}": {{ apply $url "chomp" "." }},{{- end -}}
+  {{- end }}
+{{- end -}}

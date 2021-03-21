@@ -1,0 +1,26 @@
+
+{{- $error_msg := "" -}}
+{{/* ---- Get src parameter ---- */}}
+{{- $src := "" -}}
+{{- with .Get "src" -}}
+    {{- $src = . -}}
+{{- else -}}
+    {{- $error_msg := "src parameter not specified" -}}
+{{- end -}}
+
+{{/* ---- Get allowfullscreen parameter ---- */}}
+{{- $title := "" -}}
+{{- with .Get "title" -}}{{- $title = . -}}{{- end -}}
+
+{{/* ----  ---- */}}
+<div class="gdocs-container">
+{{- if ne $error_msg "" -}}
+    <p class="error-gdocs-error">{{- $error_msg -}}</p>
+{{- else -}}
+        <iframe class="gdocs-frame" 
+                src="{{- $src -}}"
+                title="{{- $title | safeHTML -}}"
+                allow="fullscreen" >
+        </iframe>
+{{- end -}}
+</div>
