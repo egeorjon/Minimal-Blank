@@ -64,6 +64,9 @@ other = "Articles dans les mêmes dossiers"
 [series]
 other = "Les dossiers"
 
+[serie]
+other = "Dossier"
+
 [share-this-post]
 other = "Partagez cet article"
 
@@ -138,3 +141,25 @@ other = "Voir toutes les séries"
 
 [last-posts]
 other = "Derniers articles"
+
+[message-recorded]
+other = "Votre message a été envoyé"
+
+[your-name]
+other = "Votre nom"
+
+[placeholder-name]
+other = "Votre nom, ou un pseudonyme"
+
+[email-address]
+other = "Votre adresse de courriel"
+
+[subject]
+other = "Le sujet de votre message"
+
+[your-message]
+other = "Votre message"
+
+[submit]
+other = "Envoyer"
+

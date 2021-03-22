@@ -64,6 +64,9 @@ other = "Posts in the same series"
 [series]
 other = "The series"
 
+[serie]
+other = "Serie"
+
 [share-this-post]
 other = "Share this post"
 
@@ -138,3 +141,24 @@ other = "See all series"
 
 [last-posts]
 other = "Last posts"
+
+[message-recorded]
+other = "Your message was sent"
+
+[your-name]
+other = "Your name"
+
+[placeholder-name]
+other = "Your name, or a nickname"
+
+[email-address]
+other = "Your e-mail address"
+
+[subject]
+other = "Subject of the message"
+
+[your-message]
+other = "Message"
+
+[submit]
+other = "Send"
