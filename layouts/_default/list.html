@@ -8,8 +8,9 @@
             {{- if eq $kind "section" -}}
                 {{- $part = (printf "%s &laquo;%s&raquo;" (i18n "section") .Name )  -}}
             {{- else if eq $kind "term" -}}
-                {{- $part = (printf "%s &laquo;%s&raquo;" (i18n "tag") .Title )  -}}
+                {{- $part = (printf "%s &laquo;%s&raquo;" (i18n .Data.Singular) .Title )  -}}
             {{- else if eq $kind "taxonomy" -}}
+                {{- .Data -}}
                 {{- if eq .Title "Tags" -}}
                     {{- $part = (i18n "the_tags") -}}
                 {{- end -}}

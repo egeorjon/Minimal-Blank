@@ -1,0 +1,58 @@
+{{- define "header" -}}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {{- partial "breadcrumb.html" . -}}
+            <h1 class="page-title">{{ .Title }}</h1>
+            {{- .Description | replaceRE "<p>" "<p class=\"page-description\">" | markdownify | safeHTML -}}
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->
+{{- end -}}
+{{- define "main" -}}
+<div class="container">
+    <div class="row">
+        <article class="col post-content">
+            <div id="form-alert" class="alert alert-success d-none" role="alert">
+                {{ i18n "message-recorded" }}<br />
+            </div>
+            {{- .Content -}}
+            <form id="contact-form" name="contact" method="POST" data-netlify="true">
+                <div class="form-group">
+                    <label for="form-your-name">{{ i18n "your-name" }}</label>
+                    <input type="text" class="form-control" id="form-your-name" name="form-your-name" aria-describedby="nameHelp" placeholder="{{ i18n "placeholder-name" }}">
+                </div>
+                <div class="form-group">
+                    <label for="form-your-email">{{ i18n "email-address" }}</label>
+                    <input type="email" class="form-control" id="form-your-email" name="form-your-email" aria-describedby="emailHelp" placeholder="{{ i18n "placeholder-email" }}">
+                </div>
+                <div class="form-group">
+                    <label for="form-subject">{{ i18n "subject" }}</label>
+                    <input type="text" class="form-control" id="form-subject" name="form-subject" aria-describedby="subjectHelp" placeholder="{{ i18n "placeholder-subject" }}" >
+                </div>
+                <div class="form-group">
+                    <label for="form-msg">{{ i18n "your-message" }}</label>
+                    <textarea class="form-control" id="form-msg" name="form-msg" rows="5" placeholder="{{ i18n "placeholder-message" }}"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" value="submit">{{ i18n "submit" }}</button>
+            </form>
+            <script>
+                var url         = new URL( window.location.href );
+                var params_list = url.searchParams;
+                if ( params_list.has("form") === true ) {
+                    document.getElementById("form-alert").classList.add("d-block");
+                    document.getElementById("form-alert").classList.remove("d-none");
+                }
+                /* else {
+                    params_list.set("form","submitted");
+                    url.search = params_list.toString();
+                    document.getElementById("contact-form").action = url.toString();
+                    console.log("URL: " + url.toString());
+                    console.log("Ation: " + document.getElementById("contact-form").action);
+                }
+                */
+            </script>
+        </article>
+    </div><!-- row-->
+</div><!-- container -->
+{{- end -}}
