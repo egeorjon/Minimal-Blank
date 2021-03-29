@@ -1,0 +1,39 @@
+
+[medias]
+    [medias.email]
+        name    = "e-mail"
+        follow  = "mailto:%s"
+        icon    = "fas fa-envelope"
+        share   = "mailto:to?subject=%%SUBJECT%%&body=%%BODY%%"
+    [medias.facebook]
+        name    = "Facebook"
+        follow  = "https://www.facebook.com/%s"
+        icon    = "fab fa-facebook"
+        share   = "https://www.facebook.com/sharer.php?s=100&p[url]=%%URL%%"
+    [medias.twitter]
+        name    = "Twitter"
+        follow  = "https://twitter.com/%s"
+        icon    = "fab fa-twitter"
+        share   = "https://twitter.com/share?url=%%URL%%%%VIA%%%%HASHTAGS%%"
+    [medias.github]
+        name    = "GitHub"
+        follow  = "https://github.com/%s"
+        icon    = "fab fa-github"
+        share   = ""
+    [medias.instagram]
+        name    = "Instagram"
+        follow  = "https://www.instagram.com/%s"
+        icon    = "fab fa-instagram"
+    [medias.pinterest]
+        name    = "Pinterest"
+        follow  = "https://www.pinterest.com/%s"
+        icon    = "fab fa-pinterest"
+        share   = "https://pinterest.com/pin/create/bookmarklet/?url=%%URL%%&description=%%DESC%%"
+    [medias.linkedin]
+        name    = "LinkedIn"
+        follow  = "https://linkedin.com/in/%s"
+        icon    = "fab fa-linkedin"
+    [medias.flickr]
+        name    = "Flickr"
+        follow  = "https://flickr.com/photos/%s"
+        icon    = "fab fa-flickr"

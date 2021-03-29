@@ -38,7 +38,7 @@
                 </div><!-- row -->
                 {{- end -}}
                 {{- $class := partial "class-columns.html" $content.columns -}}
-                <div class="row {{ $class -}}">
+                <div class="{{ $class -}}">
                     {{- range $content.items -}}
                     <div class="col home-widget">
                         <h3>{{- .title -}}</h3>
@@ -99,8 +99,8 @@
                         {{- $meta_list = merge $meta_list (dict . "true") -}}
                     {{- end -}}
                 {{- end -}}           
-                <div class="row {{ $class -}}">
-                    {{- range (where site.RegularPages "Type" "in" $.Site.Params.Home.MainSections | first ($content.number | default 6)) -}}
+                <div class="{{ $class -}}">
+                    {{- range (where site.RegularPages "Type" "in" $.Site.Params.MainSections | first ($content.number | default 6)) -}}
                     <article class="col post home-widget">
                         <header class="post-header">
                             <h3 class="post-title"><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>

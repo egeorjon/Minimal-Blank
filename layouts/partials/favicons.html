@@ -1,0 +1,12 @@
+{{- range (readDir "themes/minimal-blank/static/assets/favicons") -}}
+    {{- if eq (substr .Name 0 5) "apple" -}}
+        <link rel="apple-touch-icon" href="{{- printf "assets/favicons/%s" .Name | relURL -}}"/>
+    {{- end }}
+{{- end }}
+{{- if (fileExists "themes/minimal-blank/static/favicon.ico") -}}
+<link rel="icon" href="{{- "favicon.ico" | relURL -}}" />
+{{- end }}
+{{- if (fileExists "themes/minimal-blank/static/assets/favicons/ms-icon-144x144.png") -}}
+<meta name="msapplication-TileColor" content="{{- .Site.Params.ThemeColor | default "#ffffff" -}}" />
+<meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png" />
+{{- end }}

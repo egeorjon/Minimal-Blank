@@ -70,8 +70,8 @@ other = "Serie"
 [share-this-post]
 other = "Share this post"
 
-[share-link]
-other = "Share this link in"
+[share-link-with]
+other = "Share this post with %s"
 
 [attachment-type]
 other = "Type"
@@ -162,3 +162,15 @@ other = "Message"
 
 [submit]
 other = "Send"
+
+[move-top]
+other = "Move to the to of the page"
+
+[related-posts]
+other = "Related posts"
+
+[author]
+other = "Author"
+
+[Authors]
+other = "Authors"

@@ -4,96 +4,87 @@
     {{- $title := .Title | safeURL -}}
     {{- $description := "" -}}
     {{- with .Params.Description -}}{{- $description = . -}}{{- else -}}{{- $description = ( .Summary | truncate 200) -}}{{- end -}}
-
     {{- $tags := "" -}}
     {{- if isset .Params "tags" -}}
         {{- $tags = delimit .Params.tags "," -}}
     {{- end -}}
-
-    {{- if site.Params.Share.facebook | default true -}}
+    {{- range sort .Site.Params.ShareLinks "order" -}}
+        {{- $title := printf "%s %s" (i18n "share-link") .media -}}
+        {{- if eq .id "facebook" -}}
         <div class="col">
-            <a href="https://www.facebook.com/sharer.php?s=100&p[url]={{- $url -}}" class="share-link facebook" title="{{- printf (i18n "share-link") "Facebook" -}}" aria-label="Facebook" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/sharer.php?s=100&p[url]={{- $url -}}" class="share-link facebook" title="{{- $title }}" aria-label="{{- .media -}}" rel="noopener noreferrer">
                 <i aria-hidden="true" class="fab fa-facebook"></i>
-                <span class="share-text">Facebook</span>
+                <span class="share-text">{{- .media -}}</span>
             </a>
         </div>
-    {{- end -}}
-    {{- if site.Params.Share.twitter | default true -}}
+        {{- else if eq .id "twitter" -}}
         {{- $via := "" -}}
-        {{- with site.Params.Share.twitteraccount -}}
+        {{- with site.Params.ShareLinks.account -}}
             {{- $via = (printf "&via=%s" .) -}}
         {{- end -}}
         <div class="col">
-            <a href="https://twitter.com/share?url={{- $url -}}{{- $via -}}{{- with $tags -}}&hashtags={{- . | safeURL -}}{{- end -}}" class="share-link twitter" title="{{- printf (i18n "share-link") "Twitter" -}}" aria-label="Twitter" rel="noopener noreferrer">
+            <a href="https://twitter.com/share?url={{- $url -}}{{- $via -}}{{- with $tags -}}&hashtags={{- . | safeURL -}}{{- end -}}" class="share-link twitter" title="{{- $title }}"  aria-label="{{- .media -}}" rel="noopener noreferrer">
                 <i aria-hidden="true" class="fab fa-twitter"></i>
                 <span class="share-text">Twitter</span>
             </a>
         </div>
-    {{- end -}}
-    {{- if site.Params.Share.pinterest | default true -}}
+        {{- else if eq .id "linkedin" -}}
         <div class="col">
-            <a href="https://pinterest.com/pin/create/bookmarklet/?url={{- $url -}}&description={{- $description | safeURL -}}" class="share-link pinterest" title="{{- printf (i18n "share-link") "Pinterest" -}}" aria-label="Pinterest" rel="noopener noreferrer">
-                <i aria-hidden="true" class="fab fa-pinterest"></i>
-                <span class="share-text">Pinterest</span>
-            </a>
-        </div>
-    {{- end -}}
-    {{/* media=img& */}}
-    {{- if site.Params.Share.whatsapp | default true -}}
-        <div class="col">
-            <a href=" https://wa.me/?text={{- $url -}}" class="share-link whatsapp" title="{{- printf (i18n "share-link") "Whatsapp" -}}" aria-label="Whatsapp" rel="noopener noreferrer">
-                <i aria-hidden="true" class="fab fa-whatsapp"></i>
-                <span class="share-text">Whatsapp</span>
-            </a>
-        </div>
-    {{- end -}}
-    {{- if site.Params.Share.linkedIn | default true -}}
-        <div class="col">
-            <a href="http://www.linkedin.com/shareArticle?url={{- $url -}}&title={{- $title -}}" class="share-link linkedin" title="{{- printf (i18n "share-link") "LinkedIn" -}}" aria-label="LinkedIn" rel="noopener noreferrer">
+            <a href="http://www.linkedin.com/shareArticle?url={{- $url -}}&title={{- $title -}}" class="share-link linkedin" title="{{- $title }}"  aria-label="{{- .media -}}" rel="noopener noreferrer">
                 <i aria-hidden="true" class="fab fa-linkedin"></i>
                 <span class="share-text">LinkedIn</span>
             </a>
         </div>
-    {{- end -}}
-    
-    {{- if site.Params.Share.digg | default true -}}
+        {{- else if eq .id "pinterest" -}}
         <div class="col">
-            <a href="http://digg.com/submit?url={{- $url -}}&title={{- $title -}}" class="share-link digg" title="{{- printf (i18n "share-link") "Digg" -}}" aria-label="Digg" rel="noopener noreferrer">
-                <i aria-hidden="true" class="fab fa-digg"></i>
-                <span class="share-text">Digg</span>
+            <a href="https://pinterest.com/pin/create/bookmarklet/?url={{- $url -}}&description={{- $description | safeURL -}}" class="share-link pinterest" title="{{- $title }}"  aria-label="{{- .media -}}" rel="noopener noreferrer">
+                <i aria-hidden="true" class="fab fa-pinterest"></i>
+                <span class="share-text">Pinterest</span>
             </a>
         </div>
-    {{- end -}}
-    {{- if site.Params.Share.tumblr | default true -}}
+        {{- else if eq .id "whasapp" -}}
+        {{/* media=img& */}}
         <div class="col">
-            <a href="http://www.tumblr.com/share/link?url={{- $url -}}&name={{- $title -}}&description={{- $description | safeURL -}}" class="share-link tumblr" title="{{- printf (i18n "share-link") "Tumblr" -}}" aria-label="Tumblr" rel="noopener noreferrer">
-                <i aria-hidden="true" class="fab fa-tumblr"></i>
-                <span class="share-text">Tumblr</span>
+            <a href=" https://wa.me/?text={{- $url -}}" class="share-link whatsapp" title="{{- $title }}"  aria-label="{{- .media -}}" rel="noopener noreferrer">
+                <i aria-hidden="true" class="fab fa-whatsapp"></i>
+                <span class="share-text">Whatsapp</span>
             </a>
         </div>
-    {{- end -}}
-    {{- if site.Params.Share.reddit | default true -}}
+        {{- else if eq .id "reddit" -}}
         <div class="col">
-            <a href="http://reddit.com/submit?url={{- $url -}}&title={{- $title -}}" class="share-link reddit" title="{{- printf (i18n "share-link") "Reddit" -}}" aria-label="Reddit" rel="noopener noreferrer">
+            <a href="http://reddit.com/submit?url={{- $url -}}&title={{- $title -}}" class="share-link reddit" title="{{- $title }}"  aria-label="{{- .media -}}" rel="noopener noreferrer">
                 <i aria-hidden="true" class="fab fa-reddit"></i>
                 <span class="share-text">Reddit</span>
             </a>
         </div>
-    {{- end -}}
-    {{- if site.Params.Share.mix | default true -}}
+        {{- else if eq .id "digg" -}}
         <div class="col">
-            <a href="https://mix.com/add?url={{- $url -}}" class="share-link mix" title="{{- printf (i18n "share-link") "Mix" -}}" aria-label="Mix.com" rel="noopener noreferrer">
+            <a href="http://digg.com/submit?url={{- $url -}}&title={{- $title -}}" class="share-link digg" title="{{- $title }}"  aria-label="{{- .media -}}" rel="noopener noreferrer">
+                <i aria-hidden="true" class="fab fa-digg"></i>
+                <span class="share-text">Digg</span>
+            </a>
+        </div>
+        {{- else if eq .id "tumblr" -}}
+        <div class="col">
+            <a href="http://www.tumblr.com/share/link?url={{- $url -}}&name={{- $title -}}&description={{- $description | safeURL -}}" class="share-link tumblr" title="{{- $title }}"  rel="noopener noreferrer">
+                <i aria-hidden="true" class="fab fa-tumblr"></i>
+                <span class="share-text">Tumblr</span>
+            </a>
+        </div>
+        {{- else if eq .id "mix" -}}
+        <div class="col">
+            <a href="https://mix.com/add?url={{- $url -}}" class="share-link mix" title="{{- $title }}"  rel="noopener noreferrer">
                 <i aria-hidden="true" class="fab fa-mix"></i>
                 <span class="share-text">Mix.com</span>
             </a>
         </div>
-    {{- end -}}
-    {{- if site.Params.Share.email | default true -}}
+        {{- else if eq .id "email" -}}
         <div class="col">
-            <a href="mailto:to?subject={{- $title -}}&body={{- $description | safeURL -}}" class="share-link email" title="{{- printf (i18n "share-link") "Email" -}}" aria-label="Email">
+            <a href="mailto:to?subject={{- $title -}}&body={{- $description | safeURL -}}" class="share-link email" title="{{- $title }}"  aria-label="{{- .media -}}">
                 <i aria-hidden="true" class="fas fa-envelope"></i>
                 <span class="share-text">Email</span>
             </a>
         </div>
+        {{- end -}}
     {{- end -}}
-</aside><!-- share-links-->
+</aside>

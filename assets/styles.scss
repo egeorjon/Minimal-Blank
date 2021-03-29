@@ -2,12 +2,12 @@
 
 // scss-docs-start import-stack
 // Configuration
-    @import "bootstrap-5.0.0-beta2/scss/functions";
+    @import "bootstrap-5.0.0-beta3/scss/functions";
     @import "customization";
-    @import "bootstrap-5.0.0-beta2/scss/variables";
+    @import "bootstrap-5.0.0-beta3/scss/variables";
 
-    @import "bootstrap-5.0.0-beta2/scss/mixins";
-    @import "bootstrap-5.0.0-beta2/scss/utilities";
+    @import "bootstrap-5.0.0-beta3/scss/mixins";
+    @import "bootstrap-5.0.0-beta3/scss/utilities";
 
     // Values kept: display (for d-none, d-block, display, "background-color",...)
     $utilities: map-remove($utilities,
@@ -39,48 +39,48 @@
     );
 
 // Layout & components
-    @import "bootstrap-5.0.0-beta2/scss/root";
-    @import "bootstrap-5.0.0-beta2/scss/reboot";
-// @import "bootstrap-5.0.0-beta2/scss/type";
-// @import "bootstrap-5.0.0-beta2/scss/images";
-    @import "bootstrap-5.0.0-beta2/scss/containers";
-    @import "bootstrap-5.0.0-beta2/scss/grid";
-    @import "bootstrap-5.0.0-beta2/scss/tables";
-    @import "bootstrap-5.0.0-beta2/scss/forms";
-    @import "bootstrap-5.0.0-beta2/scss/buttons";
-    @import "bootstrap-5.0.0-beta2/scss/transitions";
-// @import "bootstrap-5.0.0-beta2/scss/dropdown";
-// @import "bootstrap-5.0.0-beta2/scss/button-group";
-    @import "bootstrap-5.0.0-beta2/scss/nav";
-    @import "bootstrap-5.0.0-beta2/scss/navbar";
-// @import "bootstrap-5.0.0-beta2/scss/card";
-// @import "bootstrap-5.0.0-beta2/scss/accordion";
-    @import "bootstrap-5.0.0-beta2/scss/breadcrumb";
-    @import "bootstrap-5.0.0-beta2/scss/pagination";
-    @import "bootstrap-5.0.0-beta2/scss/badge";
-// @import "bootstrap-5.0.0-beta2/scss/alert";
-// @import "bootstrap-5.0.0-beta2/scss/progress";
-// @import "bootstrap-5.0.0-beta2/scss/list-group";
-// @import "bootstrap-5.0.0-beta2/scss/close";
-// @import "bootstrap-5.0.0-beta2/scss/toasts";
-// @import "bootstrap-5.0.0-beta2/scss/modal";
-// @import "bootstrap-5.0.0-beta2/scss/tooltip";
-// @import "bootstrap-5.0.0-beta2/scss/popover";
-// @import "bootstrap-5.0.0-beta2/scss/carousel";
-// @import "bootstrap-5.0.0-beta2/scss/spinners";
+    @import "bootstrap-5.0.0-beta3/scss/root";
+    @import "bootstrap-5.0.0-beta3/scss/reboot";
+// @import "bootstrap-5.0.0-beta3/scss/type";
+// @import "bootstrap-5.0.0-beta3/scss/images";
+    @import "bootstrap-5.0.0-beta3/scss/containers";
+    @import "bootstrap-5.0.0-beta3/scss/grid";
+    @import "bootstrap-5.0.0-beta3/scss/tables";
+    @import "bootstrap-5.0.0-beta3/scss/forms";
+    @import "bootstrap-5.0.0-beta3/scss/buttons";
+    @import "bootstrap-5.0.0-beta3/scss/transitions";
+// @import "bootstrap-5.0.0-beta3/scss/dropdown";
+// @import "bootstrap-5.0.0-beta3/scss/button-group";
+    @import "bootstrap-5.0.0-beta3/scss/nav";
+    @import "bootstrap-5.0.0-beta3/scss/navbar";
+// @import "bootstrap-5.0.0-beta3/scss/card";
+// @import "bootstrap-5.0.0-beta3/scss/accordion";
+    @import "bootstrap-5.0.0-beta3/scss/breadcrumb";
+    @import "bootstrap-5.0.0-beta3/scss/pagination";
+    @import "bootstrap-5.0.0-beta3/scss/badge";
+// @import "bootstrap-5.0.0-beta3/scss/alert";
+// @import "bootstrap-5.0.0-beta3/scss/progress";
+// @import "bootstrap-5.0.0-beta3/scss/list-group";
+// @import "bootstrap-5.0.0-beta3/scss/close";
+// @import "bootstrap-5.0.0-beta3/scss/toasts";
+// @import "bootstrap-5.0.0-beta3/scss/modal";
+// @import "bootstrap-5.0.0-beta3/scss/tooltip";
+// @import "bootstrap-5.0.0-beta3/scss/popover";
+// @import "bootstrap-5.0.0-beta3/scss/carousel";
+// @import "bootstrap-5.0.0-beta3/scss/spinners";
 
 // Helpers
-// @import "bootstrap-5.0.0-beta2/scss/helpers";
-// @import "bootstrap-5.0.0-beta2/scss/helpers/clearfix.scss";
-// @import "bootstrap-5.0.0-beta2/scss/helpers/colored-links.scss";
-    @import "bootstrap-5.0.0-beta2/scss/helpers/position.scss";
-// @import "bootstrap-5.0.0-beta2/scss/helpers/ratio.scss";
-// @import "bootstrap-5.0.0-beta2/scss/helpers/stretched-link.scss";
-// @import "bootstrap-5.0.0-beta2/scss/helpers/text-truncation.scss";
-    @import "bootstrap-5.0.0-beta2/scss/helpers/visually-hidden.scss";
+// @import "bootstrap-5.0.0-beta3/scss/helpers";
+// @import "bootstrap-5.0.0-beta3/scss/helpers/clearfix.scss";
+// @import "bootstrap-5.0.0-beta3/scss/helpers/colored-links.scss";
+    @import "bootstrap-5.0.0-beta3/scss/helpers/position.scss";
+// @import "bootstrap-5.0.0-beta3/scss/helpers/ratio.scss";
+// @import "bootstrap-5.0.0-beta3/scss/helpers/stretched-link.scss";
+// @import "bootstrap-5.0.0-beta3/scss/helpers/text-truncation.scss";
+    @import "bootstrap-5.0.0-beta3/scss/helpers/visually-hidden.scss";
 
 // Utilities
-@import "bootstrap-5.0.0-beta2/scss/utilities/api";
+@import "bootstrap-5.0.0-beta3/scss/utilities/api";
 // scss-docs-end import-stack
 
 $fa-font-path: "../webfonts";
@@ -461,6 +461,16 @@ blockquote.question {
     border-bottom: 1px solid $gray-300;
 }
 
+.footer-search {
+    position: relative;
+}
+
+.button-up {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+}
+
 .footer-middle,
 .footer-search {
     border-bottom: 1px solid $gray-300;
@@ -486,9 +496,11 @@ blockquote.question {
 
 .social-links {
 
-    padding-left: 0;
-    margin-bottom: 0;
-    list-style-type: none;
+    ul {
+        padding-left: 0;
+        margin-bottom: 0;
+        list-style-type: none;
+    }
 
     li {
         display: inline;

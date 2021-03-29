@@ -17,12 +17,15 @@
             "caption": "{{- .Site.Title -}}"
         },
         {{- end }}
-        {{ with .Site.Params.FollowLinks -}}
+        {{ with .Site.Params.FollowLinks.socials -}}
           {{- $list_url := slice -}}
-          {{- range $param, $url := . -}}
-            {{- if and (ne $param "rss") (ne $url "") -}}
-              {{- $list_url = $list_url | append $url -}}
-            {{- end -}}
+          {{- range . -}}
+              {{- if .account -}}
+                {{ $acc := .account}}
+                {{- with (index $.Site.Data.socials.medias .id) }}
+                  {{- $list_url = $list_url | append (printf .follow $acc) -}}
+                {{- end -}}
+              {{- end -}}
           {{- end -}}
           "sameAs": {{ apply $list_url "chomp" "." }},
         {{ end -}}
@@ -110,8 +113,8 @@
       {{/* -------------------- List (Taxonomy, and taxonomy term) -------------------- */}}
       {{- if eq .Kind "term" -}}
         {{- $taxo_limit := 0 -}}
-        {{- if (isset .Site.Params.Schema.Taxonomies .Data.Plural) -}}
-          {{- $taxo_limit = int (index .Site.Params.Schema.Taxonomies .Data.Plural) -}}
+        {{- if (isset .Site.Params.Taxonomies .Data.Plural) -}}
+          {{- $taxo_limit = int (index .Site.Params.Taxonomies .Data.Plural) -}}
         {{- end -}}
         {{- if gt $taxo_limit 0 }},
         {

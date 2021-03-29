@@ -70,8 +70,8 @@ other = "Dossier"
 [share-this-post]
 other = "Partagez cet article"
 
-[share-link]
-other = "Partagez ce lien dans"
+[share-link-with]
+other = "Partagez ce lien avec %s"
 
 [attachment-type]
 other = "Type"
@@ -163,3 +163,14 @@ other = "Votre message"
 [submit]
 other = "Envoyer"
 
+[move-top]
+other =" Revenir en haut de page"
+
+[related-posts]
+other = "Articles similaires"
+
+[author]
+other = "Auteur"
+
+[Authors]
+other = "Auteurs"

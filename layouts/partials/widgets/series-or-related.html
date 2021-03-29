@@ -1,0 +1,6 @@
+{{- $series := .context.GetTerms "series" -}}
+{{- if ge (len $series) 1 -}}
+    {{- partial "widgets/same-series.html" (dict "context" .context) -}}
+{{- else -}}
+    {{- partial "widgets/related-posts.html" (dict "context" .context) -}}
+{{- end -}}

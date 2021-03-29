@@ -1,8 +1,0 @@
-{
-    "name": "{{ .Site.Params.Manifest.name | default .Site.Title -}}",
-    "short_name": "{{ .Site.Params.Manifest.shortName | default .Site.Title -}}",
-    "display": "{{ .Site.Params.Manifest.display | default "browser" -}}",
-    "start_url": "{{ .Site.Params.Manifest.startUrl | default "/" }}",
-    "background_color": "{{ .Site.Params.Manifest.backgroundColor | default "#ffffff" -}}",
-    "theme_color": "{{ .Site.Params.Manifest.themeColor | default "#ffffff" -}}"
-}

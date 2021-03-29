@@ -1,6 +1,6 @@
 {{- if isset .context.Site.Taxonomies "tags" -}}
     {{- if not (eq (len .context.Site.Taxonomies.tags) 0) -}}
-<section class="col widget widget-tags">
+<aside class="col widget widget-tags">
     <h3>{{- i18n "tags" -}}</h3>
     <ul>
         {{- range .context.Site.Taxonomies.tags }}
@@ -9,7 +9,7 @@
         </li>
         {{ end -}}
     </ul>
-</section>
+</aside>
     {{- end -}}
 {{- end -}}
 

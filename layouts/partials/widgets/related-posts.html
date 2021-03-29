@@ -1,0 +1,13 @@
+{{- if ne .Type "sitepages" -}}
+    {{ $related := first (.context.Site.Params.RelatedPosts | default 5) (.context.Site.RegularPages.RelatedIndices .context "tags" "date") -}}
+    {{- with $related -}}
+    <aside class="col widget widget-related-posts">
+        <h3>{{- i18n "related-posts" -}}</h3>
+        <ul>
+            {{ range . }}
+            <li><a href="{{ .RelPermalink }}" title="{{ .Title }}">{{ .Title }}</a></li>
+            {{ end }}
+        </ul>
+    </aside>
+    {{- end -}}
+{{- end -}}

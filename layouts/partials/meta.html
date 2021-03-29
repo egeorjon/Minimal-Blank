@@ -1,7 +1,7 @@
 {{- $context := .context -}}
 <ul class="post-meta {{ with .class -}}{{ . }}{{- end -}}">
-    {{- range $param, $value := .prm -}}
-        {{- if and (eq $param "authors") $value -}}
+    {{- range $order, $meta := .prm -}}
+        {{- if eq $meta "authors" -}}
             {{- $list := slice -}}
             {{- range $context.GetTerms "authors" -}}
                 {{- $list = $list | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}
@@ -13,19 +13,19 @@
             </li>
             {{- end -}}
         {{- end -}}
-        {{- if and (eq $param "date") $value -}}
+        {{- if eq $meta "date" -}}
             <li class="post-date">
                 <i class="fas fa-calendar-alt"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
                 <time class="entry-date published" datetime="{{- $.Date -}}">{{- ($context.Date.Format $context.Site.Params.FormatDate | default "2-Jan-2006") -}}</time>
             </li>
         {{- end -}}
-        {{- if and (eq $param "reading") $value -}}
+        {{- if eq $meta "reading" -}}
             <li class="post-read">
                 <i class="fas fa-clock" aria-hidden="true"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "reading" -}}</span>
                 {{- $context.ReadingTime }} {{ if le $context.ReadingTime 1 -}}{{- i18n "min" -}}{{- else -}}{{- i18n "mins" -}}{{- end -}}
             </li>
         {{- end -}}
-        {{- if and (eq $param "tags") $value -}}
+        {{- if eq $meta "tags" -}}
             {{- $sl := slice -}}
             {{- with $context.GetTerms "tags" -}}
                 {{- range . -}}
@@ -38,7 +38,7 @@
                 {{- delimit $sl ", " -}} 
             </li>
         {{- end -}}
-        {{- if and (eq $param "section") $value -}}
+        {{- if eq $meta "section" -}}
             {{- if ne $.kindstr "section" -}}
                 {{- with $context.Parent }}
                 <li class="post-section">
@@ -48,7 +48,7 @@
                 {{- end -}}
             {{- end }}
         {{- end -}}
-        {{- if and (eq $param "category") $value -}}
+        {{- if eq $meta "category" -}}
             {{- $list := slice -}}
             {{- range $context.GetTerms "categories" -}}
                 {{- $list = $list | append (printf "<a href=\"%s\">%s</a>" .Permalink (humanize .LinkTitle)) -}}

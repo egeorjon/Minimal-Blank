@@ -3,14 +3,15 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            {{- partial "breadcrumb.html" . -}}
+            {{- if (.Site.Params.breadcrumb | default true) -}}
+                {{- partial "breadcrumb.html" . -}}
+            {{- end -}}
             {{- $part := .Title -}}
             {{- if eq $kind "section" -}}
                 {{- $part = (printf "%s &laquo;%s&raquo;" (i18n "section") .Name )  -}}
             {{- else if eq $kind "term" -}}
                 {{- $part = (printf "%s &laquo;%s&raquo;" (i18n .Data.Singular) .Title )  -}}
             {{- else if eq $kind "taxonomy" -}}
-                {{- .Data -}}
                 {{- if eq .Title "Tags" -}}
                     {{- $part = (i18n "the_tags") -}}
                 {{- end -}}
@@ -24,28 +25,29 @@
 {{- end -}}
 {{- define "main" -}}
 {{- $kind := .Kind -}}
-{{- $class := partial "class-columns.html" $.Site.Params.List.PostColumns -}}
+{{- $class := partial "class-columns.html" ($.Site.Params.List.PostColumns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) -}}
 <div class="container">
     {{- with .Content -}}
     <div class="row">
         <div class="col page-introduction">
-            {{- . -}}
+            {{- . | markdownify -}}
         </div><!-- col -->
     </div><!-- row -->
     {{- end -}}
-    <div class="row {{ $class -}}">
+    <div class="{{ $class -}}">
         {{- $paginator := .Scratch.Get "paginator" -}}
         {{- range $paginator.Pages }}
         <article class="col post section-{{- .Section}}">
             <header class="post-header">
-                {{- if and (isset .Params "images") (.Site.Params.list.displayimage ) -}}
+                {{- if and (isset .Params "images") (.Site.Params.list.displayimage | default false) -}}
                     <div class="thumbnail-placeholder">&nbsp;</div>
                 {{- end -}}
                 <h2 class="post-title" id="{{- .Title | anchorize -}}">
                     <a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a>
                 </h2>
-                {{- if ne $kind "taxonomy" -}}
-                    {{- partial "meta.html" (dict "context" . "kindstr" $kind "prm" .Site.Params.metalist ) -}}
+                {{- if and (ne $kind "taxonomy") (isset .Site.Params.List "meta") -}}
+                    {{/*- partial "meta.html" (dict "context" . "kindstr" $kind "prm" .Site.Params.metalist ) -*/}}
+                    {{- partial "meta.html" (dict "context" . "kindstr" $kind "prm" .Site.Params.List.Meta ) -}}
                 {{- end -}}
             </header>
             <div class="post-summary">
@@ -61,7 +63,11 @@
                         <p>{{- i18n "series-posts" -}}</p>
                         <ul>
                         {{- range .Pages.ByPublishDate }}
-                            <li><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title }} ({{- (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") -}})</a></li>
+                            <li>
+                                <a href="{{- .RelPermalink -}}" rel="bookmark">
+                                    {{- .Title }} ({{- (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") -}})
+                                </a>
+                            </li>
                         {{- end }}
                         </ul>
                     {{- else -}}
@@ -70,7 +76,9 @@
                 {{- end -}}
             </div><!-- .post-summary -->
             <footer class="post-footer">
-                <a href="{{- .RelPermalink -}}" class="btn btn-outline-secondary" role="button">{{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span></a>
+                <a href="{{- .RelPermalink -}}" class="btn btn-outline-secondary" role="button">
+                    {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
+                </a>
             </footer>
         </article>
         {{- end -}}
