@@ -1,31 +1,33 @@
 {{- $context := .context -}}
 {{- with .context.GetTerms "authors" -}}
-<aside class="col widget widget-authorz">
-    <div class="row">
-        <h3 class="col">{{- if gt (len .) 1 -}}{{- i18n "authors" -}}{{- else -}}{{- i18n "author" -}}{{- end -}}</h3>
-    </div>
-    {{- range . -}}
-    <div class="row">
-        <div class="col-4 author-avatar">
-            {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
-            {{- with $image -}}
-                <figure class="figure-img">
-                    <img src="{{- .RelPermalink -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
-                </figure>
+<aside class="col widget widget-authors">
+    <div class="card h-100">
+        <div class="card-body">
+            <h3 class="card-title">{{- if gt (len .) 1 -}}{{- i18n "authors" -}}{{- else -}}{{- i18n "author" -}}{{- end -}}</h3>
+            {{- range . -}}
+            <div class="card-text row">
+                <div class="col-auto author-avatar">
+                    {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
+                    {{- with $image -}}
+                        <figure class="figure-img">
+                            <img src="{{- .RelPermalink -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+                        </figure>
+                    {{- end -}}
+                </div>
+                <div class="col-auto author-description">
+                    <p class="author-name">{{- .Params.Title -}}</p>
+                    <p class="author-bio">{{ .Params.Bio -}}</p>
+                    {{- with .Params.Socials -}}
+                        <ul class="author-socials">
+                        {{- range . -}}
+                            <li><a href="{{- .url -}}" alt="{{- .alt -}}"><i class="fab fa-{{- .icon -}}"></i></a></li>
+                        {{- end -}}
+                        </ul>
+                    {{- end -}}
+                </div><!-- col -->
+            </div><!-- row -->
             {{- end -}}
-        </div>
-        <div class="col-8 author-description">
-            <p class="author-name">{{- .Params.Title -}}</p>
-            <p class="author-bio">{{ .Params.Bio -}}</p>
-            {{- with .Params.Socials -}}
-                <ul class="author-socials">
-                {{- range . -}}
-                    <li><a href="{{- .url -}}" alt="{{- .alt -}}"><i class="fab fa-{{- .icon -}}"></i></a></li>
-                {{- end -}}
-                </ul>
-            {{- end -}}
-        </div>
-    </div>
-    {{- end -}}
+        </div><!-- card-body -->
+    </div><!-- card -->
 </aside>
 {{- end -}}

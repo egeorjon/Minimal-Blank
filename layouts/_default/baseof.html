@@ -7,7 +7,7 @@
     {{- $class :="post-list" -}}
     {{- if .IsHome -}}
         {{- $class = "post-home" -}}
-    {{- else if (in (slice "page" "404") .Kind ) -}}
+    {{- else if and (in (slice "page" "404") .Kind ) (ne .Layout "search" ) -}}
         {{- $class = "post-single" -}}
     {{- end -}}
     {{- if (in (slice "taxonomy" "term" ) .Kind ) -}}

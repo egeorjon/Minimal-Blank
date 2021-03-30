@@ -1,25 +1,25 @@
-<div class="container">
-    <!-- -------------------------------- -->
-    <!-- Footer top (search bar)          -->
-    <!-- -------------------------------- -->    
-    <form action="/search/" method="GET" class="form-group">
-        <div class="footer-search row justify-content-center">
-            <label for="search-query" class="col-2 col-form-label"><span class="d-none d-md-block">{{-  i18n "search" -}}</span></label>
-            <div class="col-8 col-sm-6 col-md-4">
-                <input type="text" size="10" class="form-control" id="search-query" name="s" placeholder="{{- i18n "what-you-looking-for" -}}">
+<!-- -------------------------------- -->
+<!-- Footer top (search bar)          -->
+<!-- -------------------------------- -->
+<div class="footer-search">
+    <div class="container">
+        <a class="button-up" href="#page-top" title="{{- i18n "move-top" -}}">
+            <i class="fas fa-arrow-alt-circle-up"></i> <span class="visually-hidden">{{- i18n "move-top" -}}</span>
+        </a>
+        <form action="/search/" method="GET" class="row g-2 justify-content-center">
+            <label for="search-query" class="col-form-label col-auto d-none d-md-inline">{{-  i18n "search" -}}</label>
+            <div class="col-auto">
+                <input type="text" class="form-control" id="search-query" name="s" >
             </div>
-            <div class="col-2">
+            <div class="col-auto">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-search" aria-hidden="true"></i> 
+                    <i class="fas fa-search" aria-hidden="true"></i>
                     <span class="visually-hidden">{{- i18n "search" -}}</span>
                 </button>
             </div><!-- col -->
-            <a class="button-up" href="#search" title="{{- i18n "move-top" -}}">
-                <i class="fas fa-arrow-alt-circle-up"></i> <span class="visually-hidden">{{- i18n "move-top" -}}</span>
-            </a>
-        </div><!-- footer-search -->
-    </form>
-
+        </form>
+    </div><!-- container -->
+</div><!-- footer-seach -->
     <!-- -------------------------------- -->
     <!-- Footer middle (widgets)          -->
     <!-- -------------------------------- -->
@@ -27,25 +27,31 @@
     {{- $class := partialCached "class-columns.html" $columns -}}
     {{- $context := . -}}
     {{- if .Site.Params.FooterWidgets.Widgets -}}
-    <div class="footer-middle {{ $class -}}">
-        {{- range sort .Site.Params.FooterWidgets.Widgets "order" -}}
-            {{- partialCached (printf "widgets/%s.html" .type) (dict "context" $context "param" .params) -}}
-        {{- end -}}
-    </div><!-- row -->
+<div class="footer-middle">
+    <div class="container">
+        <div class="{{- $class -}}">
+            {{- range sort .Site.Params.FooterWidgets.Widgets "order" -}}
+                {{- partialCached (printf "widgets/%s.html" .type) (dict "context" $context "param" .params) -}}
+            {{- end -}}
+        </div><!-- row -->
+    </div><!-- container -->
+</div>
     {{- end -}}
 
     <!-- -------------------------------- -->
     <!-- Footer bottom (legals)           -->
-    <!-- -------------------------------- -->  
-    <div class="footer-bottom row">
-        <div class="col">
-            <div><span class="d-none d-md-inline">Copyright</span>
+    <!-- -------------------------------- -->
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row row-cols-1">
+            <div class="col">
+                <span class="d-none d-md-inline">Copyright</span>
                 &copy; {{ printf "%s-%s - %s" .Site.Params.Copyright.FirstDate (now.Format "2006") (.Site.Params.Copyright.Attribution  | markdownify) -}}
-            </div>
-            <div>
-                 <span class="d-none d-md-inline">{{- .Site.Params.Copyright.SentenceFull | markdownify -}}</span>
-                 <span class="d-md-none">{{- .Site.Params.Copyright.SentenceSmall | markdownify -}}</span>
-            </div>
-        </div><!-- col -->
-    </div><!-- row -->
-</div><!-- container -->
+            </div><!-- col -->
+            <div class="col">
+                <span class="d-none d-md-inline">{{- .Site.Params.Copyright.SentenceFull | markdownify -}}</span>
+                <span class="d-md-none">{{- .Site.Params.Copyright.SentenceSmall | markdownify -}}</span>
+            </div><!-- col -->
+        </div><!-- row -->
+    </div><!-- container -->
+</div>

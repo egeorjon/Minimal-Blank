@@ -11,7 +11,7 @@
 {{- define "main" -}}
 <div class="container">
     {{- $context := . -}}
-    <article class="row row-cols-1">
+    <article class="post row row-cols-1">
         {{- if and (ne .Type "sitepages") (isset .Site.Params.Single "metatop") -}}
         <div class="col post-header">
             {{- partial "meta" (dict "context" $context "kindstr" .Kind "prm" .Site.Params.Single.MetaTop "class" "meta-top") -}}
@@ -26,18 +26,15 @@
         </div><!-- post-footer -->
         {{- end -}}
     </article>
-    {{- partial "pagination-single.html" . -}}
     {{- if .Site.Params.Single.Widgets -}}
         {{- $columns := $.Site.Params.Single.bottomcolumns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
         {{- $class := partial "class-columns.html" $columns -}}
-    <div class="post-bottom {{ $class -}}">
+    <div class="post-bottom g-4 {{ $class -}}">
         {{- range sort .Site.Params.Single.Widgets "weight" -}}
             {{- partial (printf "widgets/%s.html" .type) (dict "context" $context "param" .params) -}}
         {{- end -}}
-        <aside class="col">
-            {{- $related := .Site.RegularPages.RelatedIndices . "tags" "date" -}}
-        </aside>
     </div><!-- row post-bottom -->
     {{- end -}}
+    {{- partial "pagination-single.html" . -}}
 </div><!-- container -->
 {{- end -}}

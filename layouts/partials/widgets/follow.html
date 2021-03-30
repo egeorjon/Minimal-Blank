@@ -1,27 +1,30 @@
 <aside class="col widget widget-follow social-links">
-    <ul>
-        {{- if eq (.context.Site.Params.FollowLinks.rss | default true) true -}}
-            {{- with ((.context.Site.GetPage "home").OutputFormats.Get "rss") }}
-        <li>
-            <a href="{{- .RelPermalink -}}" target="_blank">
-                <i class="fas fa-rss-square fa-2x"></i>
-                <span class="visually-hidden">{{- i18n "rss-feeds" -}}</span>
-            </a>
-        </li>
-            {{- end }}
-        {{- end -}}
-        {{- range sort .context.Site.Params.FollowLinks.Socials "weight" -}}
-            {{- if .account -}}
-                {{- $media := . -}}
-                {{- with (index $.context.Site.Data.socials.medias .id) }}
-                <li>
-                    <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- .name -}}">
-                        <i class="{{- .icon }} fa-2x"></i>
-                        <span class="visually-hidden">{{- .media -}}</span>
-                    </a>
-                </li>
+    <div class="widget-inner">
+        <h3>{{- i18n "follow-me" -}}</h3>
+        <ul>
+            {{- if eq (.context.Site.Params.FollowLinks.rss | default true) true -}}
+                {{- with ((.context.Site.GetPage "home").OutputFormats.Get "rss") }}
+            <li>
+                <a href="{{- .RelPermalink -}}" target="_blank">
+                    <i class="fas fa-rss-square fa-2x"></i>
+                    <span class="visually-hidden">{{- i18n "rss-feeds" -}}</span>
+                </a>
+            </li>
+                {{- end }}
+            {{- end -}}
+            {{- range sort .context.Site.Params.FollowLinks.Socials "weight" -}}
+                {{- if .account -}}
+                    {{- $media := . -}}
+                    {{- with (index $.context.Site.Data.socials.medias .id) }}
+                    <li>
+                        <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- .name -}}">
+                            <i class="{{- .icon }} fa-2x"></i>
+                            <span class="visually-hidden">{{- .media -}}</span>
+                        </a>
+                    </li>
+                    {{- end -}}
                 {{- end -}}
             {{- end -}}
-        {{- end -}}
-    </ul>
+        </ul>
+    </div><!-- inner -->
 </aside>

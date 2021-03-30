@@ -1,0 +1,45 @@
+[featured]
+    block    = "post"
+    weight   = 2 
+    title    = "Article du jour"
+    post     = "/blog/hugo_wordpress.md"
+    meta     = "date,reading,section"
+
+[sections]
+    block    = "list"
+    weight   = 3
+    title    = "Les rubriques du site"
+    subtitle = ""
+    columns  = { "xs" = 1, "sm" = 1, "md" = 2, "lg" = 2, "xl" = 2 }
+
+    [[sections.items]]
+    title   = "Blog"
+    text    = "Articles sur la vie du blog, et les technologies qui ont servi à sa construction, Hugo, HTML/CSS."
+    button  = "Continue"
+    link    = "/blog/"
+
+    [[sections.items]]
+    title   = "Gestion de projet"
+    text    = "Méthodologie, et techniques autour de la gestion de projet, et de la certification PMP&reg;"
+    button  = "Continue"
+    link    = "/project/"
+
+    [[sections.items]]
+    title   = "Architecture IT"
+    text    = "Lectures / discussions sur l'architecture IT, les méthodes, et les technologies"
+    button  = "Continue"
+    link    = "/architecture/"
+
+    [[sections.items]]
+    title   = "Photographie"
+    text    = "Tutoriels sur les bases de la photo, sur l’utilisation des flashes, sur la photo panoramique, … et quelques galeries."
+    button  = "Continue"
+    link    = "/photo/"
+
+[lastposts]
+    block    = "lastposts"
+    weight   = 4
+    subtitle = ""
+    number   = 4
+    columns  = { "xs" = 1, "sm" = 1, "md" = 1, "lg" = 2, "xl" = 2 }
+    meta     = "date,reading,section"

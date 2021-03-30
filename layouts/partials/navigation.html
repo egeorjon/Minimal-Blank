@@ -1,7 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-light sticky-top menu-bg-brd">
+<a name="page-top"></a>
+<nav class="navbar navbar-expand-md navbar-light sticky-top" id="main-menu">
     <div class="container">
         <a class="navbar-brand" href="{{- .Site.BaseURL -}}" title="{{- .Site.Title -}}">
-            <img id="site-brand-logo" src="/assets/favicons/site-logo.png" alt="" width="40" height="40" /><!-- class="d-inline-block align-top" -->
+            {{- $imgpath := path.Join "/themes/minimal-blank/static/" .Site.Params.SiteLogo -}}
+            {{- with (imageConfig $imgpath) -}}
+            <img class="site-brand-logo" src="{{- $.Site.Params.SiteLogo -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+            <!-- class="d-inline-block align-top" -->
+            {{- end -}}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

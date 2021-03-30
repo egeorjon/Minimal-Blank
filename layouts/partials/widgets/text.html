@@ -1,6 +1,8 @@
 {{- with .context.Site.GetPage .param -}}
     <aside class="col widget widget-text">
-        <h3>{{ .Title }}</h3>
-        {{ .Content | safeHTML }}
+        <div class="widget-inner">
+            <h3>{{ .Title }}</h3>
+            {{ .Content | safeHTML }}
+        </div>
     </aside>
 {{- end -}}

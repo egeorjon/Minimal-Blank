@@ -9,7 +9,7 @@
     @import "bootstrap-5.0.0-beta3/scss/mixins";
     @import "bootstrap-5.0.0-beta3/scss/utilities";
 
-    // Values kept: display (for d-none, d-block, display, "background-color",...)
+    // Values kept: display (for d-none, d-block, display, "background-color", "height",...)
     $utilities: map-remove($utilities,
         "align", "overflow", "float",
         "shadow", "position", "top",
@@ -18,7 +18,7 @@
         "border-bottom", "border-start",
         "border-end", "border-bottom", "border-width",
         "width", "max-width", "viewport-width",
-        "min-viewport-width", "height", "max-height",
+        "min-viewport-width", "max-height",
         "viewport-height", "min-viewport-height", "flex",
         "flex-direction", "flex-grow", "flex-shrink",
         "flex-wrap", "gap", "justify-content",
@@ -53,7 +53,7 @@
 // @import "bootstrap-5.0.0-beta3/scss/button-group";
     @import "bootstrap-5.0.0-beta3/scss/nav";
     @import "bootstrap-5.0.0-beta3/scss/navbar";
-// @import "bootstrap-5.0.0-beta3/scss/card";
+@import "bootstrap-5.0.0-beta3/scss/card";
 // @import "bootstrap-5.0.0-beta3/scss/accordion";
     @import "bootstrap-5.0.0-beta3/scss/breadcrumb";
     @import "bootstrap-5.0.0-beta3/scss/pagination";
@@ -89,34 +89,63 @@ $fa-font-path: "../webfonts";
 // @import "fontawesome-free-5.15.2-web/scss/regular";
 @import "fontawesome-free-5.15.2-web/scss/brands";
 
+
+// ----------------------------------------------
+// --- General rules
+// ----------------------------------------------
 .me-auto {
     margin-right: auto !important;
 }
 
-.menu-bg-brd {
-    background-color: #fff;
+.justify-content-center {
+    justify-content: center !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+i.fas, i.fab {
+    color: $gray-600;
+}
+
+// ----------------------------------------------
+// --- Rules for the header
+// ----------------------------------------------
+#main-menu {
+    background-color: white;
     border-bottom: 1px solid $gray-300;
 }
 
+.small .site-brand-logo {
+    width: 45px;
+    height: 45px;
+}
+
+.site-brand-logo {
+    width: 100%;
+    transition: 0.4s;
+}
+
+.nav-link {
+    font-size: 1.1111111111111em;
+    font-variant: small-caps;
+}
+
 #page-title {
-    margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
-.thumbnail-placeholder {
-    background-color    : $gray-300;
-    border              : 1px solid $gray-500;
-    border-radius       : 1rem;
-    width               : 880px;
-    height              : 400px;
-    margin-left         : auto;
-    margin-right        : auto;
+#page-header {
+    margin-bottom: 2rem;
+
+    background-color: $gray-100;
+    border-bottom: 1px solid $gray-300;
 }
 
-.justify-content-center {
-    justify-content: center !important;
-  }
-
+// ----------------------------------------------
+// --- Rules common to post list, and post single
+// ----------------------------------------------
 .post-meta {
     padding-left: 0;
     margin-bottom: 0;
@@ -134,26 +163,27 @@ $fa-font-path: "../webfonts";
             content: "";
         }
     }
-
-    i {
-        color: $gray-600;
-    }
 }
+
+
+// ----------------------------------------------
+// --- Rules for the posts list
+// ----------------------------------------------
 
 .post-list {
 
-    #page-header {
-        margin-bottom: 2em;
+    .post {
+        margin-bottom: 4rem;
     }
 
-    h2 a {
+    .post-title a {
         text-decoration: none;
+
+        &:hover {
+            color: $secondary;
+        }
     }
-    
-    h2 a:hover {
-        color: $secondary;
-    }
-    
+
     .post-header {
         margin-bottom: 1em;
     }
@@ -162,127 +192,42 @@ $fa-font-path: "../webfonts";
     .post-summary {
         text-align: justify;
     }
-
-    .post {
-        padding-bottom: 2.5em;
-        border-bottom: 1px solid $gray-300;
-        margin-bottom: 2em;
-    }
-
-    .post:nth-last-child(2),
-    .post:last-child {
-        border-bottom: 0;
-    }
-
-    .pagination i {
-        color: $gray-500;
-    }
 }
 
-.text-center {
-   text-align: center; 
-}
+// ----------------------------------------------
+// --- Rules for the post single
+// ----------------------------------------------
 
 .post-single {
-
-    #page-header {
-        margin-bottom: 1em;
-    }
-    
-    .post-header {
-        margin-bottom: 2em;
-    } 
-
     .post-content {
         text-align: justify;
+
+        h2 {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            color: $primary;
+        }
+
+        h3 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: $secondary;
+        }
     }
 
-    .post-content,
-    .post-footer,
-    .share-links,
-    .author-info {
-        padding-bottom: 2em;
-        border-bottom: 1px solid $gray-300;
+    .post-meta,
+    .post-content {
         margin-bottom: 2em;
     }
-}
 
-.share-links {
-    
-    div {
-        text-align: center;
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    a > i {
-        color: $gray-600;
-        font-size: 2em;
-    }
-
-    a:hover,
-    a:hover i {
-        color: $secondary;
+    .post {
+        margin-bottom: 3em;
     }
 }
 
-.share-text {
-    display: none;
-}
-
-@media (min-width: map-get($grid-breakpoints, "sm")) {
-
-    .share-text {
-        display: block;
-    }
-}
-
-.author-avatar {
-    text-align: right;
-}
-
-.author-name {
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-.author-socials {
-    list-style-type: none;
-    padding-left: 0;
-
-    li {
-        display: inline-block;
-        margin-left: 1em;
-    }
-}
-
-#search-results-items {
-    h3 {
-        margin-top: 0;
-        margin-bottom: 1rem;
-    }
-}
-
-
-// -------------------------------------------------------
-// --- Styles inside post
-// ------------------------------------------------------- 
-
-.post-single {
-    h2 {
-        margin-top: 3rem;
-        margin-bottom: 2rem;
-        color: $secondary;
-    }
-
-    h3 {
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        color: $primary;
-    }
-}
+// ----------------------------------------------
+// --- Rules for images, figures, and galleries
+// ----------------------------------------------
 
 img {
 	max-width: 100%;
@@ -339,245 +284,151 @@ figcaption {
 	}
 }
 
-blockquote {
-    position: relative;
 
-    border-top: 1px solid $gray-300;
-    border-bottom: 1px solid $gray-300;
-    background-color: $gray-100;
-    margin-left: auto;
-    margin-right: auto;
+// ----------------------------------------------
+// --- Widgets
+// ----------------------------------------------
 
-    p {
-        padding: 1rem 4rem 0 1rem;
+.post-bottom {
+
+    margin-bottom: 3rem;
+
+    .card {
+        background-color: $gray-100;
     }
 
-	&:before {
-		/* display: inline-block;*/
-		color: $gray-400;
-		font-family: "Font Awesome 5 Free"; 
-		font-size: 1.5 * $font-size-base;
-		font-weight: 900;
-		-webkit-font-smoothing: antialiased;
-		
-		position: absolute;
-        top: 0.5rem;
-        right: 1rem;
-		
-		content: "\f10d";
-	}
-}
-
-blockquote.success {
-	background-color: #d1e7dd;
-	border-color: #badbcc;
-
-	&:before {
-		content: "\f14a";
-        color: #badbcc;
-	}
-}
-
-blockquote.warning {
-    background-color: #fff3cd;
-	border-color: #ffecb5;
-
-	&:before {
-		content: "\f071";
-        color: #ffecb5;
-	}
-}
-
-blockquote.error {
-	background-color: #f8d7da;
-	border-color: #f5c2c7;
-
-	&:before {
-		content: "\f00d";
-        color: #f5c2c7;
-	}
-}
-
-blockquote.info {
-	background-color: #cfe2ff;
-    border-color: #b6d4fe;
-
-	&:before {
-		content: "\f05a";  // f06a
-        color: #b6d4fe;
-	}
-}
-
-blockquote.question {
-	background-color: #cff4fc;
-	border-color: #b6effb;
-
-	&:before {
-		content: "\f059";
-        color: #b6effb;
-	}
-}
-
-@media (min-width: map-get($grid-breakpoints, "sm")) {
-
-    blockquote {
-        width: 95%;
+    .card-title {
+        font-size   : 1.33333334 * $font-size-base;
+        color       : $primary;
+        margin-bottom: $spacer;
     }
 }
 
-@media (min-width: map-get($grid-breakpoints, "md")) {
+.widget-share-links,
+.widget-follow {
 
-    blockquote {
-        width: 90%;
+    a {
+        text-decoration: none;
+    }
+
+    a:hover i {
+        color: $secondary;
+    }
+
+    ul {
+        margin-bottom: 0;
+        padding-left: 0;
+        list-style-type: none;
+    }
+
+    li {
+        display: inline;
+        margin-right: 1rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
     }
 }
 
-@media (min-width: map-get($grid-breakpoints, "lg")) {
+.author-name {
+    margin-bottom: 0;
+}
 
-    blockquote {
-        width: 85%;
+.author-socials {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+
+    li {
+        display: inline-block;
+        margin-right: 1rem;
+
+        &:last-child {
+            margin-right: 0;
+        }
     }
 }
 
-
-// --------------------------------------------
-// --- footer
-// --------------------------------------------
-
-.justify-content-center {
-    justify-content: center !important;
-}
-
-.align-items-center {
-    align-items: center !important;
-}
+// ----------------------------------------------
+// --- Footer
+// ----------------------------------------------
 
 #page-content {
-    padding-bottom: 2rem;
-    border-bottom: 1px solid $gray-300;
-}
-
-#page-footer {
+    padding-bottom: 3rem;
     border-bottom: 1px solid $gray-300;
 }
 
 .footer-search {
+    background-color: $gray-100;
+    border-bottom: 1px solid $gray-300;
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-search .col {
+    text-align: center;
+}
+
+.footer-search .row {
     position: relative;
+}
+
+#search-form .fa-search,
+.footer-search .fa-search {
+    color: $gray-200;
+}
+
+#search-results h2 {
+    margin-bottom: 3rem;
 }
 
 .button-up {
     position: absolute;
-    right: 1rem;
-    top: 50%;
-}
-
-.footer-middle,
-.footer-search {
-    border-bottom: 1px solid $gray-300;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-}
-
-.footer-middle {
-    h3 {
-        padding-top: 0;
-        margin-top: 0;
-    }
-}
-
-.footer-bottom {
-    text-align: center;
-    padding: 1rem 0;
+    right: 30px;
+    top: 0px;
 }
 
 .col-form-label {
     text-align: right;
 }
 
-.social-links {
+.footer-middle {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $gray-300;
+}
 
-    ul {
-        padding-left: 0;
-        margin-bottom: 0;
-        list-style-type: none;
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+// ----------------------------------------------
+// --- Rules for the search result pages
+// ----------------------------------------------
+.search-page {
+
+    #search-form {
+        margin-bottom: 4rem;
     }
 
-    li {
-        display: inline;
-        margin-right: 0.5rem;
-
-        &:last-child {
-            margin-right: 0;
-        }
-    }
-
-    a {
-        text-decoration: none;
-    }
-
-    a:hover {
+    h2 {
         color: $secondary;
     }
-}
 
-.social-links .fa-2x {
-    font-size: 1.5em;
-}
-
-@media (min-width: map-get($grid-breakpoints, "sm")) {
-
-    .social-links li {
-        margin-right: 1rem
+    .post {
+        margin-bottom: 4rem;
     }
 
-    .social-links .fa-2x {
-        font-size: 2em;
-    }
+
 }
 
-.widget-text {
-    margin-bottom: 2em;
-}
-
-.footnotes {
-     ol {
-         font-size: $small-font-size;
-     }
-
-    hr {
-        width: 50%;
-    }
-
-    p {
-        margin-bottom: 0;
-    }
-}
-
-.home-section {
-    border-bottom: 1px solid $gray-300;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-
-    &:last-child {
-        border: 0;
-    }
-}
-
-.home-widget {
-    margin-bottom: 3rem;
-}
-
-.home-section p,
-.home-widget p {
-    text-align: justify;
-}
-
-.contact-page {
-    .form-group {
-        margin-bottom: 1rem;
-    }
-}
-
+// ----------------------------------------------
+// --- Simple lightbox
+// ----------------------------------------------
 $sl-font-family: Arial, sans-serif;
 $sl-overlay-background: #000; /* #fff; */
 $sl-navigation-color: #000;

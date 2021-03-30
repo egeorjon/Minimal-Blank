@@ -7,48 +7,48 @@
 {{/*   caption       string  caption to be put in the <figcaption> (default: ) */}}
 {{/*   classcaption  string  class of the tag <figcaption> (default: ) */}}
 {{/* Get the image (assumption: we are in a page bundle) */}}
-{{ $src := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) }}
-{{ if $src }}
+{{- $src := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) -}}
+{{- if $src -}}
     {{/* Get the size of the image */}}
     {{/* pipe printf to be replaced by path.join .Site.contentDir relPermalink */}}
-    {{ $details  := imageConfig ($src.RelPermalink | printf "content/%s" ) }}
-    {{ $width    := strings.TrimSuffix "px" $details.Width  }}
-    {{ $height   := strings.TrimSuffix "px" $details.Height }}
-    {{ $largew   := "900" }}
-    {{ $largeImg := $src.Resize ( printf "%sx" $largew  ) }}
-    {{ $largeh   := div ( mul (int $height) (int $largew) ) (int $width) }}
-    <figure {{ with .Get "class"}}class="figure-img figure-{{.}}"{{end}}>
-        {{ if  gt $width $largew }}
-            <a href="{{ $src.RelPermalink }}" data-lightbox="{{ path.Base $src }}" data-title="{{ with .Get "title" }}{{ . }}{{ else }}{{ .Get "caption" | markdownify| plainify }}{{ end }}">
-                {{ template "respimg" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) }}
+    {{- $details  := imageConfig ($src.RelPermalink | printf "content/%s" ) -}}
+    {{- $width    := strings.TrimSuffix "px" $details.Width  -}}
+    {{- $height   := strings.TrimSuffix "px" $details.Height -}}
+    {{- $largew   := "900" -}}
+    {{- $largeImg := $src.Resize ( printf "%sx" $largew  ) -}}
+    {{- $largeh   := div ( mul (int $height) (int $largew) ) (int $width) -}}
+    <figure {{ with .Get "class" }}class="figure-img figure-{{- . -}}"{{- end -}}>
+        {{- if  gt $width $largew -}}
+            <a href="{{ $src.RelPermalink }}" data-lightbox="{{ path.Base $src }}" data-title="{{- with .Get "title" -}}{{- . -}}{{- else -}}{{- .Get "caption" | markdownify| plainify -}}{{- end -}}">
+                {{- template "respimg" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) -}}
             </a>
-        {{ else }}
-            {{ template "respimg" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) }}
+        {{- else -}}
+            {{- template "respimg" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) -}}
         {{ end }}
         {{- if or (.Get "title") (.Get "caption") -}}
-        <figcaption class="figure-caption{{ with .Get "classcaption" }}  caption-{{ . }}{{ end }}">{{ with .Get "caption" }}{{ . }}{{ else }}{{ .Get "title" | markdownify| plainify }}{{ end }}</figcaption>
-        {{ end }}
+        <figcaption class="figure-caption{{- with .Get "classcaption" -}}  caption-{{- . -}}{{- end -}}">{{- with .Get "caption" -}}{{- . -}}{{- else -}}{{- .Get "title" | markdownify| plainify -}}{{- end -}}</figcaption>
+        {{- end -}}
     </figure>
-{{else}}
+{{- else -}}
     <p class="build-error">Image not found!</p>
-{{end}}
+{{- end -}}
 
-{{ define "respimg" }}
-{{ $smallw    := "480"  }}
-{{ $mediumw   := "660"  }}
-{{ $largew    := "900"  }}
-{{ $xlargew   := "1200" }}
-{{ $smallImg  := .src.Resize (printf "%sx" $smallw   ) }}
-{{ $mediumImg := .src.Resize (printf "%sx" $mediumw  ) }}
-{{ $largeImg  := .src.Resize ( printf "%sx" $largew  ) }}
-{{ $xlargeImg := .src.Resize ( printf "%sx" $xlargew ) }}
+{{- define "respimg" -}}
+{{- $smallw    := "480"  -}}
+{{- $mediumw   := "660"  -}}
+{{- $largew    := "900"  -}}
+{{- $xlargew   := "1200" -}}
+{{- $smallImg  := .src.Resize (printf "%sx" $smallw   ) -}}
+{{- $mediumImg := .src.Resize (printf "%sx" $mediumw  ) -}}
+{{- $largeImg  := .src.Resize ( printf "%sx" $largew  ) -}}
+{{- $xlargeImg := .src.Resize ( printf "%sx" $xlargew ) -}}
 <img class="img-fluid"
-    {{ if ge .w $smallw }}
+    {{- if ge .w $smallw -}}
     srcset="{{ if ge .w $smallw }}{{ with $smallImg.RelPermalink }}{{.}} {{ $smallw }}w{{end}}{{ end }}{{ if ge .w $mediumw }}{{ with $mediumImg.RelPermalink }},{{.}} {{ $mediumw }}w{{end}}{{ end }}{{ if ge .w $largew }}{{ with $largeImg.RelPermalink }},{{.}} {{ $largew }}w{{end}}{{ end }},{{ .largsrc.RelPermalink }} {{ .w }}w"
     sizes="(max-width: 576px) 480px{{ if ge .w $mediumw }}, (max-width: 768px) 660px{{ end }}{{ if ge .w $largew }}, (max-width: 992px) 900px{{ end }}{{ if ge .w $xlargew }}, (max-width: 1200px) 1140px{{ end }}, 100vw"
-    {{ end }}
+    {{- end -}}
     src="{{ .largsrc.RelPermalink }}" width="{{ .w }}px" height="{{ .h }}px" 
-    {{- if or ( .p.Get "alt") ( .p.Get "caption") }}
-        alt="{{ with .p.Get "alt" }}{{ . | markdownify| plainify }}{{ else }}{{ .p.Get "caption" | markdownify| plainify }}{{ end }}"
-    {{ end }} />
+    {{- if or ( .p.Get "alt") ( .p.Get "caption") -}}
+        alt="{{- with .p.Get "alt" -}}{{- . | markdownify| plainify -}}{{- else -}}{{- .p.Get "caption" | markdownify| plainify -}}{{- end -}}"
+    {{- end -}} />
 {{ end }}

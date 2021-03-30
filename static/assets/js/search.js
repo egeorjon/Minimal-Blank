@@ -1,10 +1,10 @@
 
   var fuseOptions = {
     shouldSort        : true,
-    includeScore      : false,
+    includeScore      : true,
     includeMatches    : true,
     isCaseSensitive   : false,
-    threshold         : 0.95,
+    threshold         : 0.96,
     tokenize          : true,
     location          : 0,
     distance          : 100,
@@ -13,8 +13,8 @@
     minMatchCharLength: 3,
     keys: [
       { name:"title",    weight:0.8 },
-      { name:"contents", weight:0.5 },
-      { name:"tags",     weight:0.3 }
+      { name:"contents", weight:0.2 },
+      { name:"tags",     weight:0.8 }
     ]
   }
 
@@ -45,15 +45,21 @@
       
     var templateDefinition = document.querySelector("#search-result-template").textContent;
     var items = document.querySelector("#search-results-items");
+    var nb = 0;
 
-    results.forEach( (value, key) => {
-      /*  console.log({"Key":key});
-        console.log({"Value": value}); */
+    /*results.forEach( (value, key) => { */
+       /*console.log({"Key":key});
+        console.log({"Value": value});*/
+    for ( const value of results) {
+      /* console.log({"Value": value}); */
 
+        nb++;
+        if (nb > 10 || value.score > 0.5)
+          break;
+          
         if ( value.item.title != "Recherche" && value.item.title != "Search" && value.item.title != "Catalog" ) {
           var output = render(
             templateDefinition, {
-              key       : key,
               title     : value.item.title,
               link      : value.item.permalink,
               tags      : value.item.tags,
@@ -61,13 +67,13 @@
               publish   : value.item.publish,
               section   : value.item.section,
               reading   : value.item.reading,
-              summary   : truncate(value.item.contents,50) + "..."
+              summary   : truncate(value.item.contents,50) + "...",
+              score     : Math.round((1-value.score)*100).toString() + "%"
               }
             );
           items.innerHTML = items.innerHTML + output;
         }
       }
-    );
   }
 
   /* ------------------------------------------------------
