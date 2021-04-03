@@ -44,7 +44,6 @@
                     <a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a>
                 </h2>
                 {{- if and (ne $kind "taxonomy") (isset .Site.Params.List "meta") -}}
-                    {{/*- partial "meta.html" (dict "context" . "kindstr" $kind "prm" .Site.Params.metalist ) -*/}}
                     {{- partial "meta.html" (dict "context" . "kindstr" $kind "prm" .Site.Params.List.Meta ) -}}
                 {{- end -}}
             </header>

@@ -9,11 +9,11 @@
         "@id": {{- printf "%s%s" site.BaseURL "#organization" -}},
         "name":"{{- .Site.Title -}}",
         "url": {{- site.BaseURL -}},
-        {{ if isset .Site.Params.Schema "orglogo" -}}
+        {{ if isset .Site.Params "sitelogo" -}}
         "logo":{
             "@type": "ImageObject",
             "@id": {{- printf "%s%s" site.BaseURL "#logo" -}},
-            "url": {{- printf "%s%s" (site.BaseURL | absURL) (index .Site.Params.Schema "orglogo") -}},
+            "url": {{- printf "%s%s" (site.BaseURL | absURL) (index .Site.Params "sitelogo") -}},
             "caption": "{{- .Site.Title -}}"
         },
         {{- end }}
@@ -112,11 +112,11 @@
       {{- end -}}
       {{/* -------------------- List (Taxonomy, and taxonomy term) -------------------- */}}
       {{- if eq .Kind "term" -}}
-        {{- $taxo_limit := 0 -}}
-        {{- if (isset .Site.Params.Taxonomies .Data.Plural) -}}
-          {{- $taxo_limit = int (index .Site.Params.Taxonomies .Data.Plural) -}}
-        {{- end -}}
-        {{- if gt $taxo_limit 0 }},
+        {{- $taxo_limit := 10 -}}:
+        {{/* - if (isset .Site.Params.Taxonomies .Data.Plural) - */}}
+          {{/* - $taxo_limit = int (index .Site.Params.Taxonomies .Data.Plural) - */}}
+        {{/* - end - */}}
+        {{/* - if gt $taxo_limit 0 */}},
         {
           {{- $permalink_main := .Permalink | absURL -}}
           "@type": "ItemList",
@@ -132,7 +132,7 @@
           {{- end }}
           "itemListElement": [
           {{- $count := 1 -}}
-          {{- range first $taxo_limit .Pages -}}
+          {{- range first $taxo_limit .Pages.ByDate.Reverse -}}
             {{- if ne $count 1 -}},{{- end }}
             {
               {{- $permalink := .Permalink | absURL -}}
@@ -165,7 +165,7 @@
           {{- end -}}
           ]
         }
-        {{- end -}}
+        {{/* - end - */}}
       {{- end -}}
     ]
   }
