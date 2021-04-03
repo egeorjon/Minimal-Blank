@@ -20,7 +20,7 @@
         {{ with .Site.Params.FollowLinks.socials -}}
           {{- $list_url := slice -}}
           {{- range . -}}
-              {{- if and .account (isset . "id") -}}
+              {{- if and .account .id -}}
                 {{ $acc := .account}}
                 {{- with (index $.Site.Data.socials.medias .id) }}
                   {{- $list_url = $list_url | append (printf .follow $acc) -}}
