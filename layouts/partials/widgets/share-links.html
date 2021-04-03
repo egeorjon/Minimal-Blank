@@ -20,21 +20,23 @@
                     {{- $share := . -}}
                     {{- $via := "" -}}
                     {{- with .account -}}{{- $via = . -}}{{- end -}}
-                    {{- with (index $.context.Site.Data.socials.medias .id) }}
-                        {{- if .share -}}
-                            {{- $link_title := printf (i18n "share-link-with") .name -}}
-                            {{- $share_url := partial "widgets/share_regex.html" (dict "pattern" "%%URL%%"      "param" "%s"              "value" $url         "string" .share)     -}}
-                            {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%VIA%%"      "param" "&via=%s"         "value" $via         "string" $share_url) -}}
-                            {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%DESC%%"     "param" "&description=%s" "value" $description "string" $share_url) -}}
-                            {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%BODY%%"     "param" "&body=%s"        "value" $description "string" $share_url) -}}
-                            {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%HASHTAGS%%" "param" "&hashtags=%s"    "value" $tags        "string" $share_url) -}}
-                            {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%SUBJECT%%"  "param" "&subject=%s"     "value" $title       "string" $share_url) -}}
-                            {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%TITLE%%"    "param" "&title=%s"       "value" $title       "string" $share_url) -}}
-                            <li>
-                                <a href="{{- $share_url -}}" class="share-link share-{{ $share.id -}}" title="{{- .name -}}" aria-label="{{- .name -}}" rel="noopener noreferrer" target="blank">
-                                    <i class="{{- .icon }} fa-2x"></i>
-                                </a>
-                            </li>
+                    {{- if and (ne $.context.Site.Data.socials.medias nil) (ne .id nil) -}}
+                        {{- with (index $.context.Site.Data.socials.medias .id) }}
+                            {{- if .share -}}
+                                {{- $link_title := printf (i18n "share-link-with") .name -}}
+                                {{- $share_url := partial "widgets/share_regex.html" (dict "pattern" "%%URL%%"      "param" "%s"              "value" $url         "string" .share)     -}}
+                                {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%VIA%%"      "param" "&via=%s"         "value" $via         "string" $share_url) -}}
+                                {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%DESC%%"     "param" "&description=%s" "value" $description "string" $share_url) -}}
+                                {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%BODY%%"     "param" "&body=%s"        "value" $description "string" $share_url) -}}
+                                {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%HASHTAGS%%" "param" "&hashtags=%s"    "value" $tags        "string" $share_url) -}}
+                                {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%SUBJECT%%"  "param" "&subject=%s"     "value" $title       "string" $share_url) -}}
+                                {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%TITLE%%"    "param" "&title=%s"       "value" $title       "string" $share_url) -}}
+                                <li>
+                                    <a href="{{- $share_url -}}" class="share-link share-{{ $share.id -}}" title="{{- .name -}}" aria-label="{{- .name -}}" rel="noopener noreferrer" target="blank">
+                                        <i class="{{- .icon }} fa-2x"></i>
+                                    </a>
+                                </li>
+                            {{- end -}}
                         {{- end -}}
                     {{- end -}}
                 {{- end -}}
