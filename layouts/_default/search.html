@@ -38,7 +38,7 @@
     </section>
     <section id="search-results" class="d-none">
         <div class="row">
-            <h2 class="col">{{- i18n "search-results" -}}</h2>
+            <h2 class="col" id="search-results-title">{{- i18n "search-results" -}}</h2>
         </div>
         <div id="search-results-items" class="{{- $class -}}">
         </div>
@@ -46,9 +46,9 @@
     <script id="search-result-template" type="text/x-js-template">
 <article class="col post ${ isset section }section-${section}${end}">
     <header class="post-header">
-        <h2 class="post-title">
+        <h3 class="post-title">
             <a href="${link}" rel="bookmark">${title}</a>
-        </h2>
+        </h3>
         <ul class="post-meta">
             ${ isset section }<li class="post-section"><i class="fas fa-folder-open"></i> <span class="visually-hidden">{{- i18n "In" -}}</span><span class="in-category">${section}</span></li>${end}
             ${ isset publish }<li class="post-date"><i class="fas fa-calendar-alt"></i> <span class="visually-hidden">{{- i18n "posted-on" -}}</span><time class="entry-date published" datetime="${publish}">${publish}</time></li>${end}

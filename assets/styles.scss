@@ -100,6 +100,19 @@ $fa-font-path: "../webfonts";
 .justify-content-center {
     justify-content: center !important;
 }
+/*
+.justify-content-end {
+    justify-content: flex-end !important;
+  }
+
+.align-self-end {
+    align-self: flex-end !important;
+}
+
+.align-content-end {
+    align-content: flex-end !important;
+  }
+*/  
 
 .text-center {
     text-align: center;
@@ -187,6 +200,11 @@ i.fas, i.fab {
     .post-header {
         margin-bottom: 1em;
     }
+
+    .page-introduction {
+        margin-bottom: 2rem;
+    }
+
 
     .page-introduction,
     .post-summary {
@@ -285,6 +303,110 @@ figcaption {
 }
 
 
+// -------------------------------------------------------
+// --- Rules for blockquote
+// ------------------------------------------------------- 
+
+blockquote {
+    position: relative;
+
+    border-top: 1px solid $gray-300;
+    border-bottom: 1px solid $gray-300;
+    background-color: $gray-100;
+    margin-left: auto;
+    margin-right: auto;
+
+    p {
+        padding: 1rem 4rem 0 1rem;
+    }
+
+	&:before {
+		/* display: inline-block;*/
+		color: $gray-400;
+		font-family: "Font Awesome 5 Free"; 
+		font-size: 1.5 * $font-size-base;
+		font-weight: 900;
+		-webkit-font-smoothing: antialiased;
+		
+		position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+		
+		content: "\f10d";
+	}
+}
+
+blockquote.success {
+	background-color: #d1e7dd;
+	border-color: #badbcc;
+
+	&:before {
+		content: "\f14a";
+        color: #badbcc;
+	}
+}
+
+blockquote.warning {
+    background-color: #fff3cd;
+	border-color: #ffecb5;
+
+	&:before {
+		content: "\f071";
+        color: #ffecb5;
+	}
+}
+
+blockquote.error {
+	background-color: #f8d7da;
+	border-color: #f5c2c7;
+
+	&:before {
+		content: "\f00d";
+        color: #f5c2c7;
+	}
+}
+
+blockquote.info {
+	background-color: #cfe2ff;
+    border-color: #b6d4fe;
+
+	&:before {
+		content: "\f05a";  // f06a
+        color: #b6d4fe;
+	}
+}
+
+blockquote.question {
+	background-color: #cff4fc;
+	border-color: #b6effb;
+
+	&:before {
+		content: "\f059";
+        color: #b6effb;
+	}
+}
+
+@media (min-width: map-get($grid-breakpoints, "sm")) {
+
+    blockquote {
+        width: 95%;
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "md")) {
+
+    blockquote {
+        width: 90%;
+    }
+}
+
+@media (min-width: map-get($grid-breakpoints, "lg")) {
+
+    blockquote {
+        width: 85%;
+    }
+}
+
 // ----------------------------------------------
 // --- Widgets
 // ----------------------------------------------
@@ -350,6 +472,43 @@ figcaption {
     }
 }
 
+.tags-cloud a {
+    margin-left: 2rem;
+    &:last-child {
+        margin-left: 0;
+    }
+}
+
+// ----------------------------------------------
+// --- Rules for the homepage
+// ----------------------------------------------
+
+.post-home {
+    #page-title {
+       margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        background-color: $gray-100;
+        border: 1px solid $gray-300;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .post {
+        margin-bottom: 3rem;
+    }
+}
+
+.home-edito {
+    text-align: justify;
+}
+
+.home-section {
+    margin-bottom: 4rem;
+}
+
 // ----------------------------------------------
 // --- Footer
 // ----------------------------------------------
@@ -365,7 +524,6 @@ figcaption {
 
     padding-top: 2rem;
     padding-bottom: 2rem;
-    margin-bottom: 2rem;
 }
 
 .footer-search .col {
@@ -396,6 +554,7 @@ figcaption {
 }
 
 .footer-middle {
+    padding-top: 2rem;
     padding-bottom: 2rem;
     border-bottom: 1px solid $gray-300;
 }
@@ -440,8 +599,8 @@ $sl-counter-fontsize: 1rem;
 $sl-caption-fontsize: 1rem;
 $sl-close-fontsize: 3rem;
 
-$sl-breakpoint-medium: 35.5em; // 568px, when 1rem == 16px
-$sl-breakpoint-large:  50em;   // 800px, when 1rem == 16px
+$sl-breakpoint-medium: 48em; // initial values 568px, when 1rem == 16px
+$sl-breakpoint-large:  62em;   // initial values 800px, when 1rem == 16px
 
 $sl-arrow-fontsize-small:  2rem;
 $sl-arrow-fontsize-medium: 3rem;

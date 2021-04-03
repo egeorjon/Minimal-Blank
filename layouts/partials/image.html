@@ -1,4 +1,3 @@
-{{/* shortcode imgfigure.html */}}
 {{/* Parameters    */}}
 {{/*   class         string  class of the figure (default: ) */}}
 {{/*   src           string  relative path to the image (default: none, value mandatory) */}}
@@ -7,30 +6,31 @@
 {{/*   caption       string  caption to be put in the <figcaption> (default: ) */}}
 {{/*   classcaption  string  class of the tag <figcaption> (default: ) */}}
 {{/* Get the image (assumption: we are in a page bundle) */}}
-{{- $src := .Page.Resources.GetMatch (printf "*%s*" (.Get "src")) -}}
+{{- $src := .context.Page.Resources.GetMatch ( index .src 0 ) -}}
 {{- if $src -}}
+    {{- $imgpath := (path.Join "/content" .context.RelPermalink .src) -}}
     {{/* Get the size of the image */}}
     {{/* pipe printf to be replaced by path.join .Site.contentDir relPermalink */}}
-    {{- $details  := imageConfig ($src.RelPermalink | printf "content/%s" ) -}}
+    {{- $details  := imageConfig ($imgpath) -}}
     {{- $width    := strings.TrimSuffix "px" $details.Width  -}}
     {{- $height   := strings.TrimSuffix "px" $details.Height -}}
     {{- $largew   := "900" -}}
     {{- $largeImg := $src.Resize ( printf "%sx" $largew  ) -}}
     {{- $largeh   := div ( mul (int $height) (int $largew) ) (int $width) -}}
-    <figure {{ with .Get "class" }}class="figure-img figure-{{- . -}}"{{- end -}}>
+    <figure {{ with .class }}class="figure-img figure-{{- . -}}"{{- end -}}>
         {{- if  gt $width $largew -}}
-            <a href="{{ $src.RelPermalink }}" data-lightbox="{{ path.Base $src }}" data-title="{{- with .Get "title" -}}{{- . -}}{{- else -}}{{- .Get "caption" | markdownify| plainify -}}{{- end -}}">
+            <a href="{{ $src.RelPermalink }}" data-lightbox="{{ path.Base $src }}" data-title="{{- with .title -}}{{- . -}}{{- else -}}{{- .caption | markdownify| plainify -}}{{- end -}}">
                 {{- template "respimg" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) -}}
             </a>
         {{- else -}}
             {{- template "respimg" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) -}}
         {{ end }}
-        {{- if or (.Get "title") (.Get "caption") -}}
-        <figcaption class="figure-caption{{- with .Get "classcaption" -}}  caption-{{- . -}}{{- end -}}">{{- with .Get "caption" -}}{{- . -}}{{- else -}}{{- .Get "title" | markdownify| plainify -}}{{- end -}}</figcaption>
+        {{- if or ( .title) ( .caption ) -}}
+        <figcaption class="figure-caption{{- with .classcaption -}}  caption-{{- . -}}{{- end -}}">{{- with .caption -}}{{- . -}}{{- else -}}{{- .title | markdownify| plainify -}}{{- end -}}</figcaption>
         {{- end -}}
     </figure>
-{{- else -}}
-    <p class="build-error">Image not found!</p>
+{{/* - else - */}}
+<!--    <p class="build-error">Image not found!</p> -->
 {{- end -}}
 
 {{- define "respimg" -}}
@@ -45,10 +45,10 @@
 <img class="img-fluid"
     {{- if ge .w $smallw -}}
     srcset="{{ if ge .w $smallw }}{{ with $smallImg.RelPermalink }}{{.}} {{ $smallw }}w{{end}}{{ end }}{{ if ge .w $mediumw }}{{ with $mediumImg.RelPermalink }},{{.}} {{ $mediumw }}w{{end}}{{ end }}{{ if ge .w $largew }}{{ with $largeImg.RelPermalink }},{{.}} {{ $largew }}w{{end}}{{ end }},{{ .largsrc.RelPermalink }} {{ .w }}w"
-    sizes="(max-width: 576px) 480px{{ if ge .w $mediumw }}, (max-width: 768px) 660px{{ end }}{{ if ge .w $largew }}, (max-width: 992px) 900px{{ end }}{{ if ge .w $xlargew }}, (max-width: 1200px) 1140px{{ end }}, 100vw"
+    sizes="(max-width: 540px) 480px{{ if ge .w $mediumw }}, (max-width: 720px) 660px{{ end }}{{ if ge .w $largew }}, (max-width: 960px) 900px{{ end }}{{ if ge .w $xlargew }}, (max-width: 1140px) 1140px{{ end }}, 100vw"
     {{- end -}}
     src="{{ .largsrc.RelPermalink }}" width="{{ .w }}px" height="{{ .h }}px" 
-    {{- if or ( .p.Get "alt") ( .p.Get "caption") -}}
-        alt="{{- with .p.Get "alt" -}}{{- . | markdownify| plainify -}}{{- else -}}{{- .p.Get "caption" | markdownify| plainify -}}{{- end -}}"
+    {{- if or ( .p.alt ) ( .p.caption ) -}}
+        alt="{{- with .p.alt -}}{{- . | markdownify| plainify -}}{{- else -}}{{- .p.caption | markdownify| plainify -}}{{- end -}}"
     {{- end -}} />
 {{ end }}

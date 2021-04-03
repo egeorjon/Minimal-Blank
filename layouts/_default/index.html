@@ -31,21 +31,28 @@
                     <div class="col">
                         <h2>{{- . -}}</h2>
                         {{- with $content.subtitle -}}
-                            <p class="subtitle">
-                                {{- . | markdownify -}}{{- end -}}
-                            </p>
+                        <p class="subtitle">
+                            {{- . | markdownify -}}
+                        </p>
+                        {{- end -}}
                     </div><!-- col -->
                 </div><!-- row -->
                 {{- end -}}
                 {{- $class := partial "class-columns.html" $content.columns -}}
-                <div class="{{ $class -}}">
+                <div class="g-4 {{ $class -}}">
                     {{- range $content.items -}}
                     <div class="col home-widget">
-                        <h3>{{- .title -}}</h3>
-                        <p>{{- .text | markdownify -}}</p>
-                        {{- if .button -}}
-                            <a href="{{- .link }}" class="btn btn-outline-primary">{{- .button -}}</a>
-                        {{- end -}}
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h3 class="card-title">{{- .title -}}</h3>
+                                <div class="card-text">
+                                    <p>{{- .text | markdownify -}}</p>
+                                    {{- if .button -}}
+                                        <a href="{{- .link }}" class="btn btn-outline-primary btn-sm ">{{- .button -}}</a>
+                                    {{- end -}}
+                                </div><!-- card-text -->
+                            </div><!-- card-body -->
+                        </div><!-- card -->
                     </div><!-- col -->
                     {{- end -}}
                 </div><!-- row -->
@@ -79,6 +86,9 @@
                             {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $meta_list) -}}
                         {{- end -}}
                         <p>{{ .Summary }}</p>
+                        <a href="{{- .RelPermalink -}}" class="btn btn-outline-secondary btn-sm" role="button">
+                            {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
+                        </a>
                     </div><!-- col -->
                 </div><!-- row -->
                 {{- end -}}
@@ -108,13 +118,15 @@
                         </header>
                         <div class="post-summary">
                             {{- if .Description -}}
-                            <p>{{- .Description | safeHTML -}}</p>
+                                <p>{{- .Description | safeHTML -}}</p>
                             {{- else -}}
-                            <p>{{- .Summary | safeHTML | truncate ($.Site.Params.Home.PostSummary | default 250) -}}</p>
+                                <p>{{- .Summary | safeHTML | truncate ($.Site.Params.Home.PostSummary | default 250) -}}</p>
                             {{- end -}}
                         </div>
                         <footer class="post-footer">
-                            <a href="{{- .RelPermalink -}}" class="btn btn-outline-primary" role="button">{{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span></a>
+                            <a href="{{- .RelPermalink -}}" class="btn btn-outline-primary btn-sm" role="button">
+                                {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
+                            </a>
                         </footer>
                     </article>
                     {{- end -}} 

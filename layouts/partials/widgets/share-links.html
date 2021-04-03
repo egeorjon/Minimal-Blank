@@ -29,8 +29,9 @@
                             {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%BODY%%"     "param" "&body=%s"        "value" $description "string" $share_url) -}}
                             {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%HASHTAGS%%" "param" "&hashtags=%s"    "value" $tags        "string" $share_url) -}}
                             {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%SUBJECT%%"  "param" "&subject=%s"     "value" $title       "string" $share_url) -}}
+                            {{- $share_url = partial "widgets/share_regex.html" (dict  "pattern" "%%TITLE%%"    "param" "&title=%s"       "value" $title       "string" $share_url) -}}
                             <li>
-                                <a href="{{- $share_url -}}" class="share-link share-{{ $share.id -}}" title="{{- $link_title -}}" aria-label="{{- .name -}}" rel="noopener noreferrer">
+                                <a href="{{- $share_url -}}" class="share-link share-{{ $share.id -}}" title="{{- .name -}}" aria-label="{{- .name -}}" rel="noopener noreferrer" target="blank">
                                     <i class="{{- .icon }} fa-2x"></i>
                                 </a>
                             </li>

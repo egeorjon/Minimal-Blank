@@ -16,16 +16,17 @@
     {{- with (.Site.Params.Manifest.scope | default "/") }}
     "scope": "{{ . }}",
     {{- end }}
+    {{- $relative_path := "assets/favicons" -}}
+    {{- $base_path := path.Join "themes/minimal-blank/static" $relative_path -}}
     {{ $icon_list := slice -}}
-    {{- if (fileExists "themes/minimal-blank/static/assets/favicons/icon-android_96x96.png") -}}
-        {{- $icon_list = $icon_list | append (dict "src" ("assets/favicons/icon-android_96x96.png" | relURL) "sizes" "96x96" "type" "image/png") -}}
-    {{- end }}
-    {{- if (fileExists "themes/minimal-blank/static/assets/favicons/icon-android_192x192.png") -}}
-        {{- $icon_list = $icon_list | append (dict "src" ("assets/favicons/icon-android_192x192.png" | relURL) "sizes" "192x192" "type" "image/png") -}}
-    {{- end }}
-    {{- if (fileExists "themes/minimal-blank/static/assets/favicons/icon-android_96x96.png") -}}
-        {{- $icon_list = $icon_list | append (dict "src" ("assets/favicons/icon-android_512x512.png" | relURL) "sizes" "512x512" "type" "image/png") -}}
-    {{- end }}
+    {{- range (readDir $base_path) -}}
+        {{- $url := (path.Join $relative_path .Name) | relURL -}}
+        {{- if eq (substr .Name 0 7) "android" -}}
+            {{- with imageConfig (path.Join $base_path .Name) -}}
+                {{- $icon_list = $icon_list | append (dict "src" $url "sizes" (printf "%dx%d" .Width .Height) "type" "image/png") -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
     {{- if gt (len $icon_list) 0 -}}
     "icons":
       {{ $icon_list | jsonify (dict "indent" "  ") }}

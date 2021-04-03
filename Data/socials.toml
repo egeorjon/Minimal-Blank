@@ -33,7 +33,28 @@
         name    = "LinkedIn"
         follow  = "https://linkedin.com/in/%s"
         icon    = "fab fa-linkedin"
+        share   = "http://www.linkedin.com/shareArticle?url=%%URL%%&title=%%TITLE%%"
     [medias.flickr]
         name    = "Flickr"
         follow  = "https://flickr.com/photos/%s"
         icon    = "fab fa-flickr"
+    [medias.whatsapp]
+        name    = "Whatsapp"
+        follow  = ""
+        icon    = "fa-whatsapp"
+        share   = "https://wa.me/?text=%%URL%%"
+    [medias.digg]
+        name    = "Digg"
+        follow  = ""
+        icon    = "fa-digg"
+        share   = "http://digg.com/submit?url=%%URL%%&title=%%TITLE%%"
+    [medias.tumblr]
+        name    = "Tumblr"
+        follow  = ""
+        icon    = "fa-tumblr"
+        share   = "http://www.tumblr.com/share/link?url=%%URL%%&name=%%TITLE%%&description=%%DESC%%"
+    [medias.reddit]
+        name    = "Reddit"
+        follow  = ""
+        icon    = "fa-reddit"
+        share   = "http://reddit.com/submit?url=%%URL%%&title=%%TITLE%%"

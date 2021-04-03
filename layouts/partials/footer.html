@@ -1,6 +1,7 @@
 <!-- -------------------------------- -->
 <!-- Footer top (search bar)          -->
 <!-- -------------------------------- -->
+{{- if ne .Layout "search" -}}
 <div class="footer-search">
     <div class="container">
         <a class="button-up" href="#page-top" title="{{- i18n "move-top" -}}">
@@ -20,6 +21,7 @@
         </form>
     </div><!-- container -->
 </div><!-- footer-seach -->
+{{- end -}}
     <!-- -------------------------------- -->
     <!-- Footer middle (widgets)          -->
     <!-- -------------------------------- -->

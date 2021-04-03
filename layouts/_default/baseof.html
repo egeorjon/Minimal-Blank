@@ -10,11 +10,12 @@
     {{- else if and (in (slice "page" "404") .Kind ) (ne .Layout "search" ) -}}
         {{- $class = "post-single" -}}
     {{- end -}}
-    {{- if (in (slice "taxonomy" "term" ) .Kind ) -}}
-        {{- .Scratch.Set "paginator" .Paginator -}} {{/* (.Paginator 99) */}}
-    {{- else -}}
-        {{- .Scratch.Set "paginator" .Paginator -}}
+    {{- if (eq "taxonomy" .Kind ) -}}
+        {{- $class = printf "%s post-%s" $class .Data.Plural -}}
+    {{- else if (eq "term" .Kind ) -}}
+        {{- $class = printf "%s post-%s" $class .Data.Singular -}}
     {{- end -}}
+    {{- .Scratch.Set "paginator" .Paginator -}}
     <body class="{{- .Kind }} {{ $class }} {{ with .Layout -}}{{- . -}}-page{{- end -}}">
         {{- partialCached "navigation.html" . .Section -}}
         <header id="page-header">

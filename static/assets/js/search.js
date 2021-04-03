@@ -53,9 +53,10 @@
     for ( const value of results) {
       /* console.log({"Value": value}); */
 
-        nb++;
-        if (nb > 10 || value.score > 0.5)
+        if (value.score > 0.5) /* nb > 10 || */
           break;
+
+        nb++;
           
         if ( value.item.title != "Recherche" && value.item.title != "Search" && value.item.title != "Catalog" ) {
           var output = render(
@@ -73,6 +74,9 @@
             );
           items.innerHTML = items.innerHTML + output;
         }
+      }
+      if (nb == 0) {
+        insertMsg(document.querySelector("#search-results-title"), "<p>Aucun article ne correspond aux critères - No post found, with this criteria</p>s" );
       }
   }
 
@@ -133,5 +137,5 @@
      --- 
      ------------------------------------------------------ */
   function truncate(str, no_words) {
-    return str.split(" ").splice(0,no_words).join(" ");
+    return str.split(" ").splice(0, no_words).join(" ");
   }

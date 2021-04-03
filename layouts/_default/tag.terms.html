@@ -1,0 +1,30 @@
+{{- define "header" -}}
+{{- $kind := .Kind -}}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {{- if (.Site.Params.breadcrumb | default true) -}}
+                {{- partial "breadcrumb.html" . -}}
+            {{- end -}}
+            <h1 id="page-title">{{- .Title | markdownify -}}</h1>
+            <p class="page-description">{{- .Description | markdownify | safeHTML -}}</p>
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->
+{{- end -}}
+{{- define "main" -}}
+<div class="container">
+    {{- with .Content -}}
+    <div class="row">
+        <div class="col page-introduction">
+            {{- . | markdownify -}}
+        </div><!-- col -->
+    </div><!-- row -->
+    {{- end -}}
+    <div class="row justify-content-center">
+        <div class="col-auto tags-cloud">
+            {{- partialCached "tag-cloud.html" (dict "context" .) -}}
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->
+{{- end -}}
