@@ -2,10 +2,14 @@
 <nav class="navbar navbar-expand-md navbar-light sticky-top" id="main-menu">
     <div class="container">
         <a class="navbar-brand" href="{{- .Site.BaseURL -}}" title="{{- .Site.Title -}}">
-            {{- $imgpath := path.Join "/themes/minimal-blank/static/" .Site.Params.SiteLogo -}}
-            {{- with (imageConfig $imgpath) -}}
-            <img class="site-brand-logo" src="{{- $.Site.Params.SiteLogo -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
-            <!-- class="d-inline-block align-top" -->
+            {{- if isset .Site.Params "sitelogo" -}}
+                {{- $abs_path := path.Join "/static" .Site.Params.SiteLogo -}}
+                {{- if fileExists $abs_path -}}
+                    {{- with (imageConfig $abs_path) -}}
+                      <img id="logo" class="site-brand-logo" src="{{- $.Site.Params.SiteLogo | relURL -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+                        <!-- class="d-inline-block align-top" -->
+                    {{- end -}}
+                {{- end -}}
             {{- end -}}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">

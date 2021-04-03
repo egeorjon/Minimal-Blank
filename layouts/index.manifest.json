@@ -16,19 +16,21 @@
     {{- with (.Site.Params.Manifest.scope | default "/") }}
     "scope": "{{ . }}",
     {{- end }}
-    {{- $relative_path := "assets/favicons" -}}
-    {{- $base_path := path.Join "themes/minimal-blank/static" $relative_path -}}
-    {{ $icon_list := slice -}}
-    {{- range (readDir $base_path) -}}
-        {{- $url := (path.Join $relative_path .Name) | relURL -}}
-        {{- if eq (substr .Name 0 7) "android" -}}
-            {{- with imageConfig (path.Join $base_path .Name) -}}
-                {{- $icon_list = $icon_list | append (dict "src" $url "sizes" (printf "%dx%d" .Width .Height) "type" "image/png") -}}
+    {{- $fav_path := "assets/favicons" -}}
+    {{- $base_path := path.Join "/static" $fav_path -}}
+    {{- if fileExists $base_path -}}
+        {{ $icon_list := slice -}}
+        {{- range (readDir $base_path) -}}
+            {{- $url := (path.Join $fav_path .Name) | relURL -}}
+            {{- if eq (substr .Name 0 7) "android" -}}
+                {{- with imageConfig (path.Join $base_path .Name) -}}
+                    {{- $icon_list = $icon_list | append (dict "src" $url "sizes" (printf "%dx%d" .Width .Height) "type" "image/png") -}}
+                {{- end -}}
             {{- end -}}
         {{- end -}}
-    {{- end -}}
-    {{- if gt (len $icon_list) 0 -}}
-    "icons":
-      {{ $icon_list | jsonify (dict "indent" "  ") }}
+        {{- if gt (len $icon_list) 0 -}}
+        "icons":
+        {{ $icon_list | jsonify (dict "indent" "  ") }}
+        {{- end -}}
     {{- end -}}
   }

@@ -1,18 +1,21 @@
-{{- $relative_path := "assets/favicons" -}}
-{{- $base_path := path.Join "themes/minimal-blank/static" $relative_path -}}
-{{- range (readDir $base_path) -}}
-    {{- $url := (path.Join $relative_path .Name) | relURL -}}
-    {{- if eq (substr .Name 0 5) "apple" -}}
-        <link rel="apple-touch-icon" href="{{- $url -}}"/>
-    {{- else if eq (substr .Name 0 3) "ms-" -}}
-        {{- with imageConfig (path.Join $base_path .Name) -}}
-            {{- if eq .Width 144 -}}
-                <meta name="msapplication-TileColor" content="{{- $.Site.Params.ThemeColor | default "#ffffff" -}}" />
-                <meta name="msapplication-TileImage" content="{{- $url -}}" />
+{{- $fav_path := "assets/favicons" -}}
+{{- $base_path := path.Join "/static" $fav_path -}}
+{{- if fileExists $base_path -}}
+    {{- range (readDir $base_path) -}}
+        {{- $url := (path.Join $fav_path .Name) | relURL -}}
+        {{- if eq (substr .Name 0 5) "apple" -}}
+            <link rel="apple-touch-icon" href="{{- $url -}}"/>
+        {{- else if eq (substr .Name 0 3) "ms-" -}}
+            {{- with imageConfig (path.Join $base_path .Name) -}}
+                {{- if eq .Width 144 -}}
+                    <meta name="msapplication-TileColor" content="{{- $.Site.Params.ThemeColor | default "#ffffff" -}}" />
+                    <meta name="msapplication-TileImage" content="{{- $url -}}" />
+                {{- end -}}
             {{- end -}}
-        {{- end -}}
+        {{- end }}
     {{- end }}
-{{- end }}
-{{- if (fileExists (path.Join $base_path "favicon.ico") ) -}}
-<link rel="icon" href="{{- (path.Join $relative_path .Name) | relURL -}}" />
-{{- end }}
+    {{- $favico := path.Join $fav_path "favicon.ico" -}}
+    {{- if fileExists (path.Join $base_path "favicon.ico" ) -}}
+        <link rel="icon" href="{{- $favico | relURL -}}" />
+        {{- end }}
+{{- end -}}

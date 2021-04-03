@@ -47,7 +47,7 @@
 {{- end -}}
 {{- partialCached "favicons.html" . -}}
 {{- with ((.Site.GetPage "home").OutputFormats.Get "manifest") }}
-<link rel="manifest" href="{{ "manifest.json" | relURL }}">
+<link rel="manifest" href="{{- "manifest.json" | relURL -}}">
 {{- end }}
 
 {{- if .Site.Params.ThemeColor -}}
