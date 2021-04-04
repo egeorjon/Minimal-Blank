@@ -32,7 +32,7 @@
 <div class="footer-middle">
     <div class="container">
         <div class="{{- $class -}}">
-            {{- range sort .Site.Params.FooterWidgets.Widgets "order" -}}
+            {{- range sort .Site.Params.FooterWidgets.Widgets "weight" -}}
                 {{- partialCached (printf "widgets/%s.html" .type) (dict "context" $context "param" .params) -}}
             {{- end -}}
         </div><!-- row -->
