@@ -41,13 +41,13 @@
     {{- if ge $width $largew -}}
         {{- $largeImg   = $image.Resize (printf "%sx" $largew  ) -}}
     {{- end -}}
-    <figure class="figure-img figure-{{ $aligment }}">
+    <figure class="figure-img figure-{{- $aligment -}}">
     {{- if le $width $smallw -}}
-    <img src="{{ $image.RelPermalink }}" width="{{ $width }}px" height="{{ $height }}px"
+    <img src="{{- $image.RelPermalink -}}" width="{{- $width -}}px" height="{{- $height -}}px"
         alt="{{- .Text | markdownify -}}" {{- with $title -}}title="{{.}}"{{- end -}} />
     {{- else -}}
         {{if ge $width $largew -}}
-            <a href="{{- $image.RelPermalink -}}" title="{{- $title -}}" {{ if $lightbox }}data-lightbox="{{- path.Base .Destination -}}" data-title="{{$caption}}"{{ end }}>
+            <a href="{{- $image.RelPermalink -}}" title="{{- $title -}}" {{ if $lightbox -}}data-lightbox="{{- path.Base .Destination -}}" data-title="{{- $caption -}}"{{- end -}}>
         {{- end -}}
         <img 
             sizes="(max-width: 576px) 480px{{ with $mediumImg }}, (max-width: 768px) 660px{{ end }}{{ with $largeImg }}, (max-width: 992px) 900px{{ end }}, 100vw"
