@@ -4,7 +4,7 @@
     "display": "{{ .Site.Params.Manifest.display | default "browser" }}",
     "start_url": "{{ .Site.Params.Manifest.startUrl | default "/" }}",
     {{- with .Site.Params.Manifest.backgroundColor -}}
-    "background_color": "{{ .  }}",
+    "background_color": "{{ . }}",
     {{- end -}}
     "theme_color": "{{ .Site.Params.Manifest.themeColor | default .Site.Params.ThemeColor | default "#ffffff" }}",
     {{- with (.Site.Params.Manifest.description | default .Site.Params.Description) }}
