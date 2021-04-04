@@ -19,8 +19,8 @@
         </section><!-- row -->
     {{- end -}}
 
-    {{- if .Site.data.homepage -}}
-        {{- range $name, $content := (sort .Site.data.homepage "weight") -}}
+    {{- if .Site.Data.homepage -}}
+        {{- range $name, $content := (sort .Site.Data.homepage "weight") -}}
             <section class="home-section {{ $content.block -}}" id="{{- $name |anchorize -}}">
             {{/* ----------------------------- */}}
             {{/* --- Section List ------------ */}}
