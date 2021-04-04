@@ -20,8 +20,8 @@
                     {{- $share := . -}}
                     {{- $via := "" -}}
                     {{- with .account -}}{{- $via = . -}}{{- end -}}
-                    {{- if and (ne $.context.Site.Data.socials.medias nil) (ne .id nil) -}}
-                        {{- with (index $.context.Site.Data.socials.medias .id) }}
+                    {{- if and (ne $.context.Site.data.socials.medias nil) (ne .id nil) -}}
+                        {{- with (index $.context.Site.data.socials.medias .id) }}
                             {{- if .share -}}
                                 {{- $link_title := printf (i18n "share-link-with") .name -}}
                                 {{- $share_url := partial "widgets/share_regex.html" (dict "pattern" "%%URL%%"      "param" "%s"              "value" $url         "string" .share)     -}}

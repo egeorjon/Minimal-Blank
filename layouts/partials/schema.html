@@ -22,8 +22,8 @@
           {{- range . -}}
               {{- if .account -}}
                 {{ $acc := .account}}
-                {{- if and (ne .id nil) (ne $.Site.Data.socials.medias nil) -}}
-                  {{- with (index $.Site.Data.socials.medias .id) }}
+                {{- if and (ne .id nil) (ne $.Site.data.socials.medias nil) -}}
+                  {{- with (index $.Site.data.socials.medias .id) }}
                     {{- $list_url = $list_url | append (printf .follow $acc) -}}
                   {{- end -}}
                 {{- end -}}

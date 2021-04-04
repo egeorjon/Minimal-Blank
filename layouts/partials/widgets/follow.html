@@ -15,8 +15,8 @@
             {{- range sort .context.Site.Params.FollowLinks.Socials "weight" -}}
                 {{- if .account -}}
                     {{- $media := . -}}
-                    {{- if and (ne $.context.Site.Data.socials.medias nil) (ne .id nil) -}}
-                        {{- with (index $.context.Site.Data.socials.medias .id) }}
+                    {{- if and (ne $.context.Site.data.socials.medias nil) (ne .id nil) -}}
+                        {{- with (index $.context.Site.data.socials.medias .id) }}
                         <li>
                             <a href="{{- printf .follow $media.account -}}" target="_blank" rel="noopener noreferrer" title="{{- .name -}}">
                                 <i class="{{- .icon }} fa-2x"></i>
