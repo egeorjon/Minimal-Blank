@@ -2,14 +2,18 @@
 <nav class="navbar navbar-expand-md navbar-light sticky-top" id="main-menu">
     <div class="container">
         <a class="navbar-brand" href="{{- .Site.BaseURL -}}" title="{{- .Site.Title -}}">
-            {{- if isset .Site.Params "sitelogo" -}}
-                {{- $abs_path := path.Join "/static" .Site.Params.SiteLogo -}}
+            {{- $logo := false -}}
+            {{- with .Site.Params.BrandLogo -}}
+                {{- $abs_path := path.Join "/static" . -}}
                 {{- if fileExists $abs_path -}}
                     {{- with (imageConfig $abs_path) -}}
-                      <img id="logo" class="site-brand-logo" src="{{- $.Site.Params.SiteLogo | relURL -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
-                        <!-- class="d-inline-block align-top" -->
+                      <img id="logo" class="site-brand-logo" src="{{- $.Site.Params.BrandLogo | relURL -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+                      {{- $logo = true -}}
                     {{- end -}}
                 {{- end -}}
+            {{- end -}}
+            {{- if or (eq $logo false) (.Site.Params.DisplayBrandTitle | default true) -}}
+                <p>{{- (.Site.Params.BrandTitle | default .Site.Title) | markdownify -}}</p>
             {{- end -}}
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainmenu" aria-controls="mainmenu" aria-expanded="false" aria-label="Toggle navigation">
