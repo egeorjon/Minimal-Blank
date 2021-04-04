@@ -1,59 +1,59 @@
 
-[medias]
-    [medias.email]
+[config]
+    [config.email]
         name    = "e-mail"
         follow  = "mailto:%s"
         icon    = "fas fa-envelope"
         share   = "mailto:to?subject=%%SUBJECT%%&body=%%BODY%%"
-    [medias.facebook]
+    [config.facebook]
         name    = "Facebook"
         follow  = "https://www.facebook.com/%s"
         icon    = "fab fa-facebook"
         share   = "https://www.facebook.com/sharer.php?s=100&p[url]=%%URL%%"
-    [medias.twitter]
+    [config.twitter]
         name    = "Twitter"
         follow  = "https://twitter.com/%s"
         icon    = "fab fa-twitter"
         share   = "https://twitter.com/share?url=%%URL%%%%VIA%%%%HASHTAGS%%"
-    [medias.github]
+    [config.github]
         name    = "GitHub"
         follow  = "https://github.com/%s"
         icon    = "fab fa-github"
         share   = ""
-    [medias.instagram]
+    [config.instagram]
         name    = "Instagram"
         follow  = "https://www.instagram.com/%s"
         icon    = "fab fa-instagram"
-    [medias.pinterest]
+    [config.pinterest]
         name    = "Pinterest"
         follow  = "https://www.pinterest.com/%s"
         icon    = "fab fa-pinterest"
         share   = "https://pinterest.com/pin/create/bookmarklet/?url=%%URL%%&description=%%DESC%%"
-    [medias.linkedin]
+    [config.linkedin]
         name    = "LinkedIn"
         follow  = "https://linkedin.com/in/%s"
         icon    = "fab fa-linkedin"
         share   = "http://www.linkedin.com/shareArticle?url=%%URL%%&title=%%TITLE%%"
-    [medias.flickr]
+    [config.flickr]
         name    = "Flickr"
         follow  = "https://flickr.com/photos/%s"
         icon    = "fab fa-flickr"
-    [medias.whatsapp]
+    [config.whatsapp]
         name    = "Whatsapp"
         follow  = ""
         icon    = "fa-whatsapp"
         share   = "https://wa.me/?text=%%URL%%"
-    [medias.digg]
+    [config.digg]
         name    = "Digg"
         follow  = ""
         icon    = "fa-digg"
         share   = "http://digg.com/submit?url=%%URL%%&title=%%TITLE%%"
-    [medias.tumblr]
+    [config.tumblr]
         name    = "Tumblr"
         follow  = ""
         icon    = "fa-tumblr"
         share   = "http://www.tumblr.com/share/link?url=%%URL%%&name=%%TITLE%%&description=%%DESC%%"
-    [medias.reddit]
+    [config.reddit]
         name    = "Reddit"
         follow  = ""
         icon    = "fa-reddit"
