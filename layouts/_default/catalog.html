@@ -1,0 +1,64 @@
+<html>
+    <style>
+
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
+            width: 80%;
+        }
+
+        th {
+            color: white;
+            background-color: darkblue;
+            
+            border-left: 1px solid white;
+            border-right: 1px solid white;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+
+        td, th {
+            padding: 5px 10px;
+        }
+
+        .red {
+            color: red;
+        }
+
+    </style>
+<body>
+{{- $num := 1 -}}
+{{- range .Site.RegularPages.GroupBy "Section" -}}
+<h3>{{- .Key | title -}}</h3>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Section</th>
+            <th>Date</th>
+            <th>Draft</th>
+            <th>Titre</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{- range .Pages.ByDate -}}
+        <tr>
+            <td>{{- $num -}}</td>
+            <td>{{- .Parent.Name -}}</td>
+            <td>{{- .Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}}</td>
+            {{- if eq .Params.Draft true -}}
+            <td class="red">Draft</td>
+            {{- else -}}
+            <td>Publish</td>
+            {{- end -}}
+            <td><a href="{{- .RelPermalink -}}">{{- .Title -}}</a></td>
+        </tr>
+            {{- $num = add $num 1 -}}
+        {{- end -}}
+    </tbody>
+</table>
+{{- end -}}
+</body>
+</html>
