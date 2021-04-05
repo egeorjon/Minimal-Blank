@@ -10,7 +10,7 @@
     {{- range . -}}
         {{- $stats := os.Stat (path.Join $.Page.File.Dir .Name) -}}
         <tr><td>{{- range first 1 .MediaType.Suffixes -}}<span class="icon icon-{{.}}"> </span>{{- end -}}</td>
-        <td><a href="{{- .RelPermalink -}}">{{- .Title -}}</a></td>{{- if $.Get "size" -}}<td>{{- template "filesize" (dict "Fsize" $stats.Size) -}}</td>{{- end -}}</tr>
+        <td><a href="{{- .RelPermalink -}}">{{- $stats.Name -}}</a></td>{{- if $.Get "size" -}}<td>{{- template "filesize" (dict "Fsize" $stats.Size) -}}</td>{{- end -}}</tr>
     {{- end -}}
 </tbody></table>
 {{- end -}}

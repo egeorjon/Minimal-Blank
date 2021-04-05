@@ -1,0 +1,73 @@
+/* Icons from directory "" */
+.icon {
+	background-image:url('/assets/sprites/icons.svg');
+	background-repeat:no-repeat;
+	width:50px;height:50px;
+	display: inline-block;
+}
+
+
+$icons-list: (
+  7z: 0,
+  xls: 2400,
+  xlsx: 2400,
+  zip: 2450,
+  doc: 500,
+  docx: 500,
+  pdf: 1650
+) !default;
+
+@each $ext, $ypos in $icons-list {
+	.icon-#{$ext}{background-position:0 -#{$ypos}px;}
+}
+
+// .icon-7z{background-position:0 0;}
+// .icon-ae{background-position:0 -50px;}
+// .icon-ai{background-position:0 -100px;}
+// .icon-avi{background-position:0 -150px;}
+// .icon-bin{background-position:0 -200px;}
+// .icon-c4d{background-position:0 -250px;}
+// .icon-cdr{background-position:0 -300px;}
+// .icon-css{background-position:0 -350px;}
+// .icon-csv{background-position:0 -400px;}
+// .icon-dll{background-position:0 -450px;}
+// .icon-doc{background-position:0 -500px;}
+// .icon-dw{background-position:0 -550px;}
+// .icon-dwg{background-position:0 -600px;}
+// .icon-eml{background-position:0 -650px;}
+// .icon-eps{background-position:0 -700px;}
+// .icon-epub{background-position:0 -750px;}
+// .icon-gif{background-position:0 -800px;}
+// .icon-html{background-position:0 -850px;}
+// .icon-ico{background-position:0 -900px;}
+// .icon-indd{background-position:0 -950px;}
+// .icon-iso{background-position:0 -1000px;}
+// .icon-jar{background-position:0 -1050px;}
+// .icon-jpg{background-position:0 -1100px;}
+// .icon-js{background-position:0 -1150px;}
+// .icon-m3u{background-position:0 -1200px;}
+// .icon-max{background-position:0 -1250px;}
+// .icon-mkv{background-position:0 -1300px;}
+// .icon-mov{background-position:0 -1350px;}
+// .icon-mp3{background-position:0 -1400px;}
+// .icon-mp4{background-position:0 -1450px;}
+// .icon-mpeg{background-position:0 -1500px;}
+// .icon-obj{background-position:0 -1550px;}
+// .icon-odt{background-position:0 -1600px;}
+// .icon-pdf{background-position:0 -1650px;}
+// .icon-png{background-position:0 -1700px;}
+// .icon-ppt{background-position:0 -1750px;}
+// .icon-pr{background-position:0 -1800px;}
+// .icon-psd{background-position:0 -1850px;}
+// .icon-py{background-position:0 -1900px;}
+// .icon-rar{background-position:0 -1950px;}
+// .icon-raw{background-position:0 -2000px;}
+// .icon-rtf{background-position:0 -2050px;}
+// .icon-svg{background-position:0 -2100px;}
+// .icon-swf{background-position:0 -2150px;}
+// .icon-tiff{background-position:0 -2200px;}
+// .icon-txt{background-position:0 -2250px;}
+// .icon-wav{background-position:0 -2300px;}
+// .icon-wmv{background-position:0 -2350px;}
+// .icon-xls{background-position:0 -2400px;}
+// .icon-zip{background-position:0 -2450px;}
