@@ -38,7 +38,7 @@
         <article class="col post section-{{- .Section}}">
             <header class="post-header">
                 {{- if and (isset .Params "images") (.Site.Params.list.displayimage | default false) -}}
-                    {{- partial "image.html" (dict "context" . "src" .Params.Images ) -}}
+                    {{- partial "image.html" (dict "context" . "src" .Params.Images "link" false "class" "center post-img") -}}
                 {{- end -}}
                 <h2 class="post-title" id="{{- .Title | anchorize -}}">
                     <a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a>

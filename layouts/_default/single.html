@@ -12,6 +12,9 @@
 <div class="container">
     {{- $context := . -}}
     <article class="post row row-cols-1">
+        {{- if and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
+            {{- partial "image.html" (dict "context" . "src" .Params.Images "link" false "class" "center post-img") -}}
+        {{- end -}}
         {{- if and (ne .Type "sitepages") (isset .Site.Params.Single "metatop") -}}
         <div class="col post-header">
             {{- partial "meta" (dict "context" $context "kindstr" .Kind "prm" .Site.Params.Single.MetaTop "class" "meta-top") -}}
