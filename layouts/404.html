@@ -1,0 +1,40 @@
+{{- define "header" -}}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 id="page-title">{{- i18n "404-error-title" -}}</h1>
+            <p class="page-description">{{- i18n "404-error-desc" -}}</p>
+        </div><!-- col -->
+    </div><!-- row -->
+</div><!-- container -->
+{{- end -}}
+{{- define "main" -}}
+<div class="container">
+    <section class="post-content row row-cols-1">
+        <article class="col">
+            <p>{{- i18n "content-not-found" -}}</p>
+            <h2>{{- i18n "you-can" -}}</h2>
+        </article>
+        <article class="col">
+            <h3>{{- i18n "use-search" -}}</h3>
+            <p><a href="#search-query">{{- i18n "go-search-form" -}}</a></p>
+        </article>
+        <article class="col">
+            <h3>{{- i18n "navigate-categories" -}}</h3>
+            <ul>
+                {{ range .Site.Sections }}
+                    <li><a href="{{.RelPermalink }}">{{ .Title}}</a><p>{{ .Summary }}</p></li>
+                {{ end }}
+            </ul>
+        </article>
+        <article class="col">
+            <h3>{{- i18n "navigate-tags" -}}</h3>
+            {{- partial "tag-cloud.html" (dict "context" . ) -}}
+        </article>
+        <article class="col">
+            <h3>{{- i18n "navigate-series" -}}</h3>
+            {{- partial "widgets/series.html" (dict "context" . "widget" false ) -}}
+        </article>
+    </section>
+</div><!-- container -->
+{{- end -}}
