@@ -3,7 +3,7 @@ A minimal Hugo theme
 
 **Minimal-Blank** is a theme for the Hugo static site generator. This my first theme for this tool, built for my own blog.
 
-You can find a live demo of the original Fresh theme [here](#) (will be completed when the theme will be deployed in production).
+You can find a live demo of the original Fresh theme [here](https://www.emmanuelgeorjon.com) (will be completed when the theme will be deployed in production).
 This theme is intended for personal website and blog. If you'd like to extend the theme to include other functionalities, please submit a pull request.
 
 ## Table of Contents
@@ -31,6 +31,7 @@ This theme is intended for personal website and blog. If you'd like to extend th
     - [RSS feeds](#rss-feeds)
     - [Sitemap](#sitemap)
   - [Advanced configuration](#advanced-configuration)
+    - [Manifest file](#manifest-file)
     - [Styles](#styles)
  
 
@@ -55,7 +56,7 @@ This theme uses
 
 **Minimal-Blank** is a Hugo theme. So, before installing the theme, you need to 
 
-* install [Hugo](https://gohugo.io), 
+* Install [Hugo](https://gohugo.io), 
 * and create a new site ([procedure](https://gohugo.io/getting-started/quick-start/#step-2-create-a-new-site)).
 
 Then **Minimal-Blank** can be deployed as many other themes, with 3 possible ways:
@@ -71,7 +72,6 @@ From the root directory of your site,
 git clone https://github.com/egeorjon/minimal-blank themes/minimal-blank
 ```
 This method could generate some issues with some hosting platforms (like Netlify).
-
 
 ### Option 2: Git submodule
 
@@ -320,7 +320,7 @@ The top part of the footer contains widgets. You can select the widgets you want
   [params.FooterWidgets.Widgets]
     [params.FooterWidgets.Widgets.<widget id>]
       type   = "<type of the widget>"
-      weight  = <order>
+      weight = <order>
 ```
 
 Example:
@@ -330,14 +330,14 @@ Example:
   [params.FooterWidgets.Widgets]
     [params.FooterWidgets.Widgets.series]
       type   = "series"
-      weight  = 1
+      weight = 1
     [params.FooterWidgets.Widgets.about-links]
       type   = "text"
-      weight  = 2
+      weight = 2
       params = "links"
     [params.FooterWidgets.Widgets.followme]
       type   = "follow"
-      weight  = 3
+      weight = 3
 ```
 
 The possible widgets are 
@@ -511,8 +511,10 @@ In order to allow this, you have to add the following parameters
 
 ### Styles
 
-So far, the thme doen't provide an easy way to customize styles. However, the theme uses `Bootstrap`. All values used by the theme are in the file `/assets/scss/var_custo.scss`.
+So far, the theme doen't provide an easy way to customize styles.
+However, you can customize the theme with two ways
 
-* You can update the values in this file,
-* and the stylesheet will be automatically updated during the next build.
- 
+* All default `Bootstrap` values used by the theme are in the file `themes/Minimal-Blank/assets/customization.scss`.
+* The theme styles are in the file `themes/Minimal-Blank/assets/styles.scss`
+
+The theme uses the icons from [FontAwesome](https://fontawesome.com/). You can add icons if required, by editing the file `themes/Minimal-Blank/assets/fontawesome-free-5.15.2-web/scss/_icons.scss`, and uncomment the line corresponding to the icon you want to display.
