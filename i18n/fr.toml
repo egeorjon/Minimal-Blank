@@ -177,3 +177,30 @@ other = "Auteurs"
 
 [follow-me]
 other = "Suivez-moi"
+
+[404-error-title]
+other = "Ouups, quelque chose ne va pas"
+
+[404-error-desc]
+other = "C'est une erreur 404. La page que vous recherchez n'existe pas !"
+
+[content-not-found]
+other = "Malheureusement, nous ne pouvons pas trouver le contenu que vous recherchez."
+
+[you-can]
+other = "Mais, vous pouvez"
+
+[use-search]
+other = "Use the search tool"
+
+[go-search-form]
+other = "Utilisez le formulaire de bas de page."
+
+[navigate-categories]
+other = "Naviger à travers les catégories"
+
+[navigate-tags]
+other = "Utiliser les mots-clés"
+
+[navigate-series]
+other = "Consulter les dossiers"

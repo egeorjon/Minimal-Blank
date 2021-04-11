@@ -177,3 +177,30 @@ other = "Authors"
 
 [follow-me]
 other = "Follow me"
+
+[404-error-title]
+other = "Ouups something is wrong"
+
+[404-error-desc]
+other = "It is a 404 error. You are looking for a page that doesn't exist"
+
+[content-not-found]
+other = "Unfortunately, we cannot find the content you are looking for."
+
+[you-can]
+other = "But, you can"
+
+[use-search]
+other = "Use the search tool"
+
+[go-search-form]
+other = "Use the search form in the bottom of the page."
+
+[navigate-categories]
+other = "Navigate through the categories"
+
+[navigate-tags]
+other = "Navigate through the tags"
+
+[navigate-series]
+other = "Use the series"
