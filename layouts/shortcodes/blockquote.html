@@ -1,8 +1,6 @@
 {{/* shortcode blockquote.html */}}
 {{/* Parameters    */}}
 {{/*   type      string      */}}
-{{/*   author    string      */}}
-{{/*   link      string      */}}
 <blockquote{{ with .Get "type" }} class="{{.}}"{{ else }} class="info"{{ end }}>
 <p>{{- .Inner | markdownify -}}</p>
 </blockquote>
