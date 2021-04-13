@@ -2,28 +2,11 @@
 {{- $limit  := .limit | default 5 -}}
 {{- if isset .context.Site.Taxonomies "series" -}}
     {{- if not (eq (len .context.Site.Taxonomies.tags) 0) -}}
-    {{- if eq $widget true -}}
     <aside class="col widget widget-series">
         <div class="widget-inner">
             <h3>{{- i18n "series" -}}</h3>
-    {{- end -}}
-            <ul>
-                {{- $initial_limit := $limit -}}
-                {{- range .context.Site.Taxonomies.series -}}
-                    {{- if gt $limit 0 }}
-                        <li><a href="{{- .Page.Permalink -}}" title="{{- .Page.Description -}}">{{- .Page.Title -}}</a> ({{- .Count -}})</li>
-                        {{- $limit = sub $limit 1 -}}
-                    {{- end -}}
-                {{- end -}}
-                {{- if gt (len .context.Site.Taxonomies.series) $initial_limit -}}
-                    {{ with .context.Site.GetPage "series" -}}
-                    <li><a href="{{- .RelPermalink -}}" title="{{- i18n "see-all-series" -}}">{{- i18n "all-series" -}}</a></li>
-                    {{- end }}
-                {{- end -}}
-            </ul>
-    {{- if eq $widget true -}}
+            {{- partialCached "series-partial.html" (dict "context" .context "limit" $limit) -}}
         </div>
     </aside>
-    {{- end -}}
     {{- end -}}
 {{- end -}}

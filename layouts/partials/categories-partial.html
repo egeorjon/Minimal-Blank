@@ -1,0 +1,8 @@
+<ul>
+    {{- range .context.Site.Sections -}}
+    <li>
+        <a href="{{- .Permalink -}}">{{- .Title  | markdownify -}}</a>
+        <p>{{- .Params.Description | markdownify -}}</p>
+    </li>
+    {{- end -}}
+</ul>
