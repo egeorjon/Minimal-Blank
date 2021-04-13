@@ -1,3 +1,4 @@
+{{- if .context.Site.Sections -}}
 <ul>
     {{- range .context.Site.Sections -}}
     <li>
@@ -6,3 +7,4 @@
     </li>
     {{- end -}}
 </ul>
+{{- end -}}
