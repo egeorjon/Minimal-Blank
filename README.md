@@ -14,6 +14,8 @@ This theme is intended for personal website and blog. If you'd like to extend th
   - [Tools and libraries](#tools-and-libraries)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Markups](#markups)
+  - [Shortcodes](#shortcodes)
   - [Configuration](#configuration)
     - [Tests and production](#tests-and-production)
     - [Language](#language)
@@ -109,6 +111,169 @@ hugo server
 ```
 
 Then enter, use the following url [`localhost:1313`](http://localhost:1313) in your favorite browser.
+
+## Markups
+
+The theme provides two markups
+
+* The first one improves the links design: when you write a link with markdown, like `[the link](the url's link)`, icons are added if the link is an external link, a link to GitHub, or a link to Wikipedia.
+* The second one manages the images: a markdown sentence like the following `![image.png](url to the image)` will generate a fuilly responsive image in HTML
+
+```HTML
+<figure class="figure-img figure-center">
+  <a href="url to the image" title="Framework Archimate">
+    <img sizes="(max-width: 576px) 480px, 
+                (max-width: 768px) 660px, 
+                (max-width: 992px) 900px, 
+                100vw" 
+          srcset="url to the 480 image" 480w,
+                "url to the 660 image" 660w,
+                "url to the 800 image" 800w
+          src="url to the image" 
+          alt="Framework Archimate" 
+          title="Framework Archimate" 
+          width="800px" 
+          height="593px">
+        </a>
+  <figcaption>Caption of the image</figcaption>
+</figure>
+```
+
+## Shortcodes
+
+The theme provides some shortcodes 
+
+| Shortcodes | Description    |
+|------------|----------------|
+| attachmennts | Display the list of documents attached to the current post |
+| blockquote | Display blockquote with options |
+| categories | Display the list of the site's section |
+| imggallery | Display a photo gallery |
+| series-list | List the series of the site |
+| tags-list | Display the tags cloud of the site |
+
+### Attachements
+
+Parameters: 
+* files (string): relative path to the image (default: none, value mandatory),
+* size (boolean): display or not the size of the file (default: false).
+
+Requirements: The attached documents has to be listed in the Front Matter of the post like 
+```TOML
+[[resources]]
+  src = "attachments/matrice_eisenhower.xlsx"
+  title = "Matrice d'Eisenhower sous Excel"
+``` 
+Example: with the Front Matter above, the syntax of the shortcode could be
+```
+{{< attachements file="attachements" size=true >}}
+``` 
+
+### blockquote
+
+Parameters:
+* type (string): type of blockquote we want to display
+* Possible values are 
+  * citation (default),
+  * success,
+  * warning,
+  * error,
+  * question,
+  * info
+
+Requirements: none
+
+Example:
+```
+{{<blockquote type="info">}}The text you want to display.{{</blockquote>}}
+```
+
+### categories-list 
+
+ Parameters: None
+
+ Requirements: None
+
+ Example:
+```
+{{< categories-list >}}
+```
+
+### series-list 
+
+ Parameters: None
+
+ Requirements: None
+
+ Example:
+```
+{{< series-list >}}
+```
+
+### tags-list 
+
+ Parameters: None
+
+ Requirements: None
+
+ Example:
+```
+{{< tags-list >}}
+```
+
+### imggallery 
+
+ Parameters: 
+* files (string): relative path to the image (default: none, value mandatory)
+* size (int): size of the thumbnails
+* thumbcaption (int): display caption below the thumbnails
+* id (string): id for the gallery
+
+ Requirements: in the Front Matter
+ ```toml
+[[resources]]
+title = "title 1"
+src = "gallery1/photo1.jpg"
+
+[[resources]]
+title = "title 2"
+src = "gallery1/photo2.jpg"
+
+[[resources]]
+title = "title 3"
+src = "gallery1/photo3.jpg"
+
+[[resources]]
+title = "title 4"
+src = "gallery2/photo4.jpg"
+
+[[resources]]
+title = "title 5"
+src = "gallery2/photo5.jpg"
+
+[[resources]]
+title = "title 6"
+src = "gallery2/photo6.jpg"
+
+[[resources]]
+title = "title 7"
+src = "gallery3/photo7.jpg"
+
+[[resources]]
+title = "title 8"
+src = "gallery3/photo8.jpg"
+
+[[resources]]
+title = "title 9"
+src = "gallery3/photo9.jpg"
+ ```
+
+ Example:
+```
+{{<imggallery files="gallery1" id="g1" >}}
+{{<imggallery files="gallery2" id="g2" size=250 >}}
+{{<imggallery files="gallery3" id="g3" >}}
+```
 
 ## Configuration
 
