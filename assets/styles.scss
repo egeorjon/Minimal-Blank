@@ -100,6 +100,13 @@ $fa-font-path: "../webfonts";
 .justify-content-center {
     justify-content: center !important;
 }
+
+code {
+    background-color: #ddd;
+    border-radius: 0.3rem;
+    padding: 0px 4px 2px 4px;
+}
+
 /*
 .justify-content-end {
     justify-content: flex-end !important;
@@ -254,7 +261,7 @@ img {
 
 .figure-img {
 	display: inline-block;
-	margin-bottom: $spacer;
+	margin-bottom: 2 * $spacer;
 }
 
 .figure-center {
