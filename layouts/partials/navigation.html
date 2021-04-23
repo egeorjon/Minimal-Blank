@@ -36,7 +36,7 @@
                         {{- $link = printf "<i class=\"%s\"></i> <span class=\"visually-hidden\">%s</span>" .Pre $link -}}
                     {{- end -}}
                     <li class="nav-item">
-                        <a class="nav-link {{- $active -}}" href="{{- .URL -}}" id="{{- .Identifier -}}" title="{{- .Name -}}">{{- safeHTML $link -}}</a>
+                        <a class="nav-link {{- $active -}}" href="{{- .URL | absURL -}}" id="{{- .Identifier -}}" title="{{- .Name -}}">{{- safeHTML $link -}}</a>
                     </li>
                 {{- end -}}
             </ul>
