@@ -191,7 +191,7 @@ other = "Malheureusement, nous ne pouvons pas trouver le contenu que vous recher
 other = "Mais, vous pouvez"
 
 [use-search]
-other = "Use the search tool"
+other = "Utilisez l'outil de recherche"
 
 [go-search-form]
 other = "Utilisez le formulaire de bas de page."
