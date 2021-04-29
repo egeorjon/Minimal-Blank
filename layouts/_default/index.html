@@ -117,10 +117,10 @@
                             {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $meta_list) -}}
                         </header>
                         <div class="post-summary">
-                            {{- if .Description -}}
-                                <p>{{- .Description | safeHTML -}}</p>
+                            {{- if .Summary -}}
+                            <p>{{- .Summary | safeHTML -}}</p>
                             {{- else -}}
-                                <p>{{- .Summary | safeHTML | truncate ($.Site.Params.Home.PostSummary | default 250) -}}</p>
+                            <p>{{- .Description | safeHTML -}}</p>
                             {{- end -}}
                         </div>
                         <footer class="post-footer">
