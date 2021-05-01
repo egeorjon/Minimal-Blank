@@ -204,3 +204,9 @@ other = "Navigate through the tags"
 
 [navigate-series]
 other = "Use the series"
+
+[featured-post]
+other = "Featured post"
+
+[featured-posts]
+other = "Featured posts"

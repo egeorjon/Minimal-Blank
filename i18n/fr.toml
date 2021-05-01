@@ -204,3 +204,9 @@ other = "Utiliser les mots-clés"
 
 [navigate-series]
 other = "Consulter les dossiers"
+
+[featured-post]
+other = "Article du jour"
+
+[featured-posts]
+other = "Articles du jour"
