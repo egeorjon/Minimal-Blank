@@ -1,0 +1,47 @@
+{{- $kind := .kind -}}
+<article class="card-body post-section-{{- .context.Section }}">
+    <header class="post-header">
+        {{- if and (isset .context.Params "images") (.context.Site.Params.list.displayimage | default false) -}}
+            {{- partial "image.html" (dict "context" .context "src" .context.Params.Images "link" false "class" "center post-img") -}}
+        {{- end -}}
+        {{- if eq (.featured | default false ) true -}}
+            <div class="featured-post">{{- i18n "featured-post" -}}</div>
+        {{- end -}}
+        <h2 class="post-title" id="{{- .context.Title | anchorize -}}">
+            <a href="{{- .context.RelPermalink -}}" rel="bookmark">{{- .context.Title -}}</a>
+        </h2>
+        {{- if and (ne $kind "taxonomy") (isset .Site.Params.List "meta") -}}
+            {{- partial "meta.html" (dict "context" .context "kindstr" $kind "prm" .context.Site.Params.List.Meta ) -}}
+        {{- end -}}
+    </header>
+    <div class="post-summary">
+        {{- with .context.Summary -}}
+            {{- if (findRE "^(<p>)" . 1) -}}
+                {{- . -}}
+            {{- else -}}
+                <p>{{- . -}}</p>
+            {{- end -}}
+        {{- end -}}
+        {{- if eq $kind "taxonomy" -}}
+            {{- if .context.Pages }}
+                <p>{{- i18n "series-posts" -}}</p>
+                <ul>
+                {{- range .context.Pages.ByPublishDate }}
+                    <li>
+                        <a href="{{- .RelPermalink -}}" rel="bookmark">
+                            {{- .Title }} ({{- (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") -}})
+                        </a>
+                    </li>
+                {{- end }}
+                </ul>
+            {{- else -}}
+                {{- i18n "no-post-yet" -}}
+            {{- end }}
+        {{- end -}}
+    </div><!-- .post-summary -->
+    <footer class="post-footer">
+        <a href="{{- .context.RelPermalink -}}" class="btn btn-outline-secondary" role="button">
+            {{- i18n "more" -}}<span class="visually-hidden"> {{- .context.Title -}}</span>
+        </a>
+    </footer>
+</article>
