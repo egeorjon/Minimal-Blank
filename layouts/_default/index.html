@@ -20,117 +20,135 @@
     {{- end -}}
 
     {{- if .Site.Data.homepage -}}
-        {{- range $name, $content := (sort .Site.Data.homepage "weight") -}}
-            <section class="home-section {{ $content.block -}}" id="{{- $name |anchorize -}}">
+        {{- range $name, $content := (sort .Site.Data.homepage "weight" "desc" ) -}}
             {{/* ----------------------------- */}}
             {{/* --- Section List ------------ */}}
             {{/* ----------------------------- */}}
             {{- if eq $content.block "list" -}}
-                {{- with $content.title -}}
-                <div class="row">
-                    <div class="col">
-                        <h2>{{- . -}}</h2>
-                        {{- with $content.subtitle -}}
-                        <p class="subtitle">
-                            {{- . | markdownify -}}
-                        </p>
-                        {{- end -}}
-                    </div><!-- col -->
-                </div><!-- row -->
-                {{- end -}}
-                {{- $class := partial "class-columns.html" $content.columns -}}
-                <div class="g-4 {{ $class -}}">
-                    {{- range $content.items -}}
-                    <div class="col home-widget">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h3 class="card-title">{{- .title -}}</h3>
-                                <div class="card-text">
-                                    <p>{{- .text | markdownify -}}</p>
-                                    {{- if .button -}}
-                                        <a href="{{- .link }}" class="btn btn-outline-primary btn-sm ">{{- .button -}}</a>
-                                    {{- end -}}
-                                </div><!-- card-text -->
-                            </div><!-- card-body -->
-                        </div><!-- card -->
-                    </div><!-- col -->
+                {{- if gt (len $content.items) 0 -}}
+                <section class="home-section {{ $content.block -}}" id="{{- $name | anchorize -}}">
+                    {{- with $content.title -}}
+                    <div class="row">
+                        <div class="col">
+                            <h2>{{- . -}}</h2>
+                            {{- with $content.subtitle -}}
+                            <p class="subtitle">
+                                {{- . | markdownify -}}
+                            </p>
+                            {{- end -}}
+                        </div><!-- col -->
+                    </div><!-- row -->
                     {{- end -}}
-                </div><!-- row -->
+                    {{- $class := partial "class-columns.html" $content.columns -}}
+                    <div class="g-4 {{ $class -}}">
+                        {{- range $content.items -}}
+                        <div class="col home-widget">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h3 class="card-title">{{- .title -}}</h3>
+                                    <div class="card-text">
+                                        <p>{{- .text | markdownify -}}</p>
+                                        {{- if .button -}}
+                                            <a href="{{- .link }}" class="btn btn-outline-primary btn-sm ">{{- .button -}}</a>
+                                        {{- end -}}
+                                    </div><!-- card-text -->
+                                </div><!-- card-body -->
+                            </div><!-- card -->
+                        </div><!-- col -->
+                        {{- end -}}
+                    </div><!-- row -->
+                </section>
+                {{- end -}}
             {{- else if eq $content.block "content" -}}
             {{/* ----------------------------- */}}
             {{/* --- Section content --------- */}}
             {{/* ----------------------------- */}}
                 {{- with $.Site.GetPage $content.post -}}
-                <div class="row">
-                    <div class="col">
-                        <h2 class="">{{- .Title -}}</h2>
-                        <p>{{ .Content }}</p>
-                        <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
+                <section class="home-section {{ $content.block -}}" id="{{- $name | anchorize -}}">
+                    <div class="row">
+                        <div class="col">
+                            <h2>{{- .Title -}}</h2>
+                            <p>{{ .Content }}</p>
+                            <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
+                        </div>
                     </div>
-                </div>
+                </section>
                 {{- end -}}
-            {{- else if eq $content.block "post" -}}
-            {{/* ----------------------------- */}}
-            {{/* --- Section Post ------------ */}}
-            {{/* ----------------------------- */}}
-               {{- with $.Site.GetPage $content.post -}}
-                <div class="row">
-                    <div class="col home-widget">
-                        {{- with $content.title -}}<h2>{{- . -}}</h2>{{- end -}}
-                        <h3><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>
-                        {{- if $content.meta -}}
-                            {{- $meta_list := dict -}}
-                            {{- range (split $content.meta ",") -}}
-                                {{- $meta_list = merge $meta_list (dict . "true") -}}
+            {{- else if eq $content.block "featured" -}}
+            {{/* --------------------------------- */}}
+            {{/* --- Section Featured ------------ */}}
+            {{/* --------------------------------- */}}
+                {{- $feature_posts := ( where site.RegularPages "Params.featured" true) -}}
+                {{- $class := "" -}}
+                {{- $title := $content.single | default (i18n "featured-post") -}}
+                {{- if gt (len $feature_posts) 0 -}}
+                    {{- if gt (len $feature_posts) 1 -}}
+                        {{- $class = partial "class-columns.html" $content.columns -}}
+                        {{- $title = $content.plural | default (i18n "featured-posts") -}}
+                    {{- end -}}
+                    <section class="home-section {{ $content.block -}}" id="{{- $name | anchorize -}}">
+                        <div class="row">
+                            <div class="col">
+                                <h2>{{- $title -}}</h2>
+                                {{- with $content.subtitle -}}<p class="subtitle">{{- . | markdownify -}}{{- end -}}</p>
+                            </div>
+                        </div>
+                        <div class="row {{ $class -}}">
+                            {{- range $feature_posts -}}
+                            <div class="col featured home-widget">
+                                <h3><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>
+                                {{- if $content.meta -}}
+                                    {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $content.meta) -}}
+                                {{- end -}}
+                                <p>{{ .Summary }}</p>
+                                <a href="{{- .RelPermalink -}}" class="btn btn-outline-secondary btn-sm" role="button">
+                                    {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
+                                </a>
+                            </div><!-- col -->
                             {{- end -}}
-                            {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $meta_list) -}}
-                        {{- end -}}
-                        <p>{{ .Summary }}</p>
-                        <a href="{{- .RelPermalink -}}" class="btn btn-outline-secondary btn-sm" role="button">
-                            {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
-                        </a>
-                    </div><!-- col -->
-                </div><!-- row -->
+                        </div><!-- row -->
+                    </section>
                 {{- end -}}
             {{- else if eq $content.block "lastposts" -}}
             {{/* ----------------------------- */}}
             {{/* --- Section List ------------ */}}
             {{/* ----------------------------- */}}
-                <div class="row">
-                    <div class="col">
-                        <h2 class="">{{- i18n "last-posts" -}}</h2>
-                        {{- with $content.subtitle -}}<p class="subtitle">{{- . | markdownify -}}{{- end -}}</p>
-                    </div>
-                </div>
-                {{- $class := partial "class-columns.html" $content.columns -}}
-                {{- $meta_list := dict -}}
-                {{- if $content.meta -}}
-                    {{- range (split $content.meta ",") -}}
-                        {{- $meta_list = merge $meta_list (dict . "true") -}}
-                    {{- end -}}
-                {{- end -}}           
-                <div class="{{ $class -}}">
-                    {{- range (where site.RegularPages "Type" "in" $.Site.Params.MainSections | first ($content.number | default 6)) -}}
-                    <article class="col post home-widget">
-                        <header class="post-header">
-                            <h3 class="post-title"><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>
-                            {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $meta_list) -}}
-                        </header>
-                        <div class="post-summary">
-                            {{- if .Summary -}}
-                            <p>{{- .Summary | safeHTML -}}</p>
-                            {{- else -}}
-                            <p>{{- .Description | safeHTML -}}</p>
-                            {{- end -}}
+                {{- $posts_list := (where site.RegularPages "Type" "in" $.Site.Params.MainSections | first ($content.number | default 6)) -}}
+                {{- if gt (len $posts_list) 0 -}}
+                <section class="home-section {{ $content.block -}}" id="{{- $name | anchorize -}}">
+                    <div class="row">
+                        <div class="col">
+                            <h2>{{- i18n "last-posts" -}}</h2>
+                            {{- with $content.subtitle -}}<p class="subtitle">{{- . | markdownify -}}{{- end -}}</p>
                         </div>
-                        <footer class="post-footer">
-                            <a href="{{- .RelPermalink -}}" class="btn btn-outline-primary btn-sm" role="button">
-                                {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
-                            </a>
-                        </footer>
-                    </article>
-                    {{- end -}} 
-                </div>
+                    </div>
+                    {{- $class := partial "class-columns.html" $content.columns -}}          
+                    <div class="{{ $class -}}">
+                        {{- range $posts_list -}}
+                        <article class="col post home-widget">
+                            <header class="post-header">
+                                <h3 class="post-title"><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>
+                                {{- if $content.meta -}}
+                                    {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $content.meta) -}}
+                                {{- end -}}
+                            </header>
+                            <div class="post-summary">
+                                {{- if .Summary -}}
+                                <p>{{- .Summary | safeHTML -}}</p>
+                                {{- else -}}
+                                <p>{{- .Description | safeHTML -}}</p>
+                                {{- end -}}
+                            </div>
+                            <footer class="post-footer">
+                                <a href="{{- .RelPermalink -}}" class="btn btn-outline-primary btn-sm" role="button">
+                                    {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
+                                </a>
+                            </footer>
+                        </article>
+                        {{- end -}} 
+                    </div>
+                </section>
+                {{- end -}}
             {{- end -}}
             </section>
         {{- end -}}
