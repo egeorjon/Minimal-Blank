@@ -194,6 +194,7 @@ i.fas, i.fab {
 
     .post {
         margin-bottom: 4rem;
+        border: 0;
     }
 
     .post-title a {
@@ -216,6 +217,15 @@ i.fas, i.fab {
     .page-introduction,
     .post-summary {
         text-align: justify;
+    }
+
+    .featured {
+        border: 1px solid $gray-500;
+        background-color: $gray-100;
+    }
+
+    .featured-post {
+        color: red;
     }
 }
 
