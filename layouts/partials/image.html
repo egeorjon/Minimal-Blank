@@ -22,10 +22,10 @@
     <figure {{ with .class }}class="figure-img figure-{{- . -}}"{{- end -}}>
         {{- if  and (gt $width $largew) (eq $link true) -}}
             <a href="{{ $src.RelPermalink }}" data-lightbox="{{ path.Base $src }}" data-title="{{- with .title -}}{{- . -}}{{- else -}}{{- .caption | markdownify| plainify -}}{{- end -}}">
-                {{- template "respimg" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) -}}
+                {{- partial "respimg.html" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) -}}
             </a>
         {{- else -}}
-            {{- template "respimg" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) -}}
+            {{- partial "respimg.html" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) -}}
         {{ end }}
         {{- if or ( .title) ( .caption ) -}}
         <figcaption class="figure-caption{{- with .classcaption -}}  caption-{{- . -}}{{- end -}}">{{- with .caption -}}{{- . -}}{{- else -}}{{- .title | markdownify| plainify -}}{{- end -}}</figcaption>
@@ -35,7 +35,7 @@
 <!--    <p class="build-error">Image not found!</p> -->
 {{- end -}}
 
-{{- define "respimg" -}}
+{{- define "respimg.html" -}}
 {{- $smallw    := "576"  -}}
 {{- $mediumw   := "768"  -}}
 {{- $largew    := "992"  -}}
