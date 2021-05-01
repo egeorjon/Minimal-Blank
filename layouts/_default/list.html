@@ -32,52 +32,21 @@
         </div><!-- col -->
     </div><!-- row -->
     {{- end -}}
-    <div class="{{ $class -}}">
+    <div class="{{- $class -}}">
+        {{- range where .Pages ".Params.featured" "==" true -}}
+        <div class="col">
+            <div class="card post featured">
+            {{- partial "post.html" (dict "context" . "kind" $kind "featured" true ) -}}
+            </div><!-- card -->
+        </div><!-- col -->
+        {{- end -}}
         {{- $paginator := .Scratch.Get "paginator" -}}
         {{- range $paginator.Pages }}
-        <article class="col post section-{{- .Section}}">
-            <header class="post-header">
-                {{- if and (isset .Params "images") (.Site.Params.list.displayimage | default false) -}}
-                    {{- partial "image.html" (dict "context" . "src" .Params.Images "link" false "class" "center post-img") -}}
-                {{- end -}}
-                <h2 class="post-title" id="{{- .Title | anchorize -}}">
-                    <a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a>
-                </h2>
-                {{- if and (ne $kind "taxonomy") (isset .Site.Params.List "meta") -}}
-                    {{- partial "meta.html" (dict "context" . "kindstr" $kind "prm" .Site.Params.List.Meta ) -}}
-                {{- end -}}
-            </header>
-            <div class="post-summary">
-                {{- with .Summary -}}
-                    {{- if (findRE "^(<p>)" . 1) -}}
-                        {{- . -}}
-                    {{- else -}}
-                        <p>{{- . -}}</p>
-                    {{- end -}}
-                {{- end -}}
-                {{- if eq $kind "taxonomy" -}}
-                    {{- if .Pages }}
-                        <p>{{- i18n "series-posts" -}}</p>
-                        <ul>
-                        {{- range .Pages.ByPublishDate }}
-                            <li>
-                                <a href="{{- .RelPermalink -}}" rel="bookmark">
-                                    {{- .Title }} ({{- (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") -}})
-                                </a>
-                            </li>
-                        {{- end }}
-                        </ul>
-                    {{- else -}}
-                        {{- i18n "no-post-yet" -}}
-                    {{- end }}
-                {{- end -}}
-            </div><!-- .post-summary -->
-            <footer class="post-footer">
-                <a href="{{- .RelPermalink -}}" class="btn btn-outline-secondary" role="button">
-                    {{- i18n "more" -}}<span class="visually-hidden"> {{- .Title -}}</span>
-                </a>
-            </footer>
-        </article>
+            <div class="col">
+                <div class="card post">
+                    {{- partial "post.html" (dict "context" . "kind" $kind ) -}}
+                </div>
+            </div>
         {{- end -}}
     </div><!-- row-->
     <div class="row">
