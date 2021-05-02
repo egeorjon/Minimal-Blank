@@ -10,7 +10,7 @@
         <h2 class="post-title" id="{{- .context.Title | anchorize -}}">
             <a href="{{- .context.RelPermalink -}}" rel="bookmark">{{- .context.Title -}}</a>
         </h2>
-        {{- if and (ne $kind "taxonomy") (isset .Site.Params.List "meta") -}}
+        {{- if and (ne $kind "taxonomy") (isset .context.Site.Params.List "meta") -}}
             {{- partial "meta.html" (dict "context" .context "kindstr" $kind "prm" .context.Site.Params.List.Meta ) -}}
         {{- end -}}
     </header>
@@ -29,7 +29,7 @@
                 {{- range .context.Pages.ByPublishDate }}
                     <li>
                         <a href="{{- .RelPermalink -}}" rel="bookmark">
-                            {{- .Title }} ({{- (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") -}})
+                            {{- .Title }} ({{- .Date.Format "2" -}}-{{- i18n (.Date.Format "Jan") -}}-{{- .Date.Format "2006" -}})
                         </a>
                     </li>
                 {{- end }}

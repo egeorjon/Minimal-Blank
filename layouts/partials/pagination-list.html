@@ -5,55 +5,55 @@
         {{ with $paginator.First }}
             {{ if eq $paginator.PageNumber 1 }}
             <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true" title="{{ i18n "newests"}}">
-                    <i class="fas fa-angle-double-left"></i><span class="d-none d-md-inline"> {{ i18n "newests"}}</span>
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true" title="{{- i18n "newests" 2 -}}">
+                    <i class="fas fa-angle-double-left"></i><span class="d-none d-md-inline"> {{ i18n "newests" 2 -}}</span>
                 </a>
             </li>
             {{ else }}
             <li class="page-item">
-                <a class="page-link" href="{{ .URL }}" title="{{ i18n "newests"}}">
-                    <i class="fas fa-angle-double-left"></i><span class="d-none d-md-inline"> {{ i18n "newests"}}</span>
+                <a class="page-link" href="{{ .URL }}" title="{{- i18n "newests" 2 -}}">
+                    <i class="fas fa-angle-double-left"></i><span class="d-none d-md-inline"> {{ i18n "newests" 2 -}}</span>
                 </a>
             </li>
             {{ end }}
         {{ end }}
         {{ if not $paginator.HasPrev }}
         <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1" aria-disabled="true" title="{{ i18n "newers" }}">
-                <i class="fas fa-angle-left"></i><span class="d-none d-md-inline"> {{ i18n "newers"}}</span>
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true" title="{{ i18n "newers" 2 }}">
+                <i class="fas fa-angle-left"></i><span class="d-none d-md-inline"> {{ i18n "newers" 2 -}}</span>
             </a>
         </li>
         {{ else }}
         <li class="page-item">
-            <a class="page-link" href="{{ $paginator.Prev.URL }}" title="{{ i18n "newers" }}">
-                <i class="fas fa-angle-left"></i><span class="d-none d-md-inline"> {{ i18n "newers" }}</span>
+            <a class="page-link" href="{{ $paginator.Prev.URL }}" title="{{- i18n "newers" 2 -}}">
+                <i class="fas fa-angle-left"></i><span class="d-none d-md-inline"> {{ i18n "newers" 2 -}}</span>
             </a>
         </li>
         {{ end }}
         {{ if not $paginator.HasNext }}
         <li class="page-item disabled">
-            <a class="page-link text-right" href="#" tabindex="-1" aria-disabled="true" title="{{ i18n "olders" }}">
-                <span class="d-none d-md-inline">{{ i18n "olders" }} </span><i class="fas fa-angle-right"></i>
+            <a class="page-link text-right" href="#" tabindex="-1" aria-disabled="true" title="{{- i18n "olders" 2 -}}">
+                <span class="d-none d-md-inline">{{- i18n "olders" 2 }} </span><i class="fas fa-angle-right"></i>
             </a>
         </li>
         {{ else }}
         <li class="page-item">
-            <a class="page-link text-right" href="{{ $paginator.Next.URL }}" title="{{ i18n "olders" }}">
-                <span class="d-none d-md-inline">{{ i18n "olders" }} </span><i class="fas fa-angle-right"></i>
+            <a class="page-link text-right" href="{{ $paginator.Next.URL }}" title="{{- i18n "olders" 2 -}}">
+                <span class="d-none d-md-inline">{{- i18n "olders" 2 }} </span><i class="fas fa-angle-right"></i>
             </a>
         </li>
         {{ end }}
         {{ with $paginator.Last }}
             {{ if eq $paginator.PageNumber $paginator.TotalPages }}
             <li class="page-item disabled">
-                <a class="page-link text-right" href="#" tabindex="-1" aria-disabled="true" title="{{ i18n "oldests" }}">
-                    <span class="d-none d-md-inline">{{ i18n "oldests" }} </span><i class="fas fa-angle-double-right"></i>
+                <a class="page-link text-right" href="#" tabindex="-1" aria-disabled="true" title="{{- i18n "oldests" 2 -}}">
+                    <span class="d-none d-md-inline">{{ i18n "oldests" 2 }} </span><i class="fas fa-angle-double-right"></i>
                 </a>
             </li>
             {{ else }}
             <li class="page-item">
-                <a class="page-link text-right" href="{{ .URL }}" title="{{ i18n "oldests" }}">
-                    <span class="d-none d-md-inline">{{ i18n "oldests" }} </span><i class="fas fa-angle-double-right"></i>
+                <a class="page-link text-right" href="{{ .URL }}" title="{{- i18n "oldests" 2 -}}">
+                    <span class="d-none d-md-inline">{{- i18n "oldests" 2 }} </span><i class="fas fa-angle-double-right"></i>
                 </a>
             </li>
             {{ end }}
