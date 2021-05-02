@@ -1,212 +1,287 @@
 [more]
+one = "Continue reading"
 other = "Continue reading"
 
 [In]
-other= "In"
+one = "In"
+other = "In"
 
-[reading]
-other = "Reading in "
+[reading-label]
+one   = "Reading in {{ .Count }} minute"
+other = "Reading in {{ .Count }} minutes"
 
-[min]
-other = "min."
-
-[minute]
-other = "minute"
-
-[mins]
-other = "mins"
-
-[minutes]
-other = "minutes"
+[reading-sentence]
+one   = "{{ .Count }} min."
+other = "{{ .Count }} mins."
 
 [by]
+one = "by"
 other = "by"
 
-[tag]
-other = "Tag"
-
 [tags]
+one   = "Tag"
 other = "Tags"
 
-[the_tags]
-other = "The tags"
-
 [section]
+one = "Section"
 other = "Section"
 
 [posted-on]
+one = "Posted on"
 other = "Posted on"
 
-[post_section]
-other = "Post of the section"
-
-[post_category]
-other = "Post of the category"
-
 [search]
+one   = "Search"
 other = "Search"
 
 [series-posts]
+one = "The posts"
 other = "The posts"
 
 [no-post-yet]
+one = "No post available yet"
 other = "No post available yet"
 
 [see-also]
+one = "See also"
 other = "See also"
 
-[same-serie]
-other = "Posts in the same serie"
-
 [same-series]
+one   = "Posts in the same serie"
 other = "Posts in the same series"
 
-[series]
+[the_series]
+one = "The series"
 other = "The series"
 
-[serie]
-other = "Serie"
-
 [share-this-post]
+one = "Share this post"
 other = "Share this post"
 
 [share-link-with]
+one = "Share this post with %s"
 other = "Share this post with %s"
 
 [attachment-type]
+one = "Type"
 other = "Type"
 
 [attachment-title]
+one = "Title"
 other = "Title"
 
 [attachment-size]
+one = "Size"
 other = "Size"
 
 [GB]
+one = "GB"
 other = "GB"
 
 [MB]
+one = "MB"
 other = "MB"
 
 [kB]
+one = "kB"
 other = "kB"
 
 [bytes]
+one = "bytes"
 other = "bytes"
 
 [page]
+one = "Page"
 other = "Page"
 
 [on]
+one = "on"
 other = "on"
 
 [newests]
+one   = "The last"
 other ="The lasts"
 
 [newers]
+one   = "Next post"
 other ="Newers"
 
 [oldests]
-other ="The firsts"
+one   = "The first"
+other = "The firsts"
 
 [olders]
+one   = "Previous post"
 other = "Olders"
 
-[older]
-other = "Previous post"
-
-[newer]
-other = "Next post"
-
 [search-form]
+one = "Search form"
 other = "Search form"
 
 [search-results]
+one = "Search results"
 other = "Search results"
 
 [search-please-enter]
+one = "Please enter what you are looking for"
 other = "Please enter what you are looking for"
 
 [search-help]
+one = "Can be a word or a full sentence"
 other = "Can be a word or a full sentence"
 
 [what-you-looking-for]
+one = "Words or sentence"
 other = "Words or sentence"
 
 [rss-feeds]
+one = "RSS Flow"
 other = "RSS Flow"
 
 [all-series]
+one = "See all series"
 other = "See all series"
 
 [last-posts]
+one = "Last posts"
 other = "Last posts"
 
 [message-recorded]
+one = "Your message was sent"
 other = "Your message was sent"
 
 [your-name]
+one = "Your name"
 other = "Your name"
 
 [placeholder-name]
+one = "Your name, or a nickname"
 other = "Your name, or a nickname"
 
 [email-address]
+one = "Your e-mail address"
 other = "Your e-mail address"
 
 [subject]
+one = "Subject of the message"
 other = "Subject of the message"
 
 [your-message]
+one = "Message"
 other = "Message"
 
 [submit]
+one = "Send"
 other = "Send"
 
 [move-top]
+one = "Move to the to of the page"
 other = "Move to the to of the page"
 
 [related-posts]
+one = "Related posts"
 other = "Related posts"
 
 [author]
+one = "Author"
 other = "Author"
 
 [Authors]
+one = "Authors"
 other = "Authors"
 
 [follow-me]
+one = "Follow me"
 other = "Follow me"
 
 [404-error-title]
+one = "Ouups something is wrong"
 other = "Ouups something is wrong"
 
 [404-error-desc]
+one = "It is a 404 error. You are looking for a page that doesn't exist"
 other = "It is a 404 error. You are looking for a page that doesn't exist"
 
 [content-not-found]
+one = "Unfortunately, we cannot find the content you are looking for."
 other = "Unfortunately, we cannot find the content you are looking for."
 
 [you-can]
+one = "But, you can"
 other = "But, you can"
 
 [use-search]
+one = "Use the search tool"
 other = "Use the search tool"
 
 [go-search-form]
+one = "Use the search form in the bottom of the page."
 other = "Use the search form in the bottom of the page."
 
 [navigate-categories]
+one = "Navigate through the categories"
 other = "Navigate through the categories"
 
 [navigate-tags]
+one = "Navigate through the tags"
 other = "Navigate through the tags"
 
 [navigate-series]
+one = "Use the series"
 other = "Use the series"
 
-[featured-post]
-other = "Featured post"
-
 [featured-posts]
+one   = "Featured post"
 other = "Featured posts"
+
+[post_category]
+one   = "Post of the category %s"
+other = "Posts of the category %s"
+
+[Jan]
+one   = "Jan"
+other = "Jan"
+
+[Feb]
+one   = "Feb"
+other = "Feb"
+
+[Mar]
+one   = "Mar"
+other = "Mar"
+
+[Apr]
+one   = "Apr"
+other = "Apr"
+
+[May]
+one   = "May"
+other = "May"
+
+[Jun]
+one   = "Jun"
+other = "Jun"
+
+[Jul]
+one   = "Jul"
+other = "Jul"
+
+[Aug]
+one   = "Aug"
+other = "Aug"
+
+[Sep]
+one   = "Sep"
+other = "Sep"
+
+[Oct]
+one   = "Oct"
+other = "Oct"
+
+[Nov]
+one   = "Nov"
+other = "Nov"
+
+[Dec]
+one   = "Dec"
+other = "Dec"

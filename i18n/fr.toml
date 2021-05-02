@@ -1,212 +1,287 @@
 [more]
+one = "Continuer la lecture"
 other = "Continuer la lecture"
 
 [In]
-other= "Dans"
+one = "Dans"
+other = "Dans"
 
-[reading]
-other = "Lecture de "
+[reading-label]
+one   = "Lecture de {{ .Count }} minute"
+other = "Lecture de {{ .Count }} minutes"
 
-[min]
-other = "min."
-
-[minute]
-other = "minute"
-
-[mins]
-other = "mins"
-
-[minutes]
-other = "minutes"
+[reading-sentence]
+one   = "{{ .Count }} min."
+other = "{{ .Count }} mins."
 
 [by]
-other="par"
-
-[tag]
-other = "Mot-clé"
+one ="par"
 
 [tags]
+one   = "Mot-clé"
 other = "Mots-clés"
 
-[the_tags]
-other = "Les mots-clés"
-
 [section]
+one = "Rubrique"
 other = "Rubrique"
 
 [posted-on]
+one = "Publié le"
 other = "Publié le"
 
-[post_section]
-other = "Article de la section"
-
-[post_category]
-other = "Article de la catégorie"
-
 [search]
+one = "Recherche"
 other = "Recherche"
 
 [series-posts]
+one = "Les articles"
 other = "Les articles"
 
 [no-post-yet]
+one = "Aucun article n'est disponible pour l'instant"
 other = "Aucun article n'est disponible pour l'instant"
 
 [see-also]
+one = "Articles similaires"
 other = "Articles similaires"
 
-[same-serie]
-other = "Articles dans le même dossier"
-
 [same-series]
+one   = "Articles dans le même dossier"
 other = "Articles dans les mêmes dossiers"
 
-[series]
+[the_series]
+one   = "Le dossier"
 other = "Les dossiers"
 
-[serie]
-other = "Dossier"
-
 [share-this-post]
+one = "Partagez cet article"
 other = "Partagez cet article"
 
 [share-link-with]
+one = "Partagez ce lien avec %s"
 other = "Partagez ce lien avec %s"
 
 [attachment-type]
+one = "Type"
 other = "Type"
 
 [attachment-title]
+one = "Titre"
 other = "Titre"
 
 [attachment-size]
+one = "Taille"
 other = "Taille"
 
 [GB]
+one = "Go"
 other = "Go"
 
 [MB]
+one = "Mo"
 other = "Mo"
 
 [kB]
+one = "ko"
 other = "ko"
 
 [bytes]
+one = "Octets"
 other = "Octets"
 
 [page]
+one = "Page"
 other = "Page"
 
 [on]
+one = "sur"
 other = "sur"
 
 [newests]
+one   = "Le dernier"
 other ="Les derniers"
 
 [newers]
-other ="Plus récents"
+one   = "Article plus récent"
+other = "Plus récents"
 
 [oldests]
+one  = "Le premier"
 other ="Les premiers"
 
 [olders]
+one   = "Article plus ancien"
 other = "Plus anciens"
 
-[older]
-other = "Article plus ancien"
-
-[newer]
-other = "Article plus récent"
-
 [search-form]
+one = "Formulaire de recherche"
 other = "Formulaire de recherche"
 
 [search-results]
+one = "Résultats de la recherche"
 other = "Résultats de la recherche"
 
 [search-please-enter]
+one = "Veuillez saisir vos critères de recherche"
 other = "Veuillez saisir vos critères de recherche"
 
 [search-help]
+one = "La recherche peut porter sur un ou plusieurs mots"
 other = "La recherche peut porter sur un ou plusieurs mots"
 
 [what-you-looking-for]
+one = "Mots ou phrase"
 other = "Mots ou phrase"
 
 [rss-feeds]
+one = "Flux RSS"
 other = "Flux RSS"
 
 [all-series]
+one = "Voir toutes les séries"
 other = "Voir toutes les séries"
 
 [last-posts]
+one = "Derniers articles"
 other = "Derniers articles"
 
 [message-recorded]
+one = "Votre message a été envoyé"
 other = "Votre message a été envoyé"
 
 [your-name]
+one = "Votre nom"
 other = "Votre nom"
 
 [placeholder-name]
+one = "Votre nom, ou un pseudonyme"
 other = "Votre nom, ou un pseudonyme"
 
 [email-address]
+one = "Votre adresse de courriel"
 other = "Votre adresse de courriel"
 
 [subject]
+one = "Le sujet de votre message"
 other = "Le sujet de votre message"
 
 [your-message]
+one = "Votre message"
 other = "Votre message"
 
 [submit]
+one = "Envoyer"
 other = "Envoyer"
 
 [move-top]
+one =" Revenir en haut de page"
 other =" Revenir en haut de page"
 
+
 [related-posts]
+one = "Articles similaires"
 other = "Articles similaires"
 
 [author]
+one = "Auteur"
 other = "Auteur"
 
 [Authors]
+one = "Auteurs"
 other = "Auteurs"
 
 [follow-me]
+one = "Suivez-moi"
 other = "Suivez-moi"
 
 [404-error-title]
+one = "Ouups, quelque chose ne va pas"
 other = "Ouups, quelque chose ne va pas"
 
 [404-error-desc]
+one = "C'est une erreur 404. La page que vous recherchez n'existe pas !"
 other = "C'est une erreur 404. La page que vous recherchez n'existe pas !"
 
 [content-not-found]
+one = "Malheureusement, nous ne pouvons pas trouver le contenu que vous recherchez."
 other = "Malheureusement, nous ne pouvons pas trouver le contenu que vous recherchez."
 
 [you-can]
+one = "Mais, vous pouvez"
 other = "Mais, vous pouvez"
 
 [use-search]
+one = "Utilisez l'outil de recherche"
 other = "Utilisez l'outil de recherche"
 
 [go-search-form]
+one = "Utilisez le formulaire de bas de page."
 other = "Utilisez le formulaire de bas de page."
 
 [navigate-categories]
+one = "Naviger à travers les catégories"
 other = "Naviger à travers les catégories"
 
 [navigate-tags]
+one = "Utiliser les mots-clés"
 other = "Utiliser les mots-clés"
 
 [navigate-series]
+one = "Consulter les dossiers"
 other = "Consulter les dossiers"
 
-[featured-post]
-other = "Article du jour"
-
 [featured-posts]
+one   = "Article du jour"
 other = "Articles du jour"
+
+[post_category]
+one   = "Article de la catégorie %s"
+other = "Articles de la catégorie %s"
+
+[Jan]
+one   = "Jan"
+other = "Jan"
+
+[Feb]
+one   = "Fév"
+other = "Fév"
+
+[Mar]
+one   = "Mar"
+other = "Mar"
+
+[Apr]
+one   = "Avr"
+other = "Avr"
+
+[May]
+one   = "Mai"
+other = "Mai"
+
+[Jun]
+one   = "Jun"
+other = "Jun"
+
+[Jul]
+one   = "Juil"
+other = "Juil"
+
+[Aug]
+one   = "Aou"
+other = "Aou"
+
+[Sep]
+one   = "Sep"
+other = "Sep"
+
+[Oct]
+one   = "Oct"
+other = "Oct"
+
+[Nov]
+one   = "Nov"
+other = "Nov"
+
+[Dec]
+one   = "Déc"
+other = "Déc"
