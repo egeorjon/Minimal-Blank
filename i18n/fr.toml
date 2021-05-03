@@ -239,49 +239,49 @@ one   = "Article de la catégorie %s"
 other = "Articles de la catégorie %s"
 
 [Jan]
-one   = "Jan"
-other = "Jan"
+one   = "Janv."
+other = "Janv."
 
 [Feb]
-one   = "Fév"
-other = "Fév"
+one   = "Févr."
+other = "Févr."
 
 [Mar]
-one   = "Mar"
-other = "Mar"
+one   = "Mars"
+other = "Mars"
 
 [Apr]
-one   = "Avr"
-other = "Avr"
+one   = "Avr."
+other = "Avr."
 
 [May]
 one   = "Mai"
 other = "Mai"
 
 [Jun]
-one   = "Jun"
-other = "Jun"
+one   = "Juin"
+other = "Juin"
 
 [Jul]
-one   = "Juil"
-other = "Juil"
+one   = "Juill."
+other = "Juil.l"
 
 [Aug]
-one   = "Aou"
-other = "Aou"
+one   = "Août"
+other = "Août"
 
 [Sep]
-one   = "Sep"
-other = "Sep"
+one   = "Sept."
+other = "Sept."
 
 [Oct]
-one   = "Oct"
-other = "Oct"
+one   = "Oct."
+other = "Oct."
 
 [Nov]
-one   = "Nov"
-other = "Nov"
+one   = "Nov."
+other = "Nov."
 
 [Dec]
-one   = "Déc"
-other = "Déc"
+one   = "Déc."
+other = "Déc."
