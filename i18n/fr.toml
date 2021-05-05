@@ -53,6 +53,10 @@ other = "Articles dans les mêmes dossiers"
 one   = "Le dossier"
 other = "Les dossiers"
 
+[series]
+one = "Dossier"
+other = "Dossiers"
+
 [share-this-post]
 one = "Partagez cet article"
 other = "Partagez cet article"
@@ -189,17 +193,12 @@ other = "Envoyer"
 one =" Revenir en haut de page"
 other =" Revenir en haut de page"
 
-
 [related-posts]
 one = "Articles similaires"
 other = "Articles similaires"
 
-[author]
+[authors]
 one = "Auteur"
-other = "Auteur"
-
-[Authors]
-one = "Auteurs"
 other = "Auteurs"
 
 [follow-me]

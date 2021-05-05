@@ -54,6 +54,10 @@ other = "Posts in the same series"
 one = "The series"
 other = "The series"
 
+[series]
+one = "Serie"
+other = "Series"
+
 [share-this-post]
 one = "Share this post"
 other = "Share this post"
@@ -194,12 +198,8 @@ other = "Move to the to of the page"
 one = "Related posts"
 other = "Related posts"
 
-[author]
+[authors]
 one = "Author"
-other = "Author"
-
-[Authors]
-one = "Authors"
 other = "Authors"
 
 [follow-me]
