@@ -10,7 +10,7 @@
             {{- if eq $kind "section" -}}
                 {{- $part = (printf "%s &laquo;%s&raquo;" (i18n "section") .Name )  -}}
             {{- else if eq $kind "taxonomy" -}}
-                {{- $part = (printf "%s" (i18n .Data.Plural 1) )  -}}
+                {{- $part = (printf "%s" (i18n .Data.Plural 2) )  -}}
             {{- else if eq $kind "term" -}}
                 {{- $part = (printf "%s &laquo;%s&raquo;" (i18n .Data.Plural 1) .Title )  -}}
             {{- end -}}
