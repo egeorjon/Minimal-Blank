@@ -3,7 +3,7 @@
 <aside class="col widget widget-authors">
     <div class="card h-100">
         <div class="card-body">
-            <h3 class="card-title">{{- if gt (len .) 1 -}}{{- i18n "authors" -}}{{- else -}}{{- i18n "author" -}}{{- end -}}</h3>
+            <h3 class="card-title">{{- if gt (len .) 1 -}}{{- i18n "authors" 1 -}}{{- else -}}{{- i18n "authors" 1 -}}{{- end -}}</h3>
             {{- range . -}}
             <div class="card-text row">
                 <div class="col-auto author-avatar">
