@@ -10,9 +10,9 @@
             {{- if eq $kind "section" -}}
                 {{- $part = (printf "%s &laquo;%s&raquo;" (i18n "section") .Name )  -}}
             {{- else if eq $kind "taxonomy" -}}
-                {{- $part = (printf "%s" (i18n .Data.Plural) )  -}}
+                {{- $part = (printf "%s" (i18n .Data.Plural 1) )  -}}
             {{- else if eq $kind "term" -}}
-                {{- $part = (printf "%s &laquo;%s&raquo;" (i18n .Data.Singular) .Title )  -}}
+                {{- $part = (printf "%s &laquo;%s&raquo;" (i18n .Data.Plural 1) .Title )  -}}
             {{- end -}}
             <h1 id="page-title">{{- $part | markdownify -}}</h1>
             <p class="page-description">{{- .Description | markdownify | safeHTML -}}</p>
