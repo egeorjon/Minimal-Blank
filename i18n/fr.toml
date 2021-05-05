@@ -157,6 +157,18 @@ other = "Votre nom"
 one = "Votre nom, ou un pseudonyme"
 other = "Votre nom, ou un pseudonyme"
 
+[placeholder-email]
+one   = "Votre address de messagerie"
+other = "Votre address de messagerie"
+
+[placeholder-subject]
+one   = "Le sujet de votre message"
+other = "Le sujet de votre message"
+
+[placeholder-message]
+one   = "Votre message"
+other = "Votre message"
+
 [email-address]
 one = "Votre adresse de courriel"
 other = "Votre adresse de courriel"

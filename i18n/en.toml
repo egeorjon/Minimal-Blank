@@ -158,6 +158,18 @@ other = "Your name"
 one = "Your name, or a nickname"
 other = "Your name, or a nickname"
 
+[placeholder-email]
+one   = "your email address"
+other = "your email address"
+
+[placeholder-subject]
+one   = "the subject of your message"
+other = "the subject of your message"
+
+[placeholder-message]
+one   = "your message"
+other = "your message"
+
 [email-address]
 one = "Your e-mail address"
 other = "Your e-mail address"
