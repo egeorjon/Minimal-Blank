@@ -5,12 +5,12 @@
             {{- partial "image.html" (dict "context" .context "src" .context.Params.Images "link" false "class" "center post-img") -}}
         {{- end -}}
         {{- if eq (.featured | default false ) true -}}
-            <div class="featured-post">{{- i18n "featured-post" -}}</div>
+            <div class="featured-post">{{- i18n "featured-posts" -}}</div>
         {{- end -}}
         <h2 class="post-title" id="{{- .context.Title | anchorize -}}">
             <a href="{{- .context.RelPermalink -}}" rel="bookmark">{{- .context.Title -}}</a>
         </h2>
-        {{- if and (ne $kind "taxonomy") (isset .Site.Params.List "meta") -}}
+        {{- if and (ne $kind "taxonomy") (isset .context.Site.Params.List "meta") -}}
             {{- partial "meta.html" (dict "context" .context "kindstr" $kind "prm" .context.Site.Params.List.Meta ) -}}
         {{- end -}}
     </header>

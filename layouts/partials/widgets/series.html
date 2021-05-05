@@ -3,7 +3,7 @@
     {{- if not (eq (len .context.Site.Taxonomies.tags) 0) -}}
     <aside class="col widget widget-series">
         <div class="widget-inner">
-            <h3>{{- i18n "series" -}}</h3>
+            <h3>{{- i18n "the_series" -}}</h3>
             {{- partialCached "series-partial.html" (dict "context" .context "limit" $limit) -}}
         </div>
     </aside>

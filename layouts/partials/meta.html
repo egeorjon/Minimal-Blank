@@ -21,8 +21,8 @@
         {{- end -}}
         {{- if eq $meta "reading" -}}
             <li class="post-read">
-                <i class="fas fa-clock" aria-hidden="true"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "reading" -}}</span>
-                {{- $context.ReadingTime }} {{ if le $context.ReadingTime 1 -}}{{- i18n "min" -}}{{- else -}}{{- i18n "mins" -}}{{- end -}}
+                <i class="fas fa-clock" aria-hidden="true"></i> <span class="visually-hidden" aria-label="hidden">{{- i18n "reading-label" $context.ReadingTime -}}</span>
+                {{- i18n "reading-sentence" $context.ReadingTime -}}
             </li>
         {{- end -}}
         {{- if eq $meta "tags" -}}
@@ -34,7 +34,7 @@
             {{- end -}}
             <li class="post-tags">
                 <i class="fas fa-tags"></i>
-                <span class="visually-hidden" aria-label="hidden">{{- if eq (len $sl) 1 -}}{{- i18n "tag" -}}{{- else -}}{{- i18n "tags" -}}{{- end }}:</span>
+                <span class="visually-hidden" aria-label="hidden">{{- i18n "tags" (len $sl) -}}:</span>
                 {{- delimit $sl ", " -}} 
             </li>
         {{- end -}}
@@ -43,7 +43,7 @@
                 {{- with $context.Parent }}
                 <li class="post-section">
                     <i class="fas fa-folder-open"></i><span class="visually-hidden">{{- i18n "In" -}}</span> 
-                    <span class="in-category"><a href="{{- .Permalink -}}" title="Articles de la categorie {{- .Name  -}}">{{- .Name -}}</a></span>
+                    <span class="in-category"><a href="{{- .Permalink -}}" title="{{- i18n "post_category" .Name  -}}">{{- .Name -}}</a></span>
                 </li><!-- class="visually-hidden" -->
                 {{- end -}}
             {{- end }}

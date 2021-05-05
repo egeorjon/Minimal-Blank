@@ -2,7 +2,7 @@
     {{- if not (eq (len .context.Site.Taxonomies.tags) 0) -}}
 <aside class="col widget widget-tags">
     <div class="widget-inner">
-        <h3>{{- i18n "tags" -}}</h3>
+        <h3>{{- i18n "tags" (len .context.Site.Taxonomies.tags) -}}</h3>
         <ul>
             {{- range .context.Site.Taxonomies.tags }}
             <li>

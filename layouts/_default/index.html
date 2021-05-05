@@ -80,11 +80,11 @@
             {{/* --------------------------------- */}}
                 {{- $feature_posts := ( where site.RegularPages "Params.featured" true) -}}
                 {{- $class := "" -}}
-                {{- $title := $content.single | default (i18n "featured-post") -}}
+                {{- $title := $content.single | default (i18n "featured-posts" (len $feature_posts)) -}}
                 {{- if gt (len $feature_posts) 0 -}}
                     {{- if gt (len $feature_posts) 1 -}}
                         {{- $class = partial "class-columns.html" $content.columns -}}
-                        {{- $title = $content.plural | default (i18n "featured-posts") -}}
+                        {{- $title = $content.plural | default (i18n "featured-posts" (len $feature_posts)) -}}
                     {{- end -}}
                     <section class="home-section {{ $content.block -}}" id="{{- $name | anchorize -}}">
                         <div class="row">
