@@ -21,6 +21,7 @@
 {{- end }}
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{- hugo.Generator -}}
 
 {{- if .Site.Params.opengraph -}}
 	{{ template "_internal/opengraph.html" . }}
@@ -33,12 +34,12 @@
 {{- end -}}
 {{ partial "schema.html" . -}}
 
-{{ if or site.IsServer (not hugo.IsProduction) -}}
-<meta name="robots" content="noindex,nofollow" />
-<meta http-equiv="cache-control" content="no-cache" />
-{{- else -}}
+{{- if hugo.IsProduction -}}
 <meta name="robots" content="index,follow" />
 {{- template "_internal/google_analytics_async.html" . -}}
+{{- else -}}
+<meta name="robots" content="noindex,nofollow" />
+<meta http-equiv="cache-control" content="no-cache" />
 {{- end }}
 
 {{- partialCached "styles.html" . -}}
