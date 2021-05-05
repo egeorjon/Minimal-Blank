@@ -5,7 +5,7 @@
             {{- partial "image.html" (dict "context" .context "src" .context.Params.Images "link" false "class" "center post-img") -}}
         {{- end -}}
         {{- if eq (.featured | default false ) true -}}
-            <div class="featured-post">{{- i18n "featured-post" -}}</div>
+            <div class="featured-post">{{- i18n "featured-posts" -}}</div>
         {{- end -}}
         <h2 class="post-title" id="{{- .context.Title | anchorize -}}">
             <a href="{{- .context.RelPermalink -}}" rel="bookmark">{{- .context.Title -}}</a>
@@ -29,7 +29,7 @@
                 {{- range .context.Pages.ByPublishDate }}
                     <li>
                         <a href="{{- .RelPermalink -}}" rel="bookmark">
-                            {{- .Title }} ({{- .Date.Format "2" -}}-{{- i18n (.Date.Format "Jan") -}}-{{- .Date.Format "2006" -}})
+                            {{- .Title }} ({{- (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") -}})
                         </a>
                     </li>
                 {{- end }}

@@ -16,7 +16,7 @@
         {{- if eq $meta "date" -}}
             <li class="post-date">
                 <i class="fas fa-calendar-alt"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
-                <time class="entry-date published" datetime="{{- $.Date -}}">{{- $context.Date.Format "2" -}}-{{- i18n ($context.Date.Format "Jan") -}}-{{- $context.Date.Format "2006" -}}</time>
+                <time class="entry-date published" datetime="{{- $.Date -}}">{{- ($context.Date.Format $context.Site.Params.FormatDate | default "2-Jan-2006") -}}</time>
             </li>
         {{- end -}}
         {{- if eq $meta "reading" -}}

@@ -14,7 +14,7 @@
             <div class="col ">
                 <h2>{{- .Title -}}</h2>
                 {{- .Content -}}
-                <p class="text-right">{{- .Params.Author }} ({{- .Date.Format "2" -}}-{{- i18n (.Date.Format "Jan") -}}-{{- .Date.Format "2006" -}})</p>
+                <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
             </div>
         </section><!-- row -->
     {{- end -}}
@@ -69,7 +69,7 @@
                         <div class="col">
                             <h2>{{- .Title -}}</h2>
                             <p>{{ .Content }}</p>
-                            <p class="text-right">{{- .Params.Author }} ({{- .Date.Format "2" -}}-{{- i18n (.Date.Format "Jan") -}}-{{- .Date.Format "2006" -}})</p>
+                            <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
                         </div>
                     </div>
                 </section>
@@ -80,7 +80,7 @@
             {{/* --------------------------------- */}}
                 {{- $feature_posts := ( where site.RegularPages "Params.featured" true) -}}
                 {{- $class := "" -}}
-                {{- $title := $content.single | default (i18n "featured-post" (len $feature_posts)) -}}
+                {{- $title := $content.single | default (i18n "featured-posts" (len $feature_posts)) -}}
                 {{- if gt (len $feature_posts) 0 -}}
                     {{- if gt (len $feature_posts) 1 -}}
                         {{- $class = partial "class-columns.html" $content.columns -}}
