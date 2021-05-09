@@ -249,6 +249,10 @@ other = "Articles du jour"
 one   = "Article de la catégorie %s"
 other = "Articles de la catégorie %s"
 
+[toc]
+one   = "Table des matières"
+other = "Table des matières"
+
 [Jan]
 one   = "Janv."
 other = "Janv."

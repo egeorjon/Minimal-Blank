@@ -250,6 +250,10 @@ other = "Featured posts"
 one   = "Post of the category %s"
 other = "Posts of the category %s"
 
+[toc]
+one   = "Table of contents"
+other = "Table of contents"
+
 [Jan]
 one   = "Jan"
 other = "Jan"
