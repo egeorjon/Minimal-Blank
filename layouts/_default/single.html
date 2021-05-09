@@ -21,7 +21,40 @@
         </div><!-- post-header -->
         {{- end -}}
         <div class="col post-content">
-            {{- .Content -}}
+            {{- if or (isset .Params "toc") (.Site.Params.Single.TableOfContents | default false ) -}}
+                {{- $both := split .RawContent "<!--more-->" -}}
+                    {{- if gt (len $both) 1 -}}
+                        <div class="row row-cols-1 row-cols-lg-2 toc">
+                            {{ $content := replace .Content .Summary "" }}
+                            <aside class="col">
+                                {{- .Summary -}}
+                            </aside>
+                            <div class="col">
+                                <aside class="card">
+                                    <div class="card-header">
+                                        {{- i18n "toc" -}}
+                                    </div>
+                                    <div class="card-body">
+                                        {{- .TableOfContents -}}
+                                    </div>
+                                </aside>
+                            </div>
+                        </div>
+                        {{- $content | safeHTML -}}
+                    {{- else -}}
+                        <aside class="card">
+                            <div class="card-header">
+                                {{- i18n "toc" -}}
+                            </div>
+                            <div class="card-body">
+                                {{- .TableOfContents -}}
+                            </div>
+                        </aside>
+                        {{- .Content }}
+                    {{- end -}}
+            {{- else -}}
+                {{- .Content -}}
+            {{- end -}}
         </div>
         {{- if and (ne .Type "sitepages") (isset .Site.Params.Single "metabottom") -}}
         <div class="col post-footer">
