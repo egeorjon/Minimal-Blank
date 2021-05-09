@@ -260,6 +260,12 @@ i.fas, i.fab {
     }
 }
 
+#TableOfContents {
+    font-size: 1rem;
+    line-height: 1.3;
+    text-align: left;
+}
+
 // ----------------------------------------------
 // --- Rules for images, figures, and galleries
 // ----------------------------------------------
@@ -531,6 +537,13 @@ blockquote.question {
 
 .home-section {
     margin-bottom: 4rem;
+}
+
+// ----------------------------------------------
+// --- contact form
+// ----------------------------------------------
+#contact-form .form-group {
+    margin-bottom: 1em;
 }
 
 // ----------------------------------------------
