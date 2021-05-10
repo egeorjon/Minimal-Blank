@@ -17,11 +17,7 @@
                 {{- i18n "message-recorded" -}}<br />
             </div>
             {{- .Content -}}
-            <form id="contact-form" name="contact" method="POST" netlify-honeypot="dummy-field" data-netlify="true">
-                <div class="form-group d-none">
-                    <label for="form-your-name">Don’t fill this out if you’re human: </label>
-                    <input type="text" class="form-control" id="dummy-field" name="dummy-field">
-                </div>
+            <form id="contact-form" name="contact" method="POST" data-netlify-recaptcha="true" data-netlify="true">
                 <div class="form-group">
                     <label for="form-your-name">{{- i18n "your-name" -}}</label>
                     <input type="text" class="form-control" id="form-your-name" name="form-your-name" aria-describedby="nameHelp" placeholder="{{- i18n "placeholder-name" -}}">
@@ -38,6 +34,7 @@
                     <label for="form-msg">{{- i18n "your-message" -}}</label>
                     <textarea class="form-control" id="form-msg" name="form-msg" rows="5" placeholder="{{- i18n "placeholder-message" -}}"></textarea>
                 </div>
+                <div data-netlify-recaptcha="true"></div>
                 <button type="submit" class="btn btn-primary" value="submit">{{- i18n "submit" -}}</button>
             </form>
             <script>
