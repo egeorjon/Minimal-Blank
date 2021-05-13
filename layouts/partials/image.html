@@ -25,7 +25,7 @@
                 {{- partial "respimg.html" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) -}}
             </a>
         {{- else -}}
-            {{- partial "respimg.html" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) -}}
+            {{- template "respimg.html" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) -}}
         {{ end }}
         {{- if or ( .title) ( .caption ) -}}
         <figcaption class="figure-caption{{- with .classcaption -}}  caption-{{- . -}}{{- end -}}">{{- with .caption -}}{{- . -}}{{- else -}}{{- .title | markdownify| plainify -}}{{- end -}}</figcaption>
