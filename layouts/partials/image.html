@@ -22,7 +22,7 @@
     <figure {{ with .class }}class="figure-img figure-{{- . -}}"{{- end -}}>
         {{- if  and (gt $width $largew) (eq $link true) -}}
             <a href="{{ $src.RelPermalink }}" data-lightbox="{{ path.Base $src }}" data-title="{{- with .title -}}{{- . -}}{{- else -}}{{- .caption | markdownify| plainify -}}{{- end -}}">
-                {{- partial "respimg.html" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) -}}
+                {{- template "respimg.html" ( dict "p" . "src" $src "largsrc" $largeImg "w" $largew "h" $largeh ) -}}
             </a>
         {{- else -}}
             {{- template "respimg.html" ( dict "p" . "src" $src "largsrc" $src "w" $width "h" $height ) -}}
