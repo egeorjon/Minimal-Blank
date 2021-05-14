@@ -15,8 +15,14 @@
         {{- end -}}
         {{- if eq $meta "date" -}}
             <li class="post-date">
+                {{- $string := "" -}}
+                {{- if and (eq $.kindstr "page") (ne ($context.Lastmod.Format "2-Jan-2006") ($context.Date.Format "2-Jan-2006")) -}}
+                    {{- $string = printf (i18n "updated") ($context.Lastmod.Format $context.Site.Params.FormatDate | default "2-Jan-2006") -}}
+                {{- end -}}
                 <i class="fas fa-calendar-alt"></i><span class="visually-hidden">{{- i18n "posted-on" -}}</span>
-                <time class="entry-date published" datetime="{{- $.Date -}}">{{- ($context.Date.Format $context.Site.Params.FormatDate | default "2-Jan-2006") -}}</time>
+                <time class="entry-date published" datetime="{{- $context.Lastmod -}}"> 
+                    {{ $context.Date.Format $context.Site.Params.FormatDate | default "2-Jan-2006" -}}{{- $string -}}
+                </time>
             </li>
         {{- end -}}
         {{- if eq $meta "reading" -}}
