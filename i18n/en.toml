@@ -254,6 +254,10 @@ other = "Posts of the category %s"
 one   = "Table of contents"
 other = "Table of contents"
 
+[updated]
+one   = " (Updated on %s)"
+other = " (Updated on  %s)"
+
 [Jan]
 one   = "Jan"
 other = "Jan"
