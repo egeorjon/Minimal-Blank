@@ -253,6 +253,10 @@ other = "Articles de la catégorie %s"
 one   = "Table des matières"
 other = "Table des matières"
 
+[updated]
+one   = " (Mise à jour %s)"
+other = " (Mise à jour %s)"
+
 [Jan]
 one   = "Janv."
 other = "Janv."
