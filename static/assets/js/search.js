@@ -23,16 +23,24 @@
    
     document.querySelector("#search-query").value = searchQuery;
 
-    var fuse = new Fuse(searchIndex, fuseOptions);
-    var results = fuse.search(searchQuery);
-    document.querySelector("#search-results").classList.remove("d-none");
-    if (results.length == 0) {
-      insertMsg(document.querySelector("#search-results-title"), "Aucun article ne correspond aux critères - No post found, with this criteria" );
-    }
-    else {
-      /* console.log({"matches":results}); */
-      populateResults(results);
-    }
+    fetch('/index.json')
+      .then(function (response) {
+          return response.json();
+      })
+      .then(function (data) {
+          var fuse    = new Fuse(data, fuseOptions);
+          var results = fuse.search(searchQuery);
+          document.querySelector("#search-results").classList.remove("d-none");
+          if (results.length == 0) {
+            insertMsg(document.querySelector("#search-results-title"), "Aucun article ne correspond aux critères - No post found, with this criteria" );
+          }
+          else {
+            populateResults(results);
+          }
+      })
+      .catch(function (err) {
+          console.log('error: ' + err);
+      });
   }
   else {
     insertMsg(document.querySelector("#search-query"), "Veuillez saisir vos critères de recherches - Please enter what you are looking for." );
@@ -47,12 +55,7 @@
     var items = document.querySelector("#search-results-items");
     var nb = 0;
 
-    /*results.forEach( (value, key) => { */
-       /*console.log({"Key":key});
-        console.log({"Value": value});*/
     for ( const value of results) {
-      /* console.log({"Value": value}); */
-
         if (value.score > 0.5) /* nb > 10 || */
           break;
 
