@@ -5,5 +5,5 @@
         {{- with .Params.tags -}}{{- $tags = delimit . ", " -}}{{- end -}}
         {{- $.Scratch.Add "index" (dict "title" .Title "tags" $tags "categories" .Params.categories "contents" (substr .Plain 0 1000) "permalink" .Permalink "section" .Parent.Name "publish" (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") "reading" .ReadingTime ) -}}
     {{- end -}}
-    searchIndex = {{- $.Scratch.Get "index" | jsonify -}}
+    {{- $.Scratch.Get "index" | jsonify -}}
 {{- end -}}
