@@ -1,87 +1,6 @@
 @use "sass:map";
 
-// scss-docs-start import-stack
-// Configuration
-    @import "bootstrap-5.0.0-beta3/scss/functions";
-    @import "customization";
-    @import "bootstrap-5.0.0-beta3/scss/variables";
-
-    @import "bootstrap-5.0.0-beta3/scss/mixins";
-    @import "bootstrap-5.0.0-beta3/scss/utilities";
-
-    // Values kept: display (for d-none, d-block, display, "background-color", "height",...)
-    $utilities: map-remove($utilities,
-        "align", "overflow", "float",
-        "shadow", "position", "top",
-        "bottom", "start", "end",
-        "translate-middle", "border", "border-top",
-        "border-bottom", "border-start",
-        "border-end", "border-bottom", "border-width",
-        "width", "max-width", "viewport-width",
-        "min-viewport-width", "max-height",
-        "viewport-height", "min-viewport-height", "flex",
-        "flex-direction", "flex-grow", "flex-shrink",
-        "flex-wrap", "gap", "justify-content",
-        "align-items", "align-content", "align-self",
-        "order", "margin", "margin-x", "margin-y",
-        "margin-top", "margin-end", "margin-bottom",
-        "negative-margin", "negative-margin-x", "negative-margin-y",
-        "negative-margin-end", "negative-margin-bottom", "negative-margin-start",
-        "padding", "padding-x", "padding-y", "padding-top",
-        "padding-end", "padding-bottom", "padding-start",
-        "font-size", "font-style", "font-weight",
-        "text-transform", "text-align", "color",
-        "line-height", "gradient",
-        "white-space", "text-decoration", "word-wrap",
-        "font-family", "user-select", "pointer-events",
-        "rounded", "rounded-top", "rounded-end",
-        "rounded-bottom", "rounded-start"
-    );
-
-// Layout & components
-    @import "bootstrap-5.0.0-beta3/scss/root";
-    @import "bootstrap-5.0.0-beta3/scss/reboot";
-// @import "bootstrap-5.0.0-beta3/scss/type";
-// @import "bootstrap-5.0.0-beta3/scss/images";
-    @import "bootstrap-5.0.0-beta3/scss/containers";
-    @import "bootstrap-5.0.0-beta3/scss/grid";
-    @import "bootstrap-5.0.0-beta3/scss/tables";
-    @import "bootstrap-5.0.0-beta3/scss/forms";
-    @import "bootstrap-5.0.0-beta3/scss/buttons";
-    @import "bootstrap-5.0.0-beta3/scss/transitions";
-// @import "bootstrap-5.0.0-beta3/scss/dropdown";
-// @import "bootstrap-5.0.0-beta3/scss/button-group";
-    @import "bootstrap-5.0.0-beta3/scss/nav";
-    @import "bootstrap-5.0.0-beta3/scss/navbar";
-@import "bootstrap-5.0.0-beta3/scss/card";
-// @import "bootstrap-5.0.0-beta3/scss/accordion";
-    @import "bootstrap-5.0.0-beta3/scss/breadcrumb";
-    @import "bootstrap-5.0.0-beta3/scss/pagination";
-    @import "bootstrap-5.0.0-beta3/scss/badge";
-// @import "bootstrap-5.0.0-beta3/scss/alert";
-// @import "bootstrap-5.0.0-beta3/scss/progress";
-// @import "bootstrap-5.0.0-beta3/scss/list-group";
-// @import "bootstrap-5.0.0-beta3/scss/close";
-// @import "bootstrap-5.0.0-beta3/scss/toasts";
-// @import "bootstrap-5.0.0-beta3/scss/modal";
-// @import "bootstrap-5.0.0-beta3/scss/tooltip";
-// @import "bootstrap-5.0.0-beta3/scss/popover";
-// @import "bootstrap-5.0.0-beta3/scss/carousel";
-// @import "bootstrap-5.0.0-beta3/scss/spinners";
-
-// Helpers
-// @import "bootstrap-5.0.0-beta3/scss/helpers";
-// @import "bootstrap-5.0.0-beta3/scss/helpers/clearfix.scss";
-// @import "bootstrap-5.0.0-beta3/scss/helpers/colored-links.scss";
-    @import "bootstrap-5.0.0-beta3/scss/helpers/position.scss";
-// @import "bootstrap-5.0.0-beta3/scss/helpers/ratio.scss";
-// @import "bootstrap-5.0.0-beta3/scss/helpers/stretched-link.scss";
-// @import "bootstrap-5.0.0-beta3/scss/helpers/text-truncation.scss";
-    @import "bootstrap-5.0.0-beta3/scss/helpers/visually-hidden.scss";
-
-// Utilities
-@import "bootstrap-5.0.0-beta3/scss/utilities/api";
-// scss-docs-end import-stack
+@import "custom";
 
 $fa-font-path: "../webfonts";
 @import "fontawesome-free-5.15.2-web/scss/fontawesome";
@@ -106,20 +25,6 @@ div > code {
     border-radius: 0.3rem;
     padding: 0px 4px 2px 4px;
 }
-
-/*
-.justify-content-end {
-    justify-content: flex-end !important;
-  }
-
-.align-self-end {
-    align-self: flex-end !important;
-}
-
-.align-content-end {
-    align-content: flex-end !important;
-  }
-*/  
 
 .text-center {
     text-align: center;
