@@ -1,5 +1,5 @@
 <!-- Schema -->
-<script type="application/ld+json">
+<script type="application/json">
   {
     "@context": "https://schema.org",
     "@graph":[
@@ -93,12 +93,12 @@
         "@type": "Article",
         "@id": {{- printf "%s%s" $permalink "#article" -}},
         "mainEntityOfPage": {
-          "@id": {{- printf "%s%s" $permalink "#webpage" -}},
+          "@id": {{- printf "%s%s" $permalink "#webpage" -}}
         },
-        "headline": "{{- .Title -}}",
+        "headline": "{{- .Title | safeHTML -}}",
         "author": {
           "@type": "Person",
-          "name": "{{- .Params.Author -}}"
+          "name": "{{- if .Params.Authors -}}{{- delimit .Params.Authors "," -}}{{- end -}}"
         },
         "datePublished": "{{- .Date.Format "2006-01-02" -}}",
         "dateModified": "{{- .Date.Format "2006-01-02" -}}",
@@ -155,7 +155,7 @@
                   },
                   "author": {
                       "@type": "Person",
-                      "name": "{{- .Params.Author -}}"
+                      "name": "{{- if .Params.Authors -}}{{- delimit .Params.Authors "," -}}{{- end -}}"
                   },
                   {{ with .Params.Images -}}
                     {{- template "list_images" (dict "label" "image" "list" (first 1 .) "link" $permalink) -}}
