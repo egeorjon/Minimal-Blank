@@ -116,11 +116,7 @@
       {{- end -}}
       {{/* -------------------- List (Taxonomy, and taxonomy term) -------------------- */}}
       {{- if eq .Kind "term" -}}
-        {{- $taxo_limit := 10 -}}:
-        {{/* - if (isset .Site.Params.Taxonomies .Data.Plural) - */}}
-          {{/* - $taxo_limit = int (index .Site.Params.Taxonomies .Data.Plural) - */}}
-        {{/* - end - */}}
-        {{/* - if gt $taxo_limit 0 */}},
+        {{- $taxo_limit := 10 -}},
         {
           {{- $permalink_main := .Permalink | absURL -}}
           "@type": "ItemList",
@@ -200,10 +196,10 @@
 
 {{- define "list_images" -}}
   {{ with .list -}}
-  {{- $url := slice -}}
-    {{- range . -}}
-      {{- $url = $url | append (printf "%s%s" $.link .) -}}
-    {{- end -}}
-  {{ with $url -}}"{{- $.label -}}": {{ apply $url "chomp" "." }},{{- end -}}
+    {{- $url := slice -}}
+      {{- range . -}}
+        {{- $url = $url | append (printf "%s%s" $.link .) -}}
+      {{- end -}}
+    {{ with $url -}}"{{- $.label -}}": {{ apply $url "chomp" "." }},{{- end -}}
   {{- end }}
 {{- end -}}
