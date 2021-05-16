@@ -1,5 +1,6 @@
 {{- if ne .Type "sitepages" -}}
-    {{ $related := first (.context.Site.Params.RelatedPosts | default 5) (.context.Site.RegularPages.RelatedIndices .context "tags" "date") -}}
+    {{/*- $related := .context.Site.RegularPages.RelatedIndices .context "tags" "date" | first 5 -*/}}
+    {{- $related := .context.Site.RegularPages.Related .context | first 5 -}}
     {{- with $related -}}
     <aside class="col widget widget-related-posts">
         <div class="card h-100">
