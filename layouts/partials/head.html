@@ -30,7 +30,7 @@
 {{- if .Site.Params.schema -}}
     {{ template "_internal/schema.html" . }}
 {{- end -}}
-{{ partial "schema2.html" . -}}
+{{ partial "schema.html" . -}}
 
 {{- if hugo.IsProduction -}}
 <meta name="robots" content="index,follow" />
