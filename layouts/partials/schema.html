@@ -6,9 +6,6 @@
     {{- $logo_id = printf "%s#logo" site.BaseURL -}}
     {{- $logo = dict "@type" "ImageObject" "@id" $logo_id "url" (printf "%s%s" (site.BaseURL | absURL) (index .Site.Params "brandlogo")) "caption" .Site.Title -}}
 {{- end -}}
-<!-- ----------------------- Author ------------------------->
-{{/*- $person := dict "@type" "Person" "@id" "@id" (printf "%s#person" (site.BaseURL | absURL) -*/}}
-
 <!-- -------------------- Organization ---------------------->
 {{- $org := dict "@type" "Organization" "@id" (printf "%s#organization" site.BaseURL) "name" .Site.Title "url" site.BaseURL -}}
 {{- if $logo_id -}}
@@ -99,11 +96,40 @@
 <!-- ----------- Article -------------- -->
 {{- $page := dict -}}
 {{- if eq .Kind "page" -}}
+
+  {{- $authors:= slice -}}
+  {{- $count := 1 -}}
+  {{- with .GetTerms "authors" -}}
+    {{- range . -}}
+      {{- $author := dict "@type" "person" "@id" (printf "%s#author_%d" $permalink $count) -}}
+      {{- with .Title -}}{{- $author = merge $author (dict "name" . ) -}}{{- end -}}
+      {{- with .Params.Gender -}}{{- $author = merge $author (dict "gender" . ) -}}{{- end -}}
+      {{- with .Params.Firsname -}}{{- $author = merge $author (dict "givenName" . ) -}}{{- end -}}
+      {{- with .Params.Lastname -}}{{- $author = merge $author (dict "familyName" . ) -}}{{- end -}}
+      {{- with .Params.Jobtitle -}}{{- $author = merge $author (dict "jobTitle" . ) -}}{{- end -}}
+      {{- with .Params.email -}}{{- $author = merge $author (dict "email" . ) -}}{{- end -}}
+      {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
+      {{- with $image -}}{{- $author = merge $author (dict "image" .Permalink ) -}}{{- end -}}
+
+      {{- with .Params.Socials -}}
+        {{- $sameas := slice -}}
+        {{- range . -}}
+          {{- $sameas = $sameas | append .url -}}
+        {{- end -}}
+        {{- if gt (len $sameas) 0 -}}
+          {{- $author = merge $author (dict "sameas" $sameas ) -}}
+        {{- end -}}
+      {{- end -}}
+
+      {{- $authors = $authors | append $author -}}
+      {{- $count = add $count 1 -}}
+    {{- end -}}
+  {{- end -}}
   {{- $page = dict "@type" "Article" "@id" (printf "%s#article" $permalink) "mainEntityOfPage" (dict "@id" (printf "%s#webpage" $permalink)) "headline" (.Title | safeHTML) -}}
   {{- $page = merge $page (dict "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "inLanguage" site.LanguageCode) -}}
   {{- $page = merge $page (dict "publisher" (dict "@id" (printf "%s%s" site.BaseURL "#organization"))) -}}
-  {{- with .Params.Authors -}}
-    {{- $page = merge $page (dict "author" (dict "@type" "Person" "name" (delimit . ","))) -}}
+  {{- if gt (len $authors) 0 -}}
+    {{- $page = merge $page (dict "author" $authors) -}}
   {{- end -}}
   {{- with .Params.Tags -}}
     {{- $page = merge $page (dict "keywords" (delimit . ", ")) -}}
