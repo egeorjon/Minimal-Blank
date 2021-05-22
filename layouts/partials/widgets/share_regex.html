@@ -1,7 +1,0 @@
-{{- $new_value := "" -}}
-{{- if eq .value "" -}}
-    {{- $new_value = (replaceRE .pattern "" .string ) -}}
-{{- else -}}
-    {{- $new_value = (replaceRE .pattern (printf .param .value) .string ) -}}
-{{- end -}}
-{{- return $new_value -}}
