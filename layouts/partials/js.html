@@ -1,3 +1,8 @@
+{{- if and hugo.IsProduction (or (and .IsSection .Site.Params.adListBottom) (and .IsPage .Site.Params.adSingleBottom)) -}}
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({ });
+</script>
+{{- end -}}
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/simple-lightbox.min.js"></script>
 

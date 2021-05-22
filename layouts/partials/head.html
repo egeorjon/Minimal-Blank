@@ -39,7 +39,6 @@
 <meta name="robots" content="noindex,nofollow" />
 <meta http-equiv="cache-control" content="no-cache" />
 {{- end }}
-
 {{- partialCached "styles.html" . -}}
 {{- with .OutputFormats.Get "rss" -}}
     {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML -}}
@@ -52,4 +51,7 @@
 {{- end -}}
 {{- if .Site.Params.ThemeColor -}}
 <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}">
+{{- end -}}
+{{- if and hugo.IsProduction (or (and .IsSection .Site.Params.adListBottom) (and .IsPage .Site.Params.adSingleBottom)) -}}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 {{- end -}}

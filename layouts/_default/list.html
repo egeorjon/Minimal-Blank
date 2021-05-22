@@ -49,6 +49,19 @@
             </div>
         {{- end -}}
     </div><!-- row-->
+    {{- if and hugo.IsProduction (and .IsSection .Site.Params.adListBottom) -}}
+    <div class="row">
+        <div class="col">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="{{- $.Site.Params.adClient -}}"
+                data-ad-slot="{{- $.Site.Params.adListBottom -}}"
+                data-ad-format="auto"
+                data-full-width-responsive="true">
+            </ins>
+        </div>
+    </div>
+    {{- end -}}
     <div class="row">
         {{- partial "pagination-list.html" . -}}
     </div>

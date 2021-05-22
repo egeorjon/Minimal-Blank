@@ -71,6 +71,19 @@
         {{- end -}}
     </div><!-- row post-bottom -->
     {{- end -}}
+    {{- if and hugo.IsProduction (and .IsPage .Site.Params.adSingleBottom) -}}
+    <div class="row">
+        <div class="col">
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="{{- $.Site.Params.adClient -}}"
+                data-ad-slot="{{- $.Site.Params.adSingleBottom -}}"
+                data-ad-format="auto"
+                data-full-width-responsive="true">
+            </ins>
+        </div>
+    </div>
+    {{- end -}}
     {{- partial "pagination-single.html" . -}}
 </div><!-- container -->
 {{- end -}}
