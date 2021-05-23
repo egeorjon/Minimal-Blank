@@ -71,7 +71,7 @@
         {{- end -}}
     </div><!-- row post-bottom -->
     {{- end -}}
-    {{- if and hugo.IsProduction (and .IsPage .Site.Params.adSingleBottom) -}}
+    {{- if (.Scratch.Get "ads_enable") -}}
     <div class="row">
         <div class="col">
             <ins class="adsbygoogle"
