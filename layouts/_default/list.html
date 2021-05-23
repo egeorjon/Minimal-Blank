@@ -49,7 +49,7 @@
             </div>
         {{- end -}}
     </div><!-- row-->
-    {{- if and hugo.IsProduction (and .IsSection .Site.Params.adListBottom) -}}
+    {{- if (.Scratch.Get "ads_enable") -}}
     <div class="row">
         <div class="col">
             <ins class="adsbygoogle"
