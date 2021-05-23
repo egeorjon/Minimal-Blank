@@ -52,6 +52,15 @@
 {{- if .Site.Params.ThemeColor -}}
 <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}">
 {{- end -}}
-{{- if and hugo.IsProduction (or (and .IsSection .Site.Params.adListBottom) (and .IsPage .Site.Params.adSingleBottom)) -}}
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+{{- .Scratch.Set "ads_enable" false -}}
+{{- $is_single := and (and .IsPage (not .IsHome)) (ne .Kind "404") -}}
+{{- $is_list := or (or .IsSection (eq "taxonomy" .Kind)) (eq "term" .Kind ) -}}
+{{- if $is_single -}}
+    {{- .Scratch.Set "ads_enable" (and (or hugo.IsProduction .Site.Params.adTest) (and .Site.Params.adclient .Site.Params.adSingleBottom )) -}}
+{{- else if $is_list -}}
+    {{- .Scratch.Set "ads_enable" (and (or hugo.IsProduction .Site.Params.adTest) (and .Site.Params.adclient .Site.Params.adListBottom )) -}}
+{{- end -}}
+is_single:{{- $is_single -}} - is_list:{{- $is_list -}} - ads_enable: {{- .Scratch.Get "ads_enable" -}}<br/>
+{{- if (.Scratch.Get "ads_enable") -}}
+<script data-ad-client="ca-pub-8980505905466731" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 {{- end -}}
