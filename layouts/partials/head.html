@@ -1,5 +1,5 @@
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 {{- if .IsHome -}}
     <title>{{- site.Title  | markdownify -}}</title>
     {{- with .Site.Params.Description -}}
@@ -8,7 +8,7 @@
     {{- with .Site.Params.Keywords -}}
     <meta name="keywords" content="{{- delimit . "," -}}" />
     {{- end -}}
-    <meta name="application-name" content="{{ site.Title  | markdownify }}">
+    <meta name="application-name" content="{{ site.Title  | markdownify }}" />
 {{- else -}}
     <title>{{ site.Title  | markdownify }} &ndash; {{ .Title  | markdownify }}</title>
     {{ with .Description -}}
@@ -34,7 +34,6 @@
 
 {{- if hugo.IsProduction -}}
 <meta name="robots" content="index,follow" />
-{{- template "_internal/google_analytics_async.html" . -}}
 {{- else -}}
 <meta name="robots" content="noindex,nofollow" />
 <meta http-equiv="cache-control" content="no-cache" />
@@ -46,20 +45,12 @@
 {{- partialCached "favicons.html" . -}}
 {{- with .Site -}}
     {{- with ((.GetPage "home").OutputFormats.Get "manifest") }}
-        <link rel="manifest" href="{{- "manifest.json" | relURL -}}">
+        <link rel="manifest" href="{{- "manifest.json" | relURL -}}" />
     {{- end -}}
 {{- end -}}
 {{- if .Site.Params.ThemeColor -}}
-<meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}">
+<meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
 {{- end -}}
-{{- .Scratch.Set "ads_enable" false -}}
-{{- $is_single := and (and .IsPage (not .IsHome)) (ne .Kind "404") -}}
-{{- $is_list := or (or .IsSection (eq "taxonomy" .Kind)) (eq "term" .Kind ) -}}
-{{- if $is_single -}}
-    {{- .Scratch.Set "ads_enable" (and (or hugo.IsProduction .Site.Params.adTest) (and .Site.Params.adclient .Site.Params.adSingleBottom )) -}}
-{{- else if $is_list -}}
-    {{- .Scratch.Set "ads_enable" (and (or hugo.IsProduction .Site.Params.adTest) (and .Site.Params.adclient .Site.Params.adListBottom )) -}}
-{{- end -}}
-{{- if (.Scratch.Get "ads_enable") -}}
-<script data-ad-client="ca-pub-8980505905466731" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+{{- if not .Site.IsServer -}}
+    {{- partialCached "tarteaucitron.html" . -}}
 {{- end -}}
