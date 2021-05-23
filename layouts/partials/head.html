@@ -60,7 +60,6 @@
 {{- else if $is_list -}}
     {{- .Scratch.Set "ads_enable" (and (or hugo.IsProduction .Site.Params.adTest) (and .Site.Params.adclient .Site.Params.adListBottom )) -}}
 {{- end -}}
-is_single:{{- $is_single -}} - is_list:{{- $is_list -}} - ads_enable: {{- .Scratch.Get "ads_enable" -}}<br/>
 {{- if (.Scratch.Get "ads_enable") -}}
 <script data-ad-client="ca-pub-8980505905466731" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 {{- end -}}
