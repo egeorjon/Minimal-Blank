@@ -233,7 +233,7 @@ figcaption {
 
 // -------------------------------------------------------
 // --- Rules for blockquote
-// ------------------------------------------------------- 
+// -------------------------------------------------------
 
 blockquote {
     position: relative;
@@ -251,15 +251,15 @@ blockquote {
 	&:before {
 		/* display: inline-block;*/
 		color: $gray-400;
-		font-family: "Font Awesome 5 Free"; 
+		font-family: "Font Awesome 5 Free";
 		font-size: 1.5 * $font-size-base;
 		font-weight: 900;
 		-webkit-font-smoothing: antialiased;
-		
+
 		position: absolute;
         top: 0.5rem;
         right: 1rem;
-		
+
 		content: "\f10d";
 	}
 }
