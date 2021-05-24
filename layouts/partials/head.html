@@ -18,9 +18,7 @@
     <meta name="keywords" content="{{- delimit . "," -}}" />
     {{- end -}}
 {{- end }}
-
 {{- hugo.Generator -}}
-
 {{- if .Site.Params.opengraph -}}
 	{{ template "_internal/opengraph.html" . }}
 {{- end -}}
@@ -51,6 +49,6 @@
 {{- if .Site.Params.ThemeColor -}}
 <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
 {{- end -}}
-{{- if not .Site.IsServer -}}
+{{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
     {{- partialCached "tarteaucitron.html" . -}}
 {{- end -}}
