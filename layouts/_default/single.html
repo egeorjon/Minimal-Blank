@@ -11,12 +11,12 @@
 {{- define "main" -}}
 <div class="container">
     {{- $context := . -}}
-    <article class="post mb-5 row row-cols-1">
+    <article class="post mb-6 row row-cols-1">
         {{- if and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
             {{- partial "image.html" (dict "context" . "src" .Params.Images "link" false "class" "center post-img") -}}
         {{- end -}}
         {{- if and (ne .Type "sitepages") (isset .Site.Params.Single "metatop") -}}
-        <div class="col post-header mb-3">
+        <div class="col post-header mb-5">
             {{- partial "meta" (dict "context" $context "kindstr" .Kind "prm" .Site.Params.Single.MetaTop "class" "meta-top") -}}
         </div><!-- post-header -->
         {{- end -}}
@@ -42,7 +42,7 @@
     {{- if .Site.Params.Single.Widgets -}}
         {{- $columns := $.Site.Params.Single.bottomcolumns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
         {{- $class := partial "class-columns.html" $columns -}}
-    <div class="post-bottom mb-5 g-4 {{ $class -}}">
+    <div class="post-bottom mb-6 g-4 {{ $class -}}">
         {{- range sort .Site.Params.Single.Widgets "weight" -}}
             {{- partial (printf "widgets/%s.html" .type) (dict "context" $context "param" .params) -}}
         {{- end -}}

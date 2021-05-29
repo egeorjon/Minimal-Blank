@@ -35,7 +35,7 @@
     <div class="{{- $class -}}">
         {{- range where .Pages ".Params.featured" "==" true -}}
         <div class="col">
-            <div class="card post mb-5 featured">
+            <div class="card post mb-6 featured">
             {{- partial "post.html" (dict "context" . "kind" $kind "featured" true ) -}}
             </div><!-- card -->
         </div><!-- col -->
@@ -43,7 +43,7 @@
         {{- $paginator := .Scratch.Get "paginator" -}}
         {{- range $paginator.Pages }}
             <div class="col">
-                <div class="card post mb-5">
+                <div class="card post mb-6">
                     {{- partial "post.html" (dict "context" . "kind" $kind ) -}}
                 </div>
             </div>

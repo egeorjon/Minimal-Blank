@@ -42,8 +42,9 @@ $spacers: (
   2: $spacer / 2,
   3: $spacer,
   4: $spacer * 1.5,
-  5: $spacer * 3,
-  6: $spacer * 4,
+  5: $spacer * 2,
+  6: $spacer * 3,
+  7: $spacer * 4
 );
 
 @import "bootstrap-5.0.1/scss/variables";

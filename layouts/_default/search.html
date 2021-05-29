@@ -18,9 +18,9 @@
         </div><!-- col -->
     </div><!-- row -->
     {{- end -}}
-    <section id="search-form mb-6">
+    <section id="search-form mb-7">
         <div class="row">
-            <h2 class="col mb-5">{{- i18n "search-form" -}}</h2>
+            <h2 class="col mb-6">{{- i18n "search-form" -}}</h2>
         </div>
         <form action="{{ .Permalink }}" method="GET" class="row g-2 justify-content-center">
             <label for="search-query" class="col-form-label col-auto"><span class="visually-hidden">{{- i18n "search-please-enter" -}}</span></label>
@@ -44,7 +44,7 @@
         </div>
     </section>
     <script id="search-result-template" type="text/x-js-template">
-<article class="col post mb-5 ${ isset section }section-${section}${end}">
+<article class="col post mb-6 ${ isset section }section-${section}${end}">
     <header class="post-header mb-3">
         <h3 class="post-title">
             <a href="${link}" rel="bookmark">${title}</a>
