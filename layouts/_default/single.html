@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col">
             {{- partial "breadcrumb.html" . -}}
-            <h1 id="page-title">{{ .Title  | markdownify }}</h1>
+            <h1 id="page-title" class="mb-3">{{ .Title  | markdownify }}</h1>
         </div><!-- col -->
     </div><!-- row -->
 </div><!-- container -->
@@ -11,16 +11,16 @@
 {{- define "main" -}}
 <div class="container">
     {{- $context := . -}}
-    <article class="post row row-cols-1">
+    <article class="post mb-5 row row-cols-1">
         {{- if and (isset .Params "images") (.Site.Params.Single.displayimage | default false) -}}
             {{- partial "image.html" (dict "context" . "src" .Params.Images "link" false "class" "center post-img") -}}
         {{- end -}}
         {{- if and (ne .Type "sitepages") (isset .Site.Params.Single "metatop") -}}
-        <div class="col post-header">
+        <div class="col post-header mb-3">
             {{- partial "meta" (dict "context" $context "kindstr" .Kind "prm" .Site.Params.Single.MetaTop "class" "meta-top") -}}
         </div><!-- post-header -->
         {{- end -}}
-        <div class="col post-content">
+        <div class="col post-content mb-4">
             {{- if or (.Params.Toc | default false) (.Site.Params.Single.TableOfContents | default false ) -}}
             <aside class="card toc mb-3">
                 <div class="card-header">
@@ -42,7 +42,7 @@
     {{- if .Site.Params.Single.Widgets -}}
         {{- $columns := $.Site.Params.Single.bottomcolumns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
         {{- $class := partial "class-columns.html" $columns -}}
-    <div class="post-bottom g-4 {{ $class -}}">
+    <div class="post-bottom mb-5 g-4 {{ $class -}}">
         {{- range sort .Site.Params.Single.Widgets "weight" -}}
             {{- partial (printf "widgets/%s.html" .type) (dict "context" $context "param" .params) -}}
         {{- end -}}

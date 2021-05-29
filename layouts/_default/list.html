@@ -14,7 +14,7 @@
             {{- else if eq $kind "term" -}}
                 {{- $part = (printf "%s &laquo;%s&raquo;" (i18n .Data.Plural 1) .Title )  -}}
             {{- end -}}
-            <h1 id="page-title">{{- $part | markdownify -}}</h1>
+            <h1 id="page-title" class="mb-3">{{- $part | markdownify -}}</h1>
             <p class="page-description">{{- .Description | markdownify | safeHTML -}}</p>
             <!--| replaceRE "<p>" "<p class=\"page-description\">" | markdownify | safeHTML -}} -->
         </div><!-- col -->
@@ -27,7 +27,7 @@
 <div class="container">
     {{- with .Content -}}
     <div class="row">
-        <div class="col page-introduction">
+        <div class="col page-introduction mb-4">
             {{- . | markdownify -}}
         </div><!-- col -->
     </div><!-- row -->
@@ -35,7 +35,7 @@
     <div class="{{- $class -}}">
         {{- range where .Pages ".Params.featured" "==" true -}}
         <div class="col">
-            <div class="card post featured">
+            <div class="card post mb-5 featured">
             {{- partial "post.html" (dict "context" . "kind" $kind "featured" true ) -}}
             </div><!-- card -->
         </div><!-- col -->
@@ -43,7 +43,7 @@
         {{- $paginator := .Scratch.Get "paginator" -}}
         {{- range $paginator.Pages }}
             <div class="col">
-                <div class="card post">
+                <div class="card post mb-5">
                     {{- partial "post.html" (dict "context" . "kind" $kind ) -}}
                 </div>
             </div>

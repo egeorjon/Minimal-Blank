@@ -1,5 +1,5 @@
 {{- $context := .context -}}
-<ul class="post-meta {{ with .class -}}{{ . }}{{- end -}}">
+<ul class="post-meta mb-0 {{ with .class -}}{{ . }}{{- end -}}">
     {{- range $order, $meta := .prm -}}
         {{- if eq $meta "authors" -}}
             {{- $list := slice -}}

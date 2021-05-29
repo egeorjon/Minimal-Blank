@@ -6,7 +6,7 @@
             {{- if (.Site.Params.breadcrumb | default true) -}}
                 {{- partial "breadcrumb.html" . -}}
             {{- end -}}
-            <h1 id="page-title">{{- .Title | markdownify -}}</h1>
+            <h1 id="page-title" class="mb-3">{{- .Title | markdownify -}}</h1>
             <p class="page-description">{{- .Description | markdownify | safeHTML -}}</p>
         </div><!-- col -->
     </div><!-- row -->
@@ -16,7 +16,7 @@
 <div class="container">
     {{- with .Content -}}
     <div class="row">
-        <div class="col page-introduction">
+        <div class="col page-introduction mb-4">
             {{- . | markdownify -}}
         </div><!-- col -->
     </div><!-- row -->

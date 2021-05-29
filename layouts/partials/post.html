@@ -1,6 +1,6 @@
 {{- $kind := .kind -}}
 <article class="card-body post-section-{{- .context.Section }}">
-    <header class="post-header">
+    <header class="post-header mb-3">
         {{- if and (isset .context.Params "images") (.context.Site.Params.list.displayimage | default false) -}}
             {{- partial "image.html" (dict "context" .context "src" .context.Params.Images "link" false "class" "center post-img") -}}
         {{- end -}}

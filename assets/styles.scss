@@ -56,13 +56,13 @@ i.fas, i.fab {
     font-size: 1.1111111111111em;
     font-variant: small-caps;
 }
-
+/*
 #page-title {
     margin-bottom: 1rem;
 }
-
+*/
 #page-header {
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem;*/
 
     background-color: $gray-100;
     border-bottom: 1px solid $gray-300;
@@ -73,7 +73,7 @@ i.fas, i.fab {
 // ----------------------------------------------
 .post-meta {
     padding-left: 0;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
     list-style-type: none;
 
     li {
@@ -98,7 +98,7 @@ i.fas, i.fab {
 .post-list {
 
     .post {
-        margin-bottom: 4rem;
+        /* margin-bottom: 4rem; */
         border: 0;
     }
 
@@ -109,7 +109,7 @@ i.fas, i.fab {
             color: $secondary;
         }
     }
-
+/*
     .post-header {
         margin-bottom: 1em;
     }
@@ -117,7 +117,7 @@ i.fas, i.fab {
     .page-introduction {
         margin-bottom: 2rem;
     }
-
+*/
 
     .page-introduction,
     .post-summary {
@@ -155,14 +155,16 @@ i.fas, i.fab {
         }
     }
 
-    .post-meta,
-    .post-content {
+    .post-meta/*,
+    .post-content */ {
         margin-bottom: 2em;
     }
 
+    /*
     .post {
         margin-bottom: 3em;
     }
+    */
 }
 
 #TableOfContents {
@@ -351,7 +353,7 @@ blockquote.question {
 
 .post-bottom {
 
-    margin-bottom: 3rem;
+    /*margin-bottom: 3rem;*/
 
     .card {
         background-color: $gray-100;
@@ -390,14 +392,14 @@ blockquote.question {
         }
     }
 }
-
+/*
 .author-name {
     margin-bottom: 0;
 }
-
+*/
 .author-socials {
     list-style-type: none;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
     padding-left: 0;
 
     li {
@@ -431,7 +433,7 @@ blockquote.question {
 .post-home {
     #page-title {
        margin-top: 2rem;
-        margin-bottom: 2rem;
+        /* margin-bottom: 2rem; */
     }
 
     h2 {
@@ -440,26 +442,30 @@ blockquote.question {
         padding: 1rem;
         margin-bottom: 1rem;
     }
-
+/*
     .post {
         margin-bottom: 3rem;
-    }
+    }*/
 }
 
 .home-edito {
     text-align: justify;
 }
 
+/*
 .home-section {
     margin-bottom: 4rem;
 }
+*/
 
 // ----------------------------------------------
 // --- contact form
 // ----------------------------------------------
+/* 
 #contact-form .form-group {
     margin-bottom: 1em;
 }
+*/
 
 #contact-form .contact-button {
     margin-top: 1.5em;
@@ -494,11 +500,11 @@ blockquote.question {
 .footer-search .fa-search {
     color: $gray-200;
 }
-
+/*
 #search-results h2 {
     margin-bottom: 3rem;
 }
-
+*/
 .button-up {
     position: absolute;
     right: 30px;
@@ -525,18 +531,19 @@ blockquote.question {
 // --- Rules for the search result pages
 // ----------------------------------------------
 .search-page {
-
+/*
     #search-form {
         margin-bottom: 4rem;
     }
-
+*/
     h2 {
         color: $secondary;
     }
-
+/*
     .post {
         margin-bottom: 4rem;
     }
+*/
 }
 
 // ----------------------------------------------

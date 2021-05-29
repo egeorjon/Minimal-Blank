@@ -15,10 +15,10 @@
                     {{- end -}}
                 </div>
                 <div class="col-auto author-description">
-                    <p class="author-name">{{- .Params.Title -}}</p>
+                    <p class="author-name mb-0">{{- .Params.Title -}}</p>
                     <p class="author-bio">{{ .Params.Bio -}}</p>
                     {{- with .Params.Socials -}}
-                        <ul class="author-socials">
+                        <ul class="author-socials mb-0">
                         {{- range . -}}
                             <li><a href="{{- .url -}}" alt="{{- .alt -}}"><i class="fab fa-{{- .icon -}}"></i></a></li>
                         {{- end -}}
