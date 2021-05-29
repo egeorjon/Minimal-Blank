@@ -171,6 +171,16 @@ i.fas, i.fab {
     text-align: left;
 }
 
+@media (min-width: map-get($grid-breakpoints, "md")) {
+    .toc {
+        float: right;
+        display: block;
+        width: 50%;
+        margin-left: 1em;
+    }
+
+}
+
 // ----------------------------------------------
 // --- Rules for images, figures, and galleries
 // ----------------------------------------------
