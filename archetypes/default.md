@@ -1,11 +1,13 @@
 +++
 title       = ""
 authors     = [ "Emmanuel" ]
-date        = "2021-06-01"
+date        = "yyyy-mm-dd"
 draft       = true
 description = ""
 tags        = ["", "", ""]
 series      = [ "" ]
+images      = [ "images/" ]
+toc         = true
 
 [[resources]]
     title = ""
