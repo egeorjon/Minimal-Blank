@@ -62,5 +62,19 @@
     </div>
     {{- end -}}
     {{- partial "pagination-single.html" . -}}
+    {{- if .Site.Params.utteranc_repo | default false -}}
+    <div class="row">
+        <div class="col">
+            <h2>Comments</h2>
+            <script src="https://utteranc.es/client.js"
+                repo="{{- .Site.Params.utteranc_repo -}}"
+                issue-term="{{- .Site.Params.utteranc_term -}}"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </div>
+    {{- end -}}
 </div><!-- container -->
 {{- end -}}
