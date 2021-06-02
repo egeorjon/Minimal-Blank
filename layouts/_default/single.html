@@ -68,8 +68,8 @@
             <h2>Comments</h2>
             <script src="https://utteranc.es/client.js"
                 repo="{{- .Site.Params.utteranc_repo -}}"
-                issue-term="{{- .Site.Params.utteranc_term -}}"
-                theme="github-light"
+                issue-term="{{- .Site.Params.utteranc_term | default "title" -}}"
+                theme="{{- .Site.Params.utteranc_theme | default "github-light" -}}"
                 crossorigin="anonymous"
                 async>
             </script>
