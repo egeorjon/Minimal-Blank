@@ -556,10 +556,10 @@ blockquote.question {
 // ----------------------------------------------
 $sl-font-family: Arial, sans-serif;
 $sl-overlay-background: #000; /* #fff; */
+$sl-overlay-opacity: 0.7;
 $sl-navigation-color: #000;
 $sl-caption-color: #fff;
-$sl-caption-background: #000;
-$sl-overlay-opacity: 0.7;
+$sl-caption-background: rgba(0, 0, 0, 0.3);
 
 $sl-counter-fontsize: 1rem;
 $sl-caption-fontsize: 1rem;
