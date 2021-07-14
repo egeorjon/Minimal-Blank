@@ -594,3 +594,19 @@ $add-vendor-prefixes: true !default;
 #tarteaucitronAlertBig .tarteaucitronDeny {
     background-color: $secondary!important;
 }
+
+@media print {
+
+    #main-menu, #posts-comments, .breadcrumb, #page-top, .footer-search, .footer-middle, .widget-share-links, .nav-pagination {
+        display: none;
+    }
+
+    * {
+        color: #000;    
+        background-color: #fff;
+    }
+
+    a:after {
+        content: "( "attr(href)" )"
+    }
+}
