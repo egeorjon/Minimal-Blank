@@ -2,4 +2,4 @@
 {{- $sassTemplate := resources.Get "styles.scss" -}}
 {{- $options := (dict "targetPath" "/assets/css/style.css" "outputStyle" "enableSourceMap") -}}
 {{- $style := $sassTemplate | resources.ToCSS $options | resources.Minify | resources.Fingerprint -}}
-<link href="{{- $style.RelPermalink -}}" rel="stylesheet">
+<link href="{{- $style.RelPermalink -}}" rel="stylesheet" type="text/css" />
