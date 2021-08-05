@@ -14,7 +14,7 @@
             <div class="col ">
                 <h2>{{- .Title -}}</h2>
                 {{- .Content -}}
-                <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
+                <p class="text-right">{{- .Params.Author }} ({{ .Params.Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006") -}})</p>
             </div>
         </section><!-- row -->
     {{- end -}}
@@ -69,7 +69,7 @@
                         <div class="col">
                             <h2>{{- .Title -}}</h2>
                             <p>{{ .Content }}</p>
-                            <p class="text-right">{{- .Params.Author }} ({{ .Params.Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}})</p>
+                            <p class="text-right">{{- .Params.Author }} ({{ .Params.Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006") -}})</p>
                         </div>
                     </div>
                 </section>

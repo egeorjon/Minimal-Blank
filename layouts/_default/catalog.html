@@ -47,7 +47,7 @@
         <tr>
             <td>{{- $num -}}</td>
             <td>{{- .Parent.Name -}}</td>
-            <td>{{- .Date.Format .Site.Params.FormatDate | default "2-Jan-2006" -}}</td>
+            <td>{{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006") -}}</td>
             {{- if eq .Params.Draft true -}}
             <td class="red">Draft</td>
             {{- else -}}

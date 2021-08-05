@@ -29,7 +29,7 @@
                 {{- range .context.Pages.ByPublishDate }}
                     <li>
                         <a href="{{- .RelPermalink -}}" rel="bookmark">
-                            {{- .Title }} ({{- (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006") -}})
+                            {{- .Title }} ({{- .Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006")  -}})
                         </a>
                     </li>
                 {{- end }}

@@ -3,7 +3,7 @@
     {{- range (where site.RegularPages "Type" "in" .Site.Params.MainSections) -}}
         {{- $tags := "" -}}
         {{- with .Params.tags -}}{{- $tags = delimit . ", " -}}{{- end -}}
-        {{- $.Scratch.Add "index" (dict "title" .Title "tags" $tags "categories" .Params.categories "contents" (substr .Plain 0 500) "permalink" .Permalink "section" .Parent.Name "publish" (.Date.Format .Site.Params.FormatDate | default "2-Jan-2006")) -}}
+        {{- $.Scratch.Add "index" (dict "title" .Title "tags" $tags "categories" .Params.categories "contents" (substr .Plain 0 500) "permalink" .Permalink "section" .Parent.Name "publish" (.Date | time.Format (.Site.Params.FormatDate | default "2-Jan-2006"))) -}}
     {{- end -}}
     {{- $.Scratch.Get "index" | jsonify -}}
 {{- end -}}
