@@ -243,6 +243,13 @@ figcaption {
 }
 
 
+// ----------------------------------------------
+// --- Tables
+// ----------------------------------------------
+.table {
+    margin-bottom: 3 * $spacer;
+}
+
 // -------------------------------------------------------
 // --- Rules for blockquote
 // -------------------------------------------------------
@@ -604,6 +611,11 @@ $add-vendor-prefixes: true !default;
     * {
         color: #000;    
         background-color: #fff;
+    }
+
+    body {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
     }
 
     a:after {
