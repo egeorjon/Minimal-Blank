@@ -50,7 +50,7 @@ This theme is intended for personal website and blog. If you'd like to extend th
 ## Tools and libraries
 
 This theme uses
-* [Bootstrap 5.0 Bêta 3](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+* [Bootstrap 5.1.3](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
 * [Fontawesome 5.15.2](https://fontawesome.com/)
 * [Simple Lightbox 2.70](https://simplelightbox.com/)
 
