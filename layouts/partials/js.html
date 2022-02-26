@@ -1,8 +1,6 @@
 {{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
 <script type="text/javascript">
-    tarteaucitron.user.gajsUa = '{{- .Site.GoogleAnalytics -}}';
-    tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
-    (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+    (tarteaucitron.job = tarteaucitron.job || []).push('myetracker');
 </script>
 {{- end -}}
 <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
