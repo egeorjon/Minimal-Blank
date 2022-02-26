@@ -1,5 +1,4 @@
-{{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.1/tarteaucitron.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/tarteaucitronjs@1.9.5/tarteaucitron.min.js"></script>
 <script type="text/javascript">
     tarteaucitron.init({
         "privacyUrl"    : "/mentions-legales/",  /* Privacy policy url               */
@@ -8,7 +7,7 @@
         "orientation"   : "bottom",         /* Banner position (top - bottom)   */
         "groupServices" : false,            /* Group services by category       */
         "showAlertSmall": false,            /* Show the small banner on bottom right */
-        "cookieslist"   : false,            /* Show the cookie list              */
+        "cookieslist"   : true,            /* Show the cookie list              */
         "closePopup"    : false,            /* Show a close X on the banner     */
         "showIcon"      : true,             /* Show cookie icon to manage cookies */
         //"iconSrc"     : "",               /* Optionnal: URL or base64 encoded image */
@@ -27,4 +26,21 @@
         "mandatory"     : false             /* Show a message about mandatory cookies */
     });
 </script>
-{{- end -}}
+<script type="text/javascript">
+    tarteaucitron.services.myetracker = {
+        "key": "myetracker",
+        "type": "analytic",
+        "name": "eTracker",
+        "needConsent": true,
+        "cookies": ['BT_sdc', 'isSdEnabled', 'BT_pdc'],
+        "readmoreLink": "/mentions-legales/#les-cookies",
+        "js": function () {
+            "use strict";
+            _etracker.enableCookies('{{- .Site.BaseURL -}}');
+        },
+        "fallback": function () {
+            "use strict";
+            _etracker.disableCookies('{{- .Site.BaseURL -}}');
+        }
+    };
+</script>
