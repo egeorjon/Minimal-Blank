@@ -57,5 +57,5 @@
 {{- end -}}
 {{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
     {{- partialCached "tarteaucitron.html" . -}}
-    {{- partialCached "etracker.html" . -}}
+    {{- if .Site.Params.Services.eTracker -}}{{- partialCached "etracker.html" . -}}{{- end -}}
 {{- end -}}

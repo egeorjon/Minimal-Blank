@@ -1,6 +1,8 @@
 {{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
 <script type="text/javascript">
-    (tarteaucitron.job = tarteaucitron.job || []).push('myetracker');
+    {{- if .Site.Params.Services.eTracker -}}
+        (tarteaucitron.job = tarteaucitron.job || []).push('myetracker');
+    {{- end -}}
 </script>
 {{- end -}}
 <script src="/assets/js/bootstrap/bootstrap.min.js"></script>

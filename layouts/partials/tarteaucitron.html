@@ -7,7 +7,7 @@
         "orientation"   : "bottom",         /* Banner position (top - bottom)   */
         "groupServices" : false,            /* Group services by category       */
         "showAlertSmall": false,            /* Show the small banner on bottom right */
-        "cookieslist"   : true,            /* Show the cookie list              */
+        "cookieslist"   : true,             /* Show the cookie list              */
         "closePopup"    : false,            /* Show a close X on the banner     */
         "showIcon"      : true,             /* Show cookie icon to manage cookies */
         //"iconSrc"     : "",               /* Optionnal: URL or base64 encoded image */
@@ -17,9 +17,9 @@
         "AcceptAllCta"  : true,             /* Show the accept all button when highPrivacy on */
         "highPrivacy"   : true,             /* HIGHLY RECOMMANDED Disable auto consent */
         "handleBrowserDNTRequest": false,   /* If Do Not Track == 1, disallow all */
-        "removeCredit"  : false,            /* Remove credit link */
+        "removeCredit"  : true,             /* Remove credit link */
         "moreInfoLink"  : true,             /* Show more info link */
-        "useExternalCss": true,            /* If false (defaul), the tarteaucitron.css file will be loaded */
+        "useExternalCss": true,             /* If false (defaul), the tarteaucitron.css file will be loaded */
         "useExternalJs" : false,            /* If false, the tarteaucitron.js file will be loaded */
         //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
         "readmoreLink"  : "",               /* Change the default readmore link */
@@ -34,6 +34,7 @@
         "needConsent": true,
         "cookies": ['BT_sdc', 'isSdEnabled', 'BT_pdc'],
         "readmoreLink": "/mentions-legales/#les-cookies",
+        "uri": "https://www.etracker.com/en/data-privacy/",
         "js": function () {
             "use strict";
             _etracker.enableCookies('{{- .Site.BaseURL -}}');
