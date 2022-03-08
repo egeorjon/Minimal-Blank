@@ -17,6 +17,9 @@
     {{- end -}}
     {{- .Scratch.Set "paginator" .Paginator -}}
     <body class="{{- .Kind }} {{ $class }} {{ with .Layout -}}{{- . -}}-page{{- end -}}">
+        {{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
+            {{- partialCached "piwikpro.html" . -}}
+        {{- end -}}
         {{- partialCached "navigation.html" . .Section -}}
         <header id="page-header" class="mb-4">
             {{- block "header" . -}}{{- end -}}

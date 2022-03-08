@@ -1,10 +1,12 @@
-{{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
+{{/* - if or (not .Site.IsServer) .Site.Params.TestTAC - */}}
+<!--
 <script type="text/javascript">
     {{- if .Site.Params.Services.eTracker -}}
         (tarteaucitron.job = tarteaucitron.job || []).push('myetracker');
     {{- end -}}
 </script>
-{{- end -}}
+-->
+{{/* - end - */}}
 <script src="/assets/js/bootstrap/bootstrap.min.js"></script>
 <script src="/assets/js/simple/simple-lightbox.min.js"></script>
 {{- if eq .Layout "search" -}}

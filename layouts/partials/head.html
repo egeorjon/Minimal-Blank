@@ -55,7 +55,7 @@
 {{- if .Site.Params.ThemeColor -}}
 <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
 {{- end -}}
-{{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
-    {{- partialCached "tarteaucitron.html" . -}}
-    {{- if .Site.Params.Services.eTracker -}}{{- partialCached "etracker.html" . -}}{{- end -}}
-{{- end -}}
+{{/* - if or (not .Site.IsServer) .Site.Params.TestTAC - */}}
+    {{/* - partialCached "tarteaucitron.html" . - */}}
+    {{/* - if .Site.Params.Services.eTracker -}}{{- partialCached "etracker.html" . - */}}{{/* - end - */}}
+{{/* - end - */}}
