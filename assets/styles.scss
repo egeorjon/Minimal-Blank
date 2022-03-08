@@ -588,6 +588,8 @@ $sl-iframe-border-large:  0 none;
 $add-vendor-prefixes: true !default;
 @import "simple-lightbox/simple-lightbox.scss";
 @import "chroma/syntax_manni.scss";
+
+/*
 @import "tarteaucitron.scss";
 
 .tarteaucitronAlertBigBottom {
@@ -601,6 +603,7 @@ $add-vendor-prefixes: true !default;
 #tarteaucitronAlertBig .tarteaucitronDeny {
     background-color: $secondary!important;
 }
+*/
 
 @media print {
 
