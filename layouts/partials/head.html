@@ -1,4 +1,3 @@
-<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 {{- if .IsHome -}}
     <title>{{- site.Title  | markdownify -}}</title>
@@ -34,7 +33,7 @@
 {{- if .Site.Params.schema -}}
     {{ template "_internal/schema.html" . }}
 {{- end -}}
-{{ partial "schema.html" . -}}
+{{ partial "schema.html" . .Section -}}
 
 {{- if hugo.IsProduction -}}
 <meta name="robots" content="index,follow" />
@@ -42,7 +41,7 @@
 <meta name="robots" content="noindex,nofollow" />
 <meta http-equiv="cache-control" content="no-cache" />
 {{- end }}
-{{- partialCached "styles.html" . -}}
+{{- partialCached "styles.html" . "cache" -}}
 {{- with .OutputFormats.Get "rss" -}}
     {{- printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML -}}
 {{- end -}}
@@ -55,7 +54,6 @@
 {{- if .Site.Params.ThemeColor -}}
 <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
 {{- end -}}
-{{/* - if or (not .Site.IsServer) .Site.Params.TestTAC - */}}
-    {{/* - partialCached "tarteaucitron.html" . - */}}
-    {{/* - if .Site.Params.Services.eTracker -}}{{- partialCached "etracker.html" . - */}}{{/* - end - */}}
-{{/* - end - */}}
+{{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
+    {{- if and (isset .Site.Params.Services "etracker") (ne .Site.Params.Services.eTracker "") -}}{{- partialCached "etracker.html" . -}}{{- end -}}
+{{- end -}}

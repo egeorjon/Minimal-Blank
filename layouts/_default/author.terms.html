@@ -30,7 +30,7 @@
                     {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
                     {{- with $image -}}
                         <figure class="figure-img">
-                            <img src="{{- .RelPermalink -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+                            <img src="{{- .RelPermalink -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" alt="{{- .Params.Title -}}" />
                         </figure>
                     {{- end -}}
                 </div>

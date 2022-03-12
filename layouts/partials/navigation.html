@@ -7,7 +7,7 @@
                 {{- $abs_path := path.Join "/static" . -}}
                 {{- if fileExists $abs_path -}}
                     {{- with (imageConfig $abs_path) -}}
-                      <img id="logo" class="site-brand-logo" src="{{- $.Site.Params.BrandLogo | relURL -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+                      <img id="logo" class="site-brand-logo" src="{{- $.Site.Params.BrandLogo | relURL -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" alt="{{- $.Site.Title -}}" />
                       {{- $logo = true -}}
                     {{- end -}}
                 {{- end -}}

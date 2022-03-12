@@ -1,6 +1,7 @@
 <!doctype html>
-<html class="no-js" lang="{{- .Site.Language.Lang -}}">
+<html class="no-js" lang="{{- $.Site.LanguageCode | default "en" -}}">
     <head>
+        <meta charset="utf-8">
         <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');</script>
         {{- partial "head.html" . -}}
     </head>
@@ -18,7 +19,7 @@
     {{- .Scratch.Set "paginator" .Paginator -}}
     <body class="{{- .Kind }} {{ $class }} {{ with .Layout -}}{{- . -}}-page{{- end -}}">
         {{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
-            {{- partialCached "piwikpro.html" . -}}
+            {{- if and (isset .Site.Params.Services "piwikpro") (.Site.Params.Services.piwikpro) -}}{{- partialCached "piwikpro.html" . -}}{{- end -}}
         {{- end -}}
         {{- partialCached "navigation.html" . .Section -}}
         <header id="page-header" class="mb-4">
@@ -28,7 +29,7 @@
             {{- block "main" . -}}{{- end -}}
         </main>
         <footer id="page-footer">
-            {{- partial "footer.html" . -}}
+            {{- partialCached "footer.html" . -}}
         </footer>
         {{- partialCached "js.html" . .Layout -}}
     </body>
