@@ -4,12 +4,14 @@
 {{- $logo_id := false -}}
 {{- if isset .Site.Params "brandlogo" -}}
     {{- $logo_id = printf "%s#logo" site.BaseURL -}}
-    {{- $logo = dict "@type" "ImageObject" "@id" $logo_id "url" (printf "%s%s" (site.BaseURL | absURL) (index .Site.Params "brandlogo")) "caption" .Site.Title -}}
+    {{- $logo = dict "@type" "ImageObject" "@id" $logo_id "url" (printf "%s%s" (site.BaseURL | absURL) (index .Site.Params "brandlogo")) "contentUrl" (printf "%s%s" (site.BaseURL | absURL) (index .Site.Params "brandlogo")) "caption" .Site.Title -}}
 {{- end -}}
 <!-- -------------------- Organization ---------------------->
+{{- $org_id := (printf "%s#organization" site.BaseURL ) -}}
 {{- $org := dict "@type" "Organization" "@id" (printf "%s#organization" site.BaseURL) "name" .Site.Title "url" site.BaseURL -}}
 {{- if $logo_id -}}
-    {{- $org = merge $org (dict "logo" (dict "@id" $logo_id)) -}}
+    {{- $org = merge $org (dict "logo" $logo) -}}
+    {{- $org = merge $org (dict "image" (dict "@id" $logo_id)) -}}
 {{- end -}}
 {{- with .Site.Params.FollowLinks.socials -}}
     {{- $list_url := slice -}}
@@ -28,75 +30,100 @@
     {{- end -}}
 {{- end -}}
 <!-- -------------- Website ----------------- -->
-{{- $website := dict "@type" "WebSite" "@id" (printf "%s#website" site.BaseURL) "url" site.BaseURL "name" site.Title "inLanguage" site.LanguageCode -}}
-{{- $website = merge $website (dict "publisher" (dict "@id" (printf "%s#organization" site.BaseURL ))) -}}
+{{- $website_id := (printf "%s#website" site.BaseURL) -}}
+{{- $website := dict "@type" "WebSite" "@id" $website_id "url" site.BaseURL "name" site.Title "inLanguage" site.LanguageCode -}}
+{{- $website = merge $website (dict "publisher" (dict "@id" $org_id) "copyrightHolder" (dict "@id" $org_id)) -}}
 {{- with .Site.Params.Description -}}
   {{- $website = merge $website (dict "description" .) -}}
 {{- end -}}
-{{- with .Site.Params.Keywords -}}
-  {{- $website = merge $website (dict "keywords" (delimit . ", ")) -}}
-{{- end -}}
+{{/* - with .Site.Params.Keywords - */}}
+  {{/* - $website = merge $website (dict "keywords" (delimit . ", ")) - */}}
+{{/* - end - */}}
 <!-- ----------- Search box -------------- -->
-{{- $website = merge $website (dict "potentialAction" (dict "@type" "SearchAction" "target" (printf "%s%s" site.BaseURL "?s={search_term_string}") "query-input" "required name=search_term_string")) -}}
-<!-- ------------------ List of sections ------------------- -->
-{{- $sections := dict -}}
-{{- if eq .Kind "home" -}}
-  {{- $list := slice -}}
-  {{- $count := 1 -}}
-  {{/*- range .Site.Menus.main -*/}}
-  {{- range .Site.Sections -}}
-    {{- $list = $list | append (dict "@type" "ListItem" "position" $count "url" (.Permalink | absURL) "name" .Title "description" (.Description | default ( .Summary | plainify | truncate 150 "..." | safeHTML ))) -}}
-    {{- $count = add $count 1 -}}
-  {{- end -}}
-  {{- $sections = dict "@type" "ItemList" "itemListElement" $list -}}
-{{- end -}}
+{{- $website = merge $website (dict "potentialAction" (dict "@type" "SearchAction" "target" (dict "@type" "EntryPoint" "urltemplate" (printf "%s%s" site.BaseURL "search/?s={search_term_string}")) "query-input" "required name=search_term_string")) -}}
 <!-- -------------------- Breadcrumb ----------------------- -->
-{{- $breadcrumb := dict -}}
-{{- if ne .Kind "home" -}}
-    {{- $items_list := slice -}}
-    {{- $post := . -}}
-    {{- $p := . -}}
-    {{- if $p.Parent -}}{{- $items_list = slice $p | append $items_list -}}{{- $p = $p.Parent -}}{{- end -}}
-    {{- if $p.Parent -}}{{- $items_list = slice $p | append $items_list -}}{{- $p = $p.Parent -}}{{- end -}}
-    {{- if $p.Parent -}}{{- $items_list = slice $p | append $items_list -}}{{- $p = $p.Parent -}}{{- end -}}
-    {{- if $p.Parent -}}{{- $items_list = slice $p | append $items_list -}}{{- $p = $p.Parent -}}{{- end -}}
-    {{- if $p.Parent -}}{{- $items_list = slice $p | append $items_list -}}{{- end -}}
-    {{- $count := 1 -}}
-    {{- $items := slice -}}
-    {{- range  $items_list -}}
-        {{- if eq . $post -}}
-          {{- $items = $items | append (dict "@type" "ListItem" "position" $count "name" .Title ) -}}
-        {{- else -}}
-          {{- $items = $items | append (dict "@type" "ListItem" "position" $count "name" .Title "item" .Permalink) -}}
-        {{- end -}}
-        {{- $count = add $count 1 -}}
+{{- $breadcrumb    := dict -}}
+{{- $breadcrumb_id := (printf "%s#breadcrumb" .Permalink) -}}
+{{- $items := slice -}}
+{{- $items_list := slice -}}
+{{- $post := . -}}
+{{- $p := . -}}
+{{- $items_list = slice $p | append $items_list -}}
+{{- if $p.Parent -}}{{- $p = $p.Parent -}}
+  {{- $items_list = slice $p | append $items_list -}}
+  {{- if $p.Parent -}}{{- $p = $p.Parent -}}
+    {{- $items_list = slice $p | append $items_list -}}
+    {{- if $p.Parent -}}{{- $p = $p.Parent -}}
+      {{- $items_list = slice $p | append $items_list -}}
+        {{- if $p.Parent -}}{{- $p = $p.Parent -}}
+          {{- $items_list = slice $p | append $items_list -}}
+      {{- end -}}
     {{- end -}}
-    {{- $breadcrumb = dict "@id" (printf "%s#breadcrumb" .Permalink) "@type" "BreadcrumbList" "itemListElement" $items -}}
+  {{- end -}}
+{{- end -}}
+{{- $count := 1 -}}
+{{- range  $items_list -}}
+    {{- $item_name := "" -}}
+    {{- if (eq .Kind "home") -}}{{- $item_name = "Home" -}}{{- else -}}{{- $item_name = .Title -}}{{- end -}}
+    {{- if eq . $post -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" $count "name" $item_name ) -}}
+    {{- else -}}
+      {{- $items = $items | append (dict "@type" "ListItem" "position" $count "item" (dict "@id" .Permalink  "name" $item_name)) -}}
+    {{- end -}}
+    {{- $count = add $count 1 -}}
+{{- end -}}
+{{- $breadcrumb = dict "@id" $breadcrumb_id "@type" "BreadcrumbList" "itemListElement" $items -}}
+<!-- ----------- PrimaryImage -------------- -->
+{{- $primary_image := dict -}}
+{{- $primary_image_id := (printf "%s#primaryimage" .Permalink) -}}
+{{- if ne .Kind "home" -}}
+  {{- if isset .Params "images" -}}
+    {{- $src := .Resources.GetMatch ( index .Params.Images 0 ) -}}
+    {{- if $src -}}
+      {{- $imgpath  := (path.Join "/content" .RelPermalink (index .Params.Images 0)) -}}
+      {{- $details  := imageConfig ($imgpath) -}}
+      {{- $width    := strings.TrimSuffix "px" $details.Width  -}}
+      {{- $height   := strings.TrimSuffix "px" $details.Height -}}
+      {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" $src.Permalink "contenturl" $src.Permalink "width" $width "height" $height) -}}
+    {{- else -}}
+      {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" $src) -}}  
+    {{- end -}}
+  {{- else -}}
+    {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" "No image") -}}  
+  {{- end -}}
 {{- end -}}
 <!-- ----------- WebPage -------------- -->
 {{- $permalink := .Permalink | absURL -}}
+{{- $webpage_id := printf "%s#webpage" $permalink -}}
 {{- $title := "" -}}
+{{- $published_date := .Date.Format "2006-01-02" -}}
+{{- if eq $published_date "0001-01-01" -}}{{- $published_date = .Lastmod.Format "2006-01-02" -}}{{- end -}}
+{{- $webpage := dict "@id" $webpage_id "url" $permalink "name" $title "datePublished" $published_date "dateModified" (.Lastmod.Format "2006-01-02") "breadcrumb" (dict "@id" $breadcrumb_id) -}}
 {{- if .IsHome -}}{{- $title = site.Title -}}{{- else -}}{{- $title = (.Title | default site.Title) -}}{{- end -}}
-{{- $webpage := dict "@type" "WebPage" "@id" (printf "%s#webpage" $permalink) "url" $permalink "name" $title "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") -}}
-{{- $webpage = merge $webpage (dict "isPartOf" (dict "@id" (printf "%s#website" site.BaseURL)) "inLanguage" site.LanguageCode) -}}
-{{- $webpage = merge $webpage (dict "description" (.Description | default ( .Summary | plainify | truncate 150 "..." | safeHTML ))) -}}
+{{- $page_type := slice -}}
+{{- if or (eq .Kind "page") (eq .Kind "term") -}}
+    {{- $page_type = "webpage" -}}
+{{- else -}}
+    {{- $page_type = (slice "webpage" "CollectionPage") -}}
+{{- end -}}
+{{- if ne .Kind "home" -}}{{- $webpage = merge $webpage (dict "potentialAction" (slice (dict "@type" "ReadAction" "target" (slice (printf .Parent.Permalink))))) -}}{{- end -}}
+{{- $webpage = merge $webpage (dict "@type" $page_type "isPartOf" (dict "@id" $website_id) "inLanguage" site.LanguageCode "description" (.Description | default ( .Summary | plainify | truncate 150 "..." | safeHTML ))) -}}
 {{- if eq .Kind "section" -}}
   {{- with .Params.Tags -}}
     {{- $webpage = merge $webpage (dict "keywords" (delimit . ", ")) -}}
   {{- end -}}
 {{- end -}}
-{{- if ne .Kind "home" -}}
-  {{- $webpage = merge $webpage (dict "breadcrumb" (dict "@id" (printf "%s#breadcrumb" $permalink))) -}}
+{{- if and (ne .Kind "home") (gt (len $primary_image) 0) -}}
+  {{- $webpage = merge $webpage (dict "primaryImageOfPage" (dict "@id" $primary_image_id)) -}}
 {{- end -}}
-{{- $string := "" -}}
-{{- with .Params.Images -}}
-  {{- $string = partial "list_images" (dict "list" (first 1 . ) "link" $permalink) -}}
-  {{- if ne $string "" -}}{{- $webpage = merge $webpage (dict "primaryImageOfPage" $string) -}}{{- end -}}
-{{- end -}}
+{{/* - $string := "" - */}}
+{{/* - with .Params.Images - */}}
+  {{/* - $string = partial "list_images" (dict "list" (first 1 . ) "link" $permalink) - */}}
+  {{/* - if ne $string "" -}}{{- $webpage = merge $webpage (dict "primaryImageOfPage" $string) - */}}{{/* - end - */}}
+{{/* - end - */}}
 <!-- ----------- Article -------------- -->
 {{- $page := dict -}}
 {{- if eq .Kind "page" -}}
-
   {{- $authors:= slice -}}
   {{- $count := 1 -}}
   {{- with .GetTerms "authors" -}}
@@ -127,7 +154,7 @@
   {{- end -}}
   {{- $page = dict "@type" "Article" "@id" (printf "%s#article" $permalink) "mainEntityOfPage" (dict "@id" (printf "%s#webpage" $permalink)) "headline" (.Title | safeHTML) -}}
   {{- $page = merge $page (dict "datePublished" (.Date.Format "2006-01-02") "dateModified" (.Lastmod.Format "2006-01-02") "inLanguage" site.LanguageCode) -}}
-  {{- $page = merge $page (dict "publisher" (dict "@id" (printf "%s%s" site.BaseURL "#organization"))) -}}
+  {{- $page = merge $page (dict "publisher" (dict "@id" $org_id) "copyrightYear" (.Lastmod.Format "2006") "copyrightHolder" (dict "@id" $org_id)) -}}
   {{- if gt (len $authors) 0 -}}
     {{- $page = merge $page (dict "author" $authors) -}}
   {{- end -}}
@@ -138,14 +165,18 @@
   {{- with $section -}}
     {{- $page = merge $page (dict "articleSection" .Name) -}}
   {{- end -}}
-  {{- $string := "" -}}
-  {{- with .Params.Images -}}
-    {{- $string = partial "list_images" (dict "list" . "link" $permalink) -}}
-    {{- if ne $string "" -}}{{- $page = merge $page (dict "image" $string) -}}{{- end -}}
+  {{- if and (ne .Kind "home") (gt (len $primary_image) 0) -}}
+    {{- $page = merge $page (dict "Image" (dict "@id" $primary_image_id)) -}}
   {{- end -}}
+  {{- $page = merge $page (dict "potentialAction" (slice (dict "@type" "CommentAction" "name" "Comment" "target" (slice (printf "%s#posts-comments" .Permalink))))) -}}
+  {{/* - $string := "" - */}}
+  {{/* - with .Params.Images - */}}
+    {{/* - $string = partial "list_images" (dict "list" . "link" $permalink) - */}}
+    {{/* - if ne $string "" -}}{{- $page = merge $page (dict "image" $string) - */}}{{/* - end - */}}
+  {{/* - end -*/}}
 {{- end -}}
 <script type="application/ld+json">
-  {{- (dict "@context" "https://schema.org" "@graph" (slice $logo $org $website $sections $breadcrumb $webpage $page)) | jsonify | safeJS -}}  
+  {{- (dict "@context" "https://schema.org" "@graph" (slice $org $website $breadcrumb $primary_image $webpage $page)) | jsonify | safeJS -}}  
 </script>
 {{- define "partials/list_images" -}}
   {{- $strImgList := "" -}}
