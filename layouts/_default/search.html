@@ -9,7 +9,7 @@
 </div><!-- container -->
 {{- end -}}
 {{- define "main" -}}
-{{- $class := partial "class-columns.html" ($.Site.Params.List.PostColumns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) -}}
+{{- $class := partialCached "class-columns.html" ($.Site.Params.List.PostColumns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2)) -}}
 <div class="container">
     {{- with .Content -}}
     <div class="row row-cols-1">

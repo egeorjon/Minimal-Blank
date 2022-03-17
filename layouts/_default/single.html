@@ -41,7 +41,7 @@
     </article>
     {{- if .Site.Params.Single.Widgets -}}
         {{- $columns := $.Site.Params.Single.bottomcolumns | default (dict "sm" 1 "md" 1 "lg" 2 "xl" 2) -}}
-        {{- $class := partial "class-columns.html" $columns -}}
+        {{- $class := partialCached "class-columns.html" $columns -}}
     <div class="post-bottom mb-6 g-4 {{ $class -}}">
         {{- range sort .Site.Params.Single.Widgets "weight" -}}
             {{- partial (printf "widgets/%s.html" .type) (dict "context" $context "param" .params) -}}

@@ -39,7 +39,7 @@
                         </div><!-- col -->
                     </div><!-- row -->
                     {{- end -}}
-                    {{- $class := partial "class-columns.html" $content.columns -}}
+                    {{- $class := partialCached "class-columns.html" $content.columns -}}
                     <div class="g-4 {{ $class -}}">
                         {{- range $content.items -}}
                         <div class="col home-widget">
@@ -83,7 +83,7 @@
                 {{- $title := $content.single | default (i18n "featured-posts" (len $feature_posts)) -}}
                 {{- if gt (len $feature_posts) 0 -}}
                     {{- if gt (len $feature_posts) 1 -}}
-                        {{- $class = partial "class-columns.html" $content.columns -}}
+                        {{- $class = partialCached "class-columns.html" $content.columns -}}
                         {{- $title = $content.plural | default (i18n "featured-posts" (len $feature_posts)) -}}
                     {{- end -}}
                     <section class="home-section mb-7 {{ $content.block -}}" id="{{- $name | anchorize -}}">
@@ -122,7 +122,7 @@
                             {{- with $content.subtitle -}}<p class="subtitle">{{- . | markdownify -}}{{- end -}}</p>
                         </div>
                     </div>
-                    {{- $class := partial "class-columns.html" $content.columns -}}          
+                    {{- $class := partialCached "class-columns.html" $content.columns -}}          
                     <div class="{{ $class -}}">
                         {{- range $posts_list -}}
                         <article class="col post mb-6 home-widget">
