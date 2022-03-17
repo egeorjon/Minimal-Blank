@@ -33,8 +33,13 @@
 {{- if .Site.Params.schema -}}
     {{ template "_internal/schema.html" . }}
 {{- end -}}
-{{ partial "schema.html" . .Section -}}
-
+{{- $param := anchorize (print "%s-%s" .Kind .Title) -}}
+{{- if eq .Kind "home" -}}
+  {{- $param = "home" -}}
+{{- else if (eq .Kind "page") -}}
+  {{- $param = anchorize .Title -}}
+{{- end -}}
+{{ partialCached "schema.html" . $param -}}
 {{- if hugo.IsProduction -}}
 <meta name="robots" content="index,follow" />
 {{- else -}}

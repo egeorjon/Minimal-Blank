@@ -80,10 +80,10 @@
   {{- if isset .Params "images" -}}
     {{- $src := .Resources.GetMatch ( index .Params.Images 0 ) -}}
     {{- if $src -}}
-      {{- $imgpath  := (path.Join "/content" .RelPermalink (index .Params.Images 0)) -}}
-      {{- $details  := imageConfig ($imgpath) -}}
-      {{- $width    := strings.TrimSuffix "px" $details.Width  -}}
-      {{- $height   := strings.TrimSuffix "px" $details.Height -}}
+      {{- $imgpath := (path.Join "/content" .RelPermalink (index .Params.Images 0)) -}}
+      {{- $details := imageConfig ($imgpath) -}}
+      {{- $width   := strings.TrimSuffix "px" $details.Width  -}}
+      {{- $height  := strings.TrimSuffix "px" $details.Height -}}
       {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" $src.Permalink "contenturl" $src.Permalink "width" $width "height" $height) -}}
     {{- else -}}
       {{ $primary_image = (dict "@type" "ImageObject" "@id" $primary_image_id  "inLanguage" site.LanguageCode "url" $src) -}}  
@@ -93,7 +93,7 @@
   {{- end -}}
 {{- end -}}
 <!-- ----------- WebPage -------------- -->
-{{- $permalink := .Permalink | absURL -}}
+{{- $permalink  := .Permalink | absURL -}}
 {{- $webpage_id := printf "%s#webpage" $permalink -}}
 {{- $title := "" -}}
 {{- $published_date := .Date.Format "2006-01-02" -}}
@@ -101,7 +101,7 @@
 {{- $webpage := dict "@id" $webpage_id "url" $permalink "name" $title "datePublished" $published_date "dateModified" (.Lastmod.Format "2006-01-02") "breadcrumb" (dict "@id" $breadcrumb_id) -}}
 {{- if .IsHome -}}{{- $title = site.Title -}}{{- else -}}{{- $title = (.Title | default site.Title) -}}{{- end -}}
 {{- $page_type := slice -}}
-{{- if or (eq .Kind "page") (eq .Kind "term") -}}
+{{- if or (eq .Kind "page") (eq .Kind "home") -}}
     {{- $page_type = "webpage" -}}
 {{- else -}}
     {{- $page_type = (slice "webpage" "CollectionPage") -}}
@@ -116,11 +116,6 @@
 {{- if and (ne .Kind "home") (gt (len $primary_image) 0) -}}
   {{- $webpage = merge $webpage (dict "primaryImageOfPage" (dict "@id" $primary_image_id)) -}}
 {{- end -}}
-{{/* - $string := "" - */}}
-{{/* - with .Params.Images - */}}
-  {{/* - $string = partial "list_images" (dict "list" (first 1 . ) "link" $permalink) - */}}
-  {{/* - if ne $string "" -}}{{- $webpage = merge $webpage (dict "primaryImageOfPage" $string) - */}}{{/* - end - */}}
-{{/* - end - */}}
 <!-- ----------- Article -------------- -->
 {{- $page := dict -}}
 {{- if eq .Kind "page" -}}
@@ -137,7 +132,6 @@
       {{- with .Params.email -}}{{- $author = merge $author (dict "email" . ) -}}{{- end -}}
       {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
       {{- with $image -}}{{- $author = merge $author (dict "image" .Permalink ) -}}{{- end -}}
-
       {{- with .Params.Socials -}}
         {{- $sameas := slice -}}
         {{- range . -}}
@@ -169,23 +163,7 @@
     {{- $page = merge $page (dict "Image" (dict "@id" $primary_image_id)) -}}
   {{- end -}}
   {{- $page = merge $page (dict "potentialAction" (slice (dict "@type" "CommentAction" "name" "Comment" "target" (slice (printf "%s#posts-comments" .Permalink))))) -}}
-  {{/* - $string := "" - */}}
-  {{/* - with .Params.Images - */}}
-    {{/* - $string = partial "list_images" (dict "list" . "link" $permalink) - */}}
-    {{/* - if ne $string "" -}}{{- $page = merge $page (dict "image" $string) - */}}{{/* - end - */}}
-  {{/* - end -*/}}
 {{- end -}}
 <script type="application/ld+json">
   {{- (dict "@context" "https://schema.org" "@graph" (slice $org $website $breadcrumb $primary_image $webpage $page)) | jsonify | safeJS -}}  
 </script>
-{{- define "partials/list_images" -}}
-  {{- $strImgList := "" -}}
-  {{- with .list -}}
-    {{- $url := slice -}}
-      {{- range . -}}
-        {{- $url = $url | append (printf "%s%s" $.link .) -}}
-      {{- end -}}
-    {{- with $url -}}{{- $strImgList = apply $url "chomp" "." -}}{{- end -}}
-  {{- end -}}
-  {{- return $strImgList -}}
-{{- end -}}
