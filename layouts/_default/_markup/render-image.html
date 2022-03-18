@@ -43,7 +43,7 @@
     {{- end -}}
     <figure class="figure-img figure-{{- $aligment -}}">
     {{- if le $width $smallw -}}
-    <img src="{{- $image.RelPermalink -}}" width="{{- $width -}}px" height="{{- $height -}}px"
+    <img src="{{- $image.RelPermalink -}}" width="{{- $width -}}" height="{{- $height -}}"
         alt="{{- .Text -}}" {{- with $title -}}title="{{.}}"{{- end -}} />
     {{- else -}}
         {{if ge $width $largew -}}
@@ -55,8 +55,8 @@
             src="{{ if ge $width $largew }}{{ $largeImg.RelPermalink }}{{ else }}{{ $image.RelPermalink }}{{ end }}" 
             alt="{{- .Text -}}" 
             {{- with $title -}}title="{{.}}"{{- end -}} 
-            width="{{ if ge $width $largew }}{{ $largew }}{{else }}{{ $width }}{{ end }}px" 
-            height="{{ if ge $width $largew }}{{ $largeImg.Height }}{{else }}{{ $height }}{{ end }}px" />
+            width="{{ if ge $width $largew }}{{ $largew }}{{else }}{{ $width }}{{ end }}" 
+            height="{{ if ge $width $largew }}{{ $largeImg.Height }}{{else }}{{ $height }}{{ end }}" />
         {{ if ge $width $largew -}}
             </a>
         {{- end }}
