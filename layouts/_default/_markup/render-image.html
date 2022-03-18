@@ -43,20 +43,19 @@
     {{- end -}}
     <figure class="figure-img figure-{{- $aligment -}}">
     {{- if le $width $smallw -}}
-    <img src="{{- $image.RelPermalink -}}" width="{{- $width -}}" height="{{- $height -}}"
-        alt="{{- .Text -}}" {{- with $title -}}title="{{.}}"{{- end -}} />
+    <img src="{{- $image.RelPermalink -}}" width="{{- $width -}}" height="{{- $height -}}" alt="{{- .Text -}}" {{- with $title -}}title="{{- . -}}"{{- end -}} />
     {{- else -}}
         {{if ge $width $largew -}}
             <a href="{{- $image.RelPermalink -}}" title="{{- $title -}}" {{ if $lightbox -}}data-lightbox="{{- path.Base .Destination -}}" data-title="{{- $caption -}}"{{- end -}}>
         {{- end -}}
         <img 
-            sizes="(max-width: 576px) 480px{{ with $mediumImg }}, (max-width: 768px) 660px{{ end }}{{ with $largeImg }}, (max-width: 992px) 900px{{ end }}, 100vw"
-            srcset="{{ with $smallImg }}{{ .RelPermalink }} {{ $smallw }}w{{end}}{{ with $mediumImg }},{{ .RelPermalink }} {{ $mediumw }}w{{end}}{{ with $largeImg }},{{ .RelPermalink }} {{ $largew }}w{{ else }},{{$image.RelPermalink}} {{$width}}w{{end}}"
-            src="{{ if ge $width $largew }}{{ $largeImg.RelPermalink }}{{ else }}{{ $image.RelPermalink }}{{ end }}" 
+            sizes="(max-width: 576px) 480px{{- with $mediumImg -}}, (max-width: 768px) 660px{{- end -}}{{- with $largeImg -}}, (max-width: 992px) 900px{{- end -}}, 100vw"
+            srcset="{{- with $smallImg -}}{{- .RelPermalink }} {{ $smallw -}}w{{- end -}}{{- with $mediumImg -}},{{- .RelPermalink }} {{ $mediumw -}}w{{- end -}}{{- with $largeImg -}},{{- .RelPermalink }} {{ $largew -}}w{{- else -}},{{- $image.RelPermalink }} {{ $width -}}w{{- end -}}"
+            src="{{- if ge $width $largew -}}{{- $largeImg.RelPermalink -}}{{- else -}}{{- $image.RelPermalink -}}{{- end -}}" 
             alt="{{- .Text -}}" 
-            {{- with $title -}}title="{{.}}"{{- end -}} 
-            width="{{ if ge $width $largew }}{{ $largew }}{{else }}{{ $width }}{{ end }}" 
-            height="{{ if ge $width $largew }}{{ $largeImg.Height }}{{else }}{{ $height }}{{ end }}" />
+            {{- with $title -}}title="{{- . -}}"{{- end -}} 
+            width="{{- if ge $width $largew -}}{{- $largew -}}{{- else -}}{{- $width -}}{{- end -}}" 
+            height="{{- if ge $width $largew -}}{{- $largeImg.Height -}}{{- else -}}{{- $height -}}{{- end -}}" />
         {{ if ge $width $largew -}}
             </a>
         {{- end }}
@@ -69,7 +68,7 @@
     <!--<p>LOG: File KO {{.Destination}}</p>-->
     {{/* The image is a remote image, or a non supported image */}}
     <figure class="figure-img figure-center">
-        <img src="{{- .Destination | safeURL -}}" alt="{{- .Text -}}" {{- with $title -}}title="{{.}}"{{- end -}} />
+        <img src="{{- .Destination | safeURL -}}" alt="{{- .Text -}}" {{- with $title -}}title="{{- . -}}"{{- end -}} />
         {{ with $caption -}}
             <figcaption>{{- . -}}</figcaption>
         {{- end }}
