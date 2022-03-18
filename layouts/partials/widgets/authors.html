@@ -10,7 +10,7 @@
                     {{- $image := .Page.Resources.GetMatch .Params.Avatar -}}
                     {{- with $image -}}
                         <figure class="figure-img">
-                            <img src="{{- .RelPermalink -}}" width="{{- .Width -}}px" height="{{- .Height -}}px" />
+                            <img src="{{- .RelPermalink -}}" width="{{- .Width -}}" height="{{- .Height -}}" alt="{{- .Params.Title -}}" />
                         </figure>
                     {{- end -}}
                 </div>
@@ -20,7 +20,7 @@
                     {{- with .Params.Socials -}}
                         <ul class="author-socials mb-0">
                         {{- range . -}}
-                            <li><a href="{{- .url -}}" alt="{{- .alt -}}"><i class="fab fa-{{- .icon -}}"></i></a></li>
+                            <li><a href="{{- .url -}}" title="{{- .alt -}}"><i class="fab fa-{{- .icon -}}"></i></a></li>
                         {{- end -}}
                         </ul>
                     {{- end -}}
