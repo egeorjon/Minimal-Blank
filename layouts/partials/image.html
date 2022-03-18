@@ -49,7 +49,7 @@
     srcset="{{ if ge .w $smallw }}{{ with $smallImg.RelPermalink }}{{.}} {{ $smallw }}w{{end}}{{ end }}{{ if ge .w $mediumw }}{{ with $mediumImg.RelPermalink }},{{.}} {{ $mediumw }}w{{end}}{{ end }}{{ if ge .w $largew }}{{ with $largeImg.RelPermalink }},{{.}} {{ $largew }}w{{end}}{{ end }},{{ .largsrc.RelPermalink }} {{ .w }}w"
     sizes="(max-width: 576px) 500px{{ if ge .w $mediumw }}, (max-width: 768px) 700px{{ end }}{{ if ge .w $largew }}, (max-width: 992px) 900px{{ end }}{{ if ge .w $xlargew }}, (max-width: 1200px) 1140px{{ end }}, 100vw"
     {{- end -}}
-    src="{{ .largsrc.RelPermalink }}" width="{{ .w }}px" height="{{ .h }}px" 
+    src="{{ .largsrc.RelPermalink }}" width="{{ .w }}" height="{{ .h }}" 
     {{- if or ( .p.alt ) ( .p.caption ) -}}
         alt="{{- with .p.alt -}}{{- . | markdownify| plainify -}}{{- else -}}{{- .p.caption | markdownify| plainify -}}{{- end -}}"
     {{- end -}} />
