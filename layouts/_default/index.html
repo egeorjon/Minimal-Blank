@@ -110,16 +110,16 @@
                     </section>
                 {{- end -}}
             {{- else if eq $content.block "lastposts" -}}
-            {{/* ----------------------------- */}}
-            {{/* --- Section List ------------ */}}
-            {{/* ----------------------------- */}}
+            {{/* ----------------------------------- */}}
+            {{/* --- Section Last posts ------------ */}}
+            {{/* ----------------------------------- */}}
                 {{- $posts_list := (where site.RegularPages "Type" "in" $.Site.Params.MainSections | first ($content.number | default 6)) -}}
                 {{- if gt (len $posts_list) 0 -}}
                 <section class="home-section mb-7 {{ $content.block -}}" id="{{- $name | anchorize -}}">
                     <div class="row">
                         <div class="col">
                             <h2>{{- i18n "last-posts" -}}</h2>
-                            {{- with $content.subtitle -}}<p class="subtitle">{{- . | markdownify -}}{{- end -}}</p>
+                            {{- with $content.subtitle -}}<p class="subtitle">{{- . | markdownify -}}</p>{{- end -}}
                         </div>
                     </div>
                     {{- $class := partialCached "class-columns.html" $content.columns -}}          
@@ -132,11 +132,15 @@
                                     {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $content.meta) -}}
                                 {{- end -}}
                             </header>
+                            {{- $summary_text := .Description | safeHTML -}}
+                            {{- if .Summary -}}{{- $summary_text = .Summary | safeHTML -}}{{- end -}}
                             <div class="post-summary">
-                                {{- if .Summary -}}
-                                <p>{{- .Summary | safeHTML -}}</p>
-                                {{- else -}}
-                                <p>{{- .Description | safeHTML -}}</p>
+                                {{- with $summary_text -}}
+                                    {{- if (findRE "^(<p>)" . 1) -}}
+                                        {{- . -}}
+                                    {{- else -}}
+                                        <p>{{- . -}}</p>
+                                    {{- end -}}
                                 {{- end -}}
                             </div>
                             <footer class="post-footer">
@@ -150,7 +154,6 @@
                 </section>
                 {{- end -}}
             {{- end -}}
-            </section>
         {{- end -}}
     {{- end -}}
     </div><!-- container -->
