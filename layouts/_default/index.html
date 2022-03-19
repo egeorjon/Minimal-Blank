@@ -127,7 +127,7 @@
                         {{- range $posts_list -}}
                         <article class="col post mb-6 home-widget">
                             <header class="post-header mb-3">
-                                <h3 class="post-title"><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title -}}</a></h3>
+                                <h3 class="post-title"><a href="{{- .RelPermalink -}}" rel="bookmark">{{- .Title | safeHTML -}}</a></h3>
                                 {{- if $content.meta -}}
                                     {{- partial "meta.html" (dict "context" . "kind" .Kind "prm" $content.meta) -}}
                                 {{- end -}}
