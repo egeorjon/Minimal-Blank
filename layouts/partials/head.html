@@ -59,6 +59,9 @@
 {{- if .Site.Params.ThemeColor -}}
 <meta name="theme-color" content="{{- .Site.Params.ThemeColor -}}" />
 {{- end -}}
+{{- with .Site.Params.Services.googleWMT | default false -}}
+<meta name="google-site-verification" content="{{- . -}}" />
+{{- end -}}
 {{- if or (not .Site.IsServer) .Site.Params.TestTAC -}}
     {{- if and (isset .Site.Params.Services "etracker") (ne .Site.Params.Services.eTracker "") -}}{{- partialCached "etracker.html" . -}}{{- end -}}
 {{- end -}}
