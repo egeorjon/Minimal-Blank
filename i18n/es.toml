@@ -1,0 +1,351 @@
+[more]
+one = "Continúe leyendo"
+other = "Continúe leyendo"
+
+[In]
+one = "In"
+other = "In"
+
+[reading-label]
+one   = "Lectura de {{ .Count }} minuto"
+other = "Lectura de {{ .Count }} minutos"
+
+[reading-sentence]
+one   = "{{ .Count }} min."
+other = "{{ .Count }} mins."
+
+[by]
+one = "por"
+other = "por"
+
+[tags]
+one   = "Etiqueta"
+other = "Etiquetas"
+
+[section]
+one = "Sección"
+other = "Secciones"
+
+[posted-on]
+one = "Publicado en"
+other = "Publicados en"
+
+[search]
+one   = "Buscar"
+other = "Búsqueda"
+
+[series-posts]
+one = "La publicación"
+other = "Las publicaciones"
+
+[no-post-yet]
+one = "No hay publicación disponible todavía"
+other = "No hay publicaciones disponibles todavía"
+
+[see-also]
+one = "Vea también"
+other = "Vea también"
+
+[same-series]
+one   = "Publicación  en la misma serie"
+other = "Publicaciones en la misma serie"
+
+[the_series]
+one = "La serie"
+other = "Las series"
+
+[series]
+one = "Serie"
+other = "Series"
+
+[share-this-post]
+one = "Compartir esta publicación"
+other = "Compartir estas publicaciones"
+
+[share-link-with]
+one = "Compartir esta publicacion con %s"
+other = "Compartir estas publicaciones %s"
+
+[attachment-type]
+one = "Tipo"
+other = "Tipos"
+
+[attachment-title]
+one = "Título"
+other = "Títulos"
+
+[attachment-size]
+one = "Tamaño"
+other = "Tamaños"
+
+[GB]
+one = "GB"
+other = "GB"
+
+[MB]
+one = "MB"
+other = "MB"
+
+[kB]
+one = "kB"
+other = "kB"
+
+[bytes]
+one = "bytes"
+other = "bytes"
+
+[page]
+one = "Página"
+other = "Páginas"
+
+[on]
+one = "en"
+other = "en"
+
+[newests]
+one   = "La última"
+other ="Las últimas"
+
+[newers]
+one   = "Siguiente publicación"
+other ="Siguiente publicación"
+
+[oldests]
+one   = "La primera"
+other = "Las primeras"
+
+[olders]
+one   = "Página previa"
+other = "Previas"
+
+[search-form]
+one = "Formulario de Búsqueda"
+other = "Formularios de Búsqueda"
+
+[search-results]
+one = "Resultado de Búsqueda"
+other = "Resultados de Búsqueda"
+
+[search-please-enter]
+one = "Por favor entre lo que está buscando"
+other = "Por favor entre lo que está buscando"
+
+[search-help]
+one = "Puedes ser una palabra o una oración completa"
+other = "Puedes ser una palabra o una oración completa"
+
+[what-you-looking-for]
+one = "Palabra u oración"
+other = "Palabras u oraciones"
+
+[rss-feeds]
+one = "RSS"
+other = "RSS"
+
+[all-series]
+one = "Vea todas las series"
+other = "Vea todas las series"
+
+[last-posts]
+one = "Última publicación"
+other = "Últimas publicaciones"
+
+[message-recorded]
+one = "Tu mensaje fue enviado"
+other = "Tu mensaje fue enviado"
+
+[your-name]
+one = "Tu nombre"
+other = "Tu nombre"
+
+[placeholder-name]
+one = "Tu nombre, o un apodo"
+other = "Tu nombre, o un apodo"
+
+[placeholder-email]
+one   = "tu correo electrónico"
+other = "tu correo electrónico"
+
+[placeholder-subject]
+one   = "el sujeto de tu mensaje"
+other = "los sujetos de tu mensaje"
+
+[placeholder-message]
+one   = "tu mensaje"
+other = "tus mensajes"
+
+[email-address]
+one = "Tu dirección  de correo electrónico"
+other = "Tu dirección  de correo electrónico"
+
+[subject]
+one = "Sujeto del mensaje"
+other = "Sujeto del mensaje"
+
+[your-message]
+one = "Mensaje"
+other = "Mensajes"
+
+[submit]
+one = "Enviar"
+other = "Enviar"
+
+[move-top]
+one = "Ir al inicio de la página"
+other = "Ir al inicio de la página"
+
+[related-posts]
+one = "Publicaciones relacionadas"
+other = "Publicaciones relacionadas"
+
+[authors]
+one = "Autor"
+other = "Autores"
+
+[follow-me]
+one = "Sígueme"
+other = "Sígueme"
+
+[404-error-title]
+one = "Oops algo anda mal"
+other = "Oops algo anda mal"
+
+[404-error-desc]
+one = "Error 404. Estás buscando una página que no existe."
+other = "Error 404. Estás buscando una página que no existe."
+
+[content-not-found]
+one = "Desafortunadamente, no podemos encontrar el contenido que estás buscando."
+other = "Desafortunadamente, no podemos encontrar el contenido que estás buscando."
+
+[you-can]
+one = "Pero, tú puedes"
+other = "Pero, tú puedes"
+
+[use-search]
+one = "Usa la herramienta de búsqueda"
+other = "Usa la herramienta de búsqueda"
+
+[go-search-form]
+one = "Usa el formulario de búsqueda al fondo de la pagina."
+other = "Usa el formulario de búsqueda al fondo de la pagina."
+
+[navigate-categories]
+one = "Navega las categorías"
+other = "Navega las categorías"
+
+[navigate-tags]
+one = "Navega las etiquetas"
+other = "Navega las etiquetas"
+
+[navigate-series]
+one = "Navegar las series"
+other = "Navegar las series"
+
+[featured-posts]
+one   = "Publicación Presentada"
+other = "Publicaciones Presentadas"
+
+[post_category]
+one   = "Publicacion de categoría %s"
+other = "Publicacion de categoría %s"
+
+[toc]
+one   = "Tabla de contenido"
+other = "Tabla de contenido"
+
+[updated]
+one   = " (Actualizado %s)"
+other = " (Actualizado %s)"
+
+[Jan]
+one   = "Ene"
+other = "Ene"
+
+[Feb]
+one   = "Feb"
+other = "Feb"
+
+[Mar]
+one   = "Mar"
+other = "Mar"
+
+[Apr]
+one   = "Abr"
+other = "Abr"
+
+[May]
+one   = "May"
+other = "May"
+
+[Jun]
+one   = "Jun"
+other = "Jun"
+
+[Jul]
+one   = "Jul"
+other = "Jul"
+
+[Aug]
+one   = "Ago"
+other = "Ago"
+
+[Sep]
+one   = "Sep"
+other = "Sep"
+
+[Oct]
+one   = "Oct"
+other = "Oct"
+
+[Nov]
+one   = "Nov"
+other = "Nov"
+
+[Dec]
+one   = "Dic"
+other = "Dic"
+
+[January]
+one   = "Enero"
+other = "Enero"
+
+[February]
+one   = "Febrero"
+other = "Febrero"
+
+[March]
+one   = "Marzo"
+other = "Marzo"
+
+[April]
+one   = "Abril"
+other = "Abril"
+
+[June]
+one   = "Junio"
+other = "Junio"
+
+[July]
+one   = "Julio"
+other = "Julio"
+
+[August]
+one   = "Agosto"
+other = "Agosto"
+
+[September]
+one   = "Septiembre"
+other = "Septiembre"
+
+[October]
+one   = "Octubre"
+other = "Octubre"
+
+[Noviembre]
+one   = "Noviembre"
+other = "Noviembre"
+
+[December]
+one   = "Diciembre"
+other = "Diciembre"
